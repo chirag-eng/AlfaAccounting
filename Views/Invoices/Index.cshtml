@@ -1,0 +1,70 @@
+﻿@model IEnumerable<AlfaAccounting.Models.Invoice>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Companyname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceReference)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceIssueDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReceivableAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReceivableDepoisitAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PayableAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PayableDepositAmount)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicationUser.Companyname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceReference)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceIssueDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReceivableAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReceivableDepoisitAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PayableAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PayableDepositAmount)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.InvoiceId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.InvoiceId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.InvoiceId })
+        </td>
+    </tr>
+}
+
+</table>

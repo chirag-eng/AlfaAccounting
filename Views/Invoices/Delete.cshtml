@@ -1,0 +1,81 @@
+﻿@model AlfaAccounting.Models.Invoice
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Invoice</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Companyname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Companyname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoiceReference)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceReference)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoiceIssueDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceIssueDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReceivableAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReceivableAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReceivableDepoisitAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReceivableDepoisitAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PayableAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PayableAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PayableDepositAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PayableDepositAmount)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

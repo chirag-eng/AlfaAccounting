@@ -1,0 +1,131 @@
+﻿@model AlfaAccounting.Models.ConfirmBookingViewModel
+@using AlfaAccounting.Models
+
+@{
+    ViewBag.Title = "ConfirmBooking";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml"; ;
+}
+
+<h3>ConfirmBooking</h3>
+
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(model => model.ApplicationUser.Companyname, htmlAttributes: new { @class = "control-label col-sm-3" })
+            <div class="col-sm-9">
+                @Html.DisplayFor(model => model.ApplicationUser.Companyname)
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(model => model.ApplicationUser.Street, htmlAttributes: new { @class = "control-label col-sm-3" })
+            <div class="col-sm-9">
+                @Html.DisplayFor(model => model.ApplicationUser.Street)
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="from-group">
+            @Html.LabelFor(model => model.ApplicationUser.Town, htmlAttributes: new { @class = "control-label col-sm-3" })
+            <div clas="col-sm-9">
+                @Html.DisplayFor(model => model.ApplicationUser.Town)
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(model => model.ApplicationUser.Postcode, htmlAttributes: new { @class = "control-label col-sm-3" })
+            <div class="col-sm-9">
+                @Html.DisplayFor(model => model.ApplicationUser.Postcode)
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(model => model.InvoiceReference, htmlAttributes: new { @class = "control-label col-sm-3" })
+            <div class="col-sm-9">
+                @Html.DisplayFor(model => model.InvoiceReference)
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(model => model.InvoiceIssueDate, htmlAttributes: new { @class = "control-label col-sm-3" })
+            <div class="col-sm-9">
+                @Html.DisplayFor(model => model.InvoiceIssueDate)
+            </div>
+        </div>
+    </div>
+    <br />
+    <table class="table">
+        <tr>
+            <th>ItemDescription</th>&nbsp;
+            <th>UnitPrice</th>&nbsp;
+            <th>Subtotal</th>&nbsp;
+            <th>BookingStatus</th>
+        </tr>
+        @foreach (Booking bk in Model.Bookings)
+        {
+            <tr>
+                <td>@bk.ItemDescription</td>&nbsp;
+                <td>@bk.UnitPrice.UnitPriceValue</td>&nbsp;
+                <td>@bk.Subtotal</td>&nbsp;
+                <td>@bk.BookingStatus</td>
+            </tr>
+        }
+    </table>
+    <br />
+    @if (Model.ReceivableAmount != 0)
+    {
+        <div class="row">
+            <div class="form-group">
+                @Html.LabelFor(model => model.ReceivableAmount, htmlAttributes: new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.DisplayFor(model => model.ReceivableAmount)
+                </div>
+            </div>
+        </div>
+    }
+    @if (Model.ReceivableDepoisitAmount != 0)
+    {
+        <div class="row">
+            <div class="form-group">
+                @Html.LabelFor(model => model.ReceivableDepoisitAmount, htmlAttributes: new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.DisplayFor(model => model.ReceivableDepoisitAmount)
+                </div>
+            </div>
+        </div>
+    }
+    @if (Model.PayableDepositAmount != 0)
+    {
+        <div class="row">
+            <div class="form-group">
+                @Html.LabelFor(model => model.PayableDepositAmount, htmlAttributes: new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.DisplayFor(model => model.PayableDepositAmount)
+                </div>
+            </div>
+        </div>
+    }
+    @if (Model.PayableAmount != 0)
+    {
+        <div class="row">
+            <div class="form-group">
+                @Html.LabelFor(model => model.PayableAmount, htmlAttributes: new { @class = "control-label col-sm-3" })
+                <div class="col-sm-9">
+                    @Html.DisplayFor(model => model.PayableAmount)
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.InvoiceId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+*@
+@Html.ActionLink("Proceed to pay", "New", "BookingViewModels")

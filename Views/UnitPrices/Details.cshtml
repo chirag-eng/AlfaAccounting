@@ -1,0 +1,35 @@
+﻿@model AlfaAccounting.Models.UnitPrice
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>UnitPrice</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitPriceValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitPriceValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitPriceDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitPriceDescription)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UnitPriceId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
