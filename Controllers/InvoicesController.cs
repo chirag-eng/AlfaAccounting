@@ -48,7 +48,7 @@ namespace AlfaAccounting.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "InvoiceId,InvoiceReference,InvoiceIssueDate,ReceivableAmount,ReceivableDepoisitAmount,PayableAmount,PayableDepositAmount,Id")] Invoice invoice)
+        public ActionResult Create([Bind(Include = "InvoiceId,InvoiceReference,InvoiceIssueDate,ReceivableRemainingAmount,ReceivableDepoisitAmount,PayableAmount,PayableDepositAmount,Id")] Invoice invoice)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace AlfaAccounting.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "InvoiceId,InvoiceReference,InvoiceIssueDate,ReceivableAmount,ReceivableDepoisitAmount,PayableAmount,PayableDepositAmount,Id")] Invoice invoice)
+        public ActionResult Edit([Bind(Include = "InvoiceId,InvoiceReference,InvoiceIssueDate,ReceivableRemainingAmount,ReceivableDepoisitAmount,PayableAmount,PayableDepositAmount,Id")] Invoice invoice)
         {
             if (ModelState.IsValid)
             {

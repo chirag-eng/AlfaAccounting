@@ -334,7 +334,7 @@ namespace AlfaAccounting.Models
 //                        InvoiceId = 1,
                     InvoiceReference = "Deposit",
                     InvoiceIssueDate = objBooking1.BookedDate,
-                    ReceivableAmount = 0f,
+                    ReceivableRemainingAmount = 0f,
                     ReceivableDepoisitAmount = objBooking1.Subtotal * 0.1f,
 //                    ReceivableDepoisitAmount = objBookingInvoiceLine1.Subtotal * 0.1f,
                     PayableAmount = 0f,
@@ -354,8 +354,8 @@ namespace AlfaAccounting.Models
  //                       InvoiceId = 2,
                         InvoiceReference = "Remaining",
                         InvoiceIssueDate = objBooking1.BookedDate,
-                        ReceivableAmount = objBooking1.Subtotal*0.9f,
-//                        ReceivableAmount = objBookingInvoiceLine1.Subtotal * 0.9f,
+                        ReceivableRemainingAmount = objBooking1.Subtotal*0.9f,
+//                        ReceivableRemainingAmount = objBookingInvoiceLine1.Subtotal * 0.9f,
                         ReceivableDepoisitAmount = 0f,
                         PayableAmount = 0f,
                         PayableDepositAmount = 0f,
@@ -385,7 +385,7 @@ namespace AlfaAccounting.Models
                     var objPayment1 = new Payment()
                 {
                     PaymentDateTime = objBooking1.BookedDate,
-                    CreditAmount = objInvoice1.ReceivableAmount + objInvoice1.ReceivableDepoisitAmount,
+                    CreditAmount = objInvoice1.ReceivableRemainingAmount + objInvoice1.ReceivableDepoisitAmount,
                     DebitAmount = objInvoice1.PayableAmount + objInvoice1.PayableDepositAmount,
                     InvoiceId = objInvoice1.InvoiceId,
                         ApplicationUser = newUser3,
@@ -397,7 +397,7 @@ namespace AlfaAccounting.Models
                     var objPayment2 = new Payment()
                     {
                         PaymentDateTime = objBooking1.BookingStartDateTime,
-                        CreditAmount = objInvoice2.ReceivableAmount + objInvoice2.ReceivableDepoisitAmount,
+                        CreditAmount = objInvoice2.ReceivableRemainingAmount + objInvoice2.ReceivableDepoisitAmount,
                         DebitAmount = objInvoice2.PayableAmount + objInvoice2.PayableDepositAmount,
                         InvoiceId = objInvoice2.InvoiceId,
                         Id = newUser3.Id

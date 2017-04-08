@@ -70,7 +70,7 @@ namespace AlfaAccounting.Controllers
                 //                Bookings = db.Bookings.Where(b => b.Invoice.ToString().Contains(null)).Where(b => b.Id.Equals(loggedinId)).ToList(),               
                 //Bookings = db.Bookings.Where(b => !b.Invoices.Any()).Where(b => b.ApplicationUser.Id.Equals(loggedinIlistNewBookingToBeSavedToDbd)).ToList(),
                 Bookings = listNewBookingToBeSavedToDb,
-                ReceivableAmount = 0f,
+                ReceivableRemainingAmount = 0f,
                 PayableAmount = 0f,
                 PayableDepositAmount = 0f
             };
@@ -78,7 +78,7 @@ namespace AlfaAccounting.Controllers
             {   InvoiceId = model.InvoiceId,
                 InvoiceReference = model.InvoiceReference,
                 InvoiceIssueDate = model.InvoiceIssueDate,
-                ReceivableAmount = model.ReceivableAmount,
+                ReceivableRemainingAmount = model.ReceivableRemainingAmount,
  //               ReceivableDepoisitAmount = model.ReceivableDepoisitAmount,
                 PayableAmount = model.PayableAmount,
                 PayableDepositAmount = model.ReceivableDepoisitAmount,
@@ -167,7 +167,7 @@ namespace AlfaAccounting.Controllers
             }
             else if (newInvoice.InvoiceReference.Equals("Remainder"))
             {
-                ViewBag.amountValue = newInvoice.ReceivableAmount.ToString();
+                ViewBag.amountValue = newInvoice.ReceivableRemainingAmount.ToString();
             }
 
 
@@ -222,7 +222,7 @@ namespace AlfaAccounting.Controllers
                 var newPayment = new Payment()
                 {
                     PaymentDateTime = DateTime.Now,
-                    CreditAmount = (float)newInvoice.ReceivableDepoisitAmount + (float)newInvoice.ReceivableAmount,
+                    CreditAmount = (float)newInvoice.ReceivableDepoisitAmount + (float)newInvoice.ReceivableRemainingAmount,
                     DebitAmount = 0f,
                     Id = User.Identity.GetUserId(),
                     InvoiceId = newInvoice.InvoiceId

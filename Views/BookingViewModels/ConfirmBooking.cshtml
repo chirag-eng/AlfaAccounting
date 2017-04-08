@@ -77,13 +77,13 @@
         }
     </table>
     <br />
-    @if (Model.ReceivableAmount != 0)
+    @if (Model.ReceivableRemainingAmount != 0)
     {
         <div class="row">
             <div class="form-group">
-                @Html.LabelFor(model => model.ReceivableAmount, htmlAttributes: new { @class = "control-label col-sm-3" })
+                @Html.LabelFor(model => model.ReceivableRemainingAmount, htmlAttributes: new { @class = "control-label col-sm-3" })
                 <div class="col-sm-9">
-                    @Html.DisplayFor(model => model.ReceivableAmount)
+                    @Html.DisplayFor(model => model.ReceivableRemainingAmount)
                 </div>
             </div>
         </div>

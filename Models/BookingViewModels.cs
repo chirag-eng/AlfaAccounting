@@ -36,7 +36,7 @@ namespace AlfaAccounting.Models
             public DateTime InvoiceIssueDate { get; set; }
         [Display(Name = "Payable")]
         [DataType(DataType.Currency)]
-        public float ReceivableAmount { get; set; }
+        public float ReceivableRemainingAmount { get; set; }
         [Display(Name = "Deposit Payable")]
         [DataType(DataType.Currency)]
             public float ReceivableDepoisitAmount { get; set; }

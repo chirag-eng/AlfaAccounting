@@ -90,7 +90,7 @@ namespace AlfaAccounting.Controllers
             //        + " "+ (newBooking.BookingEndDateTime - newBooking.BookingStartDateTime).Hours + "hr" + (newBooking.BookingEndDateTime - newBooking.BookingStartDateTime).Minutes + "min",
             //    BookingId = newBooking.BookingId
             //};
-//            newBooking.BookingDuration = newBooking.BookingEndDateTime - newBooking.BookingStartDateTime;
+            newBooking.BookingDuration = newBooking.BookingEndDateTime - newBooking.BookingStartDateTime;
              newBooking.Subtotal = db.UnitPrices.SingleOrDefault(u=>u.UnitPriceId == newBooking.UnitPriceId).UnitPriceValue * (float)newBooking.BookingDuration.TotalMinutes / 60;
             newBooking.Subtotal = newBooking.UnitPrice.UnitPriceValue * (float)newBooking.BookingDuration.TotalMinutes / 60;
             newBooking.ItemDescription = newBooking.BookingStartDateTime.Date.ToString("d")
