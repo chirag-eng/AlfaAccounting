@@ -1,0 +1,101 @@
+﻿
+@model IEnumerable<AlfaAccounting.Models.PaymentHistory>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+
+<div class="container" style="width:100%">
+    <div class="page-header">
+        <h2>Payment History <small></small></h2>
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Manage Booking", "Dashboard", "BookingViewModels")</li>
+            <li class="active">Payment History</li>
+        </ol>
+    </div>
+    <p>
+    @Html.ActionLink("Create New", "NewPaymentHistory")
+    </p>
+    @using (Html.BeginForm("IndexPaymetHistory", "BookingViewModels", FormMethod.Post))
+    {
+        <p>
+            Start Date: @Html.TextBox("startDate", null, ("dd/MM/yyyy"), new { id = "startDate" })
+            &nbsp; and &nbsp; End Date: @Html.TextBox("endDate", null, ("dd/MM/yyyy"), new { id = "endDate" })
+            @*//<input type="text" id="startDate" name="startDate:"> &nbsp; and &nbsp; End Date: <input type="text" id="endDate" name="endDate:">*@
+            @*Start Date:@Html.TextBox("startDate")&nbsp;and &nbsp; End Date:@Html.TextBox("endDate")*@
+
+
+            <input type="submit" value="Filter" />
+        </p>
+    }
+    <table id="IndexPaymentHistory" class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.ApplicationUser.Companyname)</th>
+                <th>@Html.DisplayNameFor(model => model.InvoiceId)</th>
+                <th>@Html.DisplayNameFor(model => model.PaymentId)</th>
+                <th>@Html.DisplayNameFor(model => model.PaymentHistoryId)</th>
+                <th>@Html.DisplayNameFor(model => model.PaymentDateTime)</th>
+                <th>@Html.DisplayNameFor(model => model.PaymentType)</th>
+                <th>@Html.DisplayNameFor(model => model.CreditAmount)</th>
+                <th>@Html.DisplayNameFor(model => model.DebitAmount)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@Html.DisplayFor(modelItem => item.ApplicationUser.Companyname)</td>
+                    <td>@Html.DisplayFor(modelItem => item.InvoiceId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PaymentId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PaymentHistoryId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PaymentDateTime)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PaymentType)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CreditAmount)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DebitAmount)</td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "EditPaymentHistory", new { payhisid = item.PaymentHistoryId, invid = item.InvoiceId, payid = item.PaymentId, userid = item.Id }) |
+                        @*@Html.ActionLink("Details", "Details", new { id = item.PaymentHistoryId }) |*@
+                        @Html.ActionLink("Delete", "DeletePaymentHistory", new { id = item.PaymentHistoryId })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+    @section scripts{
+        <script src="//cdn.datatables.net/plug-ins/1.10.15/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+        <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+        <script src="//cdn.datatables.net/colreorder/1.3.3/js/dataTables.colReorder.min.js"></script>
+        <script src="//cdn.datatables.net/tabletools/2.2.4/js/dataTables.tableTools.min.js"></script>
+        @*<script src="@Url.Content("~/Scripts/DataTables/jquery.dataTables.min.js")"></script>
+            <script src="@Url.Content("~/Scripts/DataTables/dataTables.colReorder.min.js")"></script>
+            <script src="@Url.Content("~/Scripts/DataTables/tableTools.min.js")"></script>*@
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var table = $('.table').dataTable({
+                    "dom": 'Rlfrtip'
+                })
+                var tt = new $.fn.dataTable.TableTools(table);
+                $(tt.fnContainer()).insertBefore('div.dataTables_wrapper');
+            });
+        </script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script>
+  $( function() {
+      $("#startDate").datepicker({ dateFormat: 'dd/mm/yy' });
+  } );
+</script>
+<script>
+  $( function() {
+      $("#endDate").datepicker({ dateFormat: 'dd/mm/yy' });
+
+  } );
+</script>
+    }

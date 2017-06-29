@@ -1,0 +1,189 @@
+\hypertarget{class_alfa_accounting_1_1_controllers_1_1_blogs_controller}{}\section{Alfa\+Accounting.\+Controllers.\+Blogs\+Controller Class Reference}
+\label{class_alfa_accounting_1_1_controllers_1_1_blogs_controller}\index{Alfa\+Accounting.\+Controllers.\+Blogs\+Controller@{Alfa\+Accounting.\+Controllers.\+Blogs\+Controller}}
+
+
+Inherits Controller.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_a74802933bb006f192322f5c95aa52977}{Index} (string category\+Choice, string search\+String, string sort\+Order, string current\+Filter, int? page)
+\begin{DoxyCompactList}\small\item\em Returns a collection of blogs within page list With filter function by category name or input string on blog title With sort function by forename or date in ascending alternatively descending order \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_a403d27c3a759fd9c09d31e9d008773c8}\label{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_a403d27c3a759fd9c09d31e9d008773c8}} 
+Action\+Result {\bfseries Details} (int? id)
+\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_add17e68e465717e073580dac6b541e07}{Create} ()
+\begin{DoxyCompactList}\small\item\em returns a blank Blogs/\+Create view saves the input data in ot blog object \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_a78c98056cc7864ecf6526c64c314e5ba}{Create} (\mbox{[}Bind(Include=\char`\"{}Blog\+Id,Blog\+Title,Blog\+Content,Blog\+Date,Blog\+Approved,Category\+Id,Id\char`\"{})\mbox{]} Blog blog)
+\begin{DoxyCompactList}\small\item\em returns a Blogs/\+Index view after successfully save input data on to database if error return Blogs/create blog view with current blog data \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_ad761e1d2ccb29c9695488da4a14dac72}{Edit} (int? id)
+\begin{DoxyCompactList}\small\item\em Returns Blogs/\+Edit view filled with the data of selected blog and pass updated object blog to the next Blogs/\+Edit vew \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_a0eeae8f49493e7b482d2d682c56af91f}{Edit} (\mbox{[}Bind(Include=\char`\"{}Blog\+Id,Blog\+Title,Blog\+Content,Blog\+Date,Blog\+Approved,Category\+Id,Id\char`\"{})\mbox{]} Blog blog)
+\begin{DoxyCompactList}\small\item\em Returns Blogs/\+Index View after updating changed data on database if error keep returning the Blogs/\+Edit view \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_a9d3c0da54aa6522543eec25db0315d19}{Delete} (int? id)
+\begin{DoxyCompactList}\small\item\em Blogs/\+Delete view filled with the selected blog with delete confirmation button and pass the blog object to next Blogs/\+Edit view \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_a5a722765df3b6cea97c6e772d2fe55ec}{Delete\+Confirmed} (int id)
+\begin{DoxyCompactList}\small\item\em Returns Blogs/\+Index view after successfully deleting the selected blog record \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_aaa6932bf904893e757eeafb0641772b2}{Dispose} (bool disposing)
+\begin{DoxyCompactList}\small\item\em dispose deleted data appropriately form the database \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_a00f2c10a1d0fb34d69dac9b9dcb14271}\label{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_a00f2c10a1d0fb34d69dac9b9dcb14271}} 
+Application\+Db\+Context {\bfseries db} = new Application\+Db\+Context()
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_add17e68e465717e073580dac6b541e07}\label{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_add17e68e465717e073580dac6b541e07}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller}!Create@{Create}}
+\index{Create@{Create}!Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller}}
+\subsubsection{\texorpdfstring{Create()}{Create()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Blogs\+Controller.\+Create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+returns a blank Blogs/\+Create view saves the input data in ot blog object 
+
+\begin{DoxyReturn}{Returns}
+Blog blog
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_a78c98056cc7864ecf6526c64c314e5ba}\label{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_a78c98056cc7864ecf6526c64c314e5ba}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller}!Create@{Create}}
+\index{Create@{Create}!Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller}}
+\subsubsection{\texorpdfstring{Create()}{Create()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Blogs\+Controller.\+Create (\begin{DoxyParamCaption}\item[{\mbox{[}\+Bind(\+Include = \char`\"{}\+Blog\+Id,\+Blog\+Title,\+Blog\+Content,\+Blog\+Date,\+Blog\+Approved,\+Category\+Id,\+Id\char`\"{})\mbox{]} Blog}]{blog }\end{DoxyParamCaption})}
+
+
+
+returns a Blogs/\+Index view after successfully save input data on to database if error return Blogs/create blog view with current blog data 
+
+
+\begin{DoxyParams}{Parameters}
+{\em blog} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+view Blogs/\+Index 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_a9d3c0da54aa6522543eec25db0315d19}\label{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_a9d3c0da54aa6522543eec25db0315d19}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller}!Delete@{Delete}}
+\index{Delete@{Delete}!Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller}}
+\subsubsection{\texorpdfstring{Delete()}{Delete()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Blogs\+Controller.\+Delete (\begin{DoxyParamCaption}\item[{int?}]{id }\end{DoxyParamCaption})}
+
+
+
+Blogs/\+Delete view filled with the selected blog with delete confirmation button and pass the blog object to next Blogs/\+Edit view 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Blog blog
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_a5a722765df3b6cea97c6e772d2fe55ec}\label{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_a5a722765df3b6cea97c6e772d2fe55ec}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller}!Delete\+Confirmed@{Delete\+Confirmed}}
+\index{Delete\+Confirmed@{Delete\+Confirmed}!Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller}}
+\subsubsection{\texorpdfstring{Delete\+Confirmed()}{DeleteConfirmed()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Blogs\+Controller.\+Delete\+Confirmed (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Returns Blogs/\+Index view after successfully deleting the selected blog record 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Blogs/\+Index 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_aaa6932bf904893e757eeafb0641772b2}\label{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_aaa6932bf904893e757eeafb0641772b2}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller}}
+\subsubsection{\texorpdfstring{Dispose()}{Dispose()}}
+{\footnotesize\ttfamily override void Alfa\+Accounting.\+Controllers.\+Blogs\+Controller.\+Dispose (\begin{DoxyParamCaption}\item[{bool}]{disposing }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+dispose deleted data appropriately form the database 
+
+
+\begin{DoxyParams}{Parameters}
+{\em disposing} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_ad761e1d2ccb29c9695488da4a14dac72}\label{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_ad761e1d2ccb29c9695488da4a14dac72}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller}!Edit@{Edit}}
+\index{Edit@{Edit}!Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller}}
+\subsubsection{\texorpdfstring{Edit()}{Edit()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Blogs\+Controller.\+Edit (\begin{DoxyParamCaption}\item[{int?}]{id }\end{DoxyParamCaption})}
+
+
+
+Returns Blogs/\+Edit view filled with the data of selected blog and pass updated object blog to the next Blogs/\+Edit vew 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Blog blog
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_a0eeae8f49493e7b482d2d682c56af91f}\label{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_a0eeae8f49493e7b482d2d682c56af91f}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller}!Edit@{Edit}}
+\index{Edit@{Edit}!Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller}}
+\subsubsection{\texorpdfstring{Edit()}{Edit()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Blogs\+Controller.\+Edit (\begin{DoxyParamCaption}\item[{\mbox{[}\+Bind(\+Include = \char`\"{}\+Blog\+Id,\+Blog\+Title,\+Blog\+Content,\+Blog\+Date,\+Blog\+Approved,\+Category\+Id,\+Id\char`\"{})\mbox{]} Blog}]{blog }\end{DoxyParamCaption})}
+
+
+
+Returns Blogs/\+Index View after updating changed data on database if error keep returning the Blogs/\+Edit view 
+
+
+\begin{DoxyParams}{Parameters}
+{\em blog} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Blog\+View\+Models/\+Blog\+View\+Model\+Index\+View 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_a74802933bb006f192322f5c95aa52977}\label{class_alfa_accounting_1_1_controllers_1_1_blogs_controller_a74802933bb006f192322f5c95aa52977}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller}!Index@{Index}}
+\index{Index@{Index}!Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Blogs\+Controller}}
+\subsubsection{\texorpdfstring{Index()}{Index()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Blogs\+Controller.\+Index (\begin{DoxyParamCaption}\item[{string}]{category\+Choice,  }\item[{string}]{search\+String,  }\item[{string}]{sort\+Order,  }\item[{string}]{current\+Filter,  }\item[{int?}]{page }\end{DoxyParamCaption})}
+
+
+
+Returns a collection of blogs within page list With filter function by category name or input string on blog title With sort function by forename or date in ascending alternatively descending order 
+
+
+\begin{DoxyParams}{Parameters}
+{\em category\+Choice} & \\
+\hline
+{\em search\+String} & \\
+\hline
+{\em sort\+Order} & \\
+\hline
+{\em current\+Filter} & \\
+\hline
+{\em page} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a collection of blogs within page list
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Me/\+Documents/\+Visual Studio 2015/\+Projects/\+Alfa\+Accounting/\+Alfa\+Accounting/\+Controllers/Blogs\+Controller.\+cs\end{DoxyCompactItemize}

@@ -9,21 +9,21 @@ using System.Web.Mvc;
 using AlfaAccounting.Models;
 using Microsoft.AspNet.Identity;
 using PagedList;
+
 /// <summary>
 /// Name:Mie Tanaka
-/// Name:02/03/2017
+/// Name:26/05/2017
 /// Description: allows users to create, edit and delete blogs
-/// 
 
- 
 
 namespace AlfaAccounting.Controllers
 {
+
     public class BlogsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Blogs
+
         /*     public ActionResult Index()
              {
                  var blogs = db.Blogs.Include(b => b.Category);
@@ -41,6 +41,7 @@ namespace AlfaAccounting.Controllers
         /// <param name="currentFilter"></param>
         /// <param name="page"></param>
         /// <returns>Returns a collection of blogs within page list</returns>
+        /// <includesource>yes</includesource>
         [AllowAnonymous]
         public ActionResult Index(string categoryChoice, string searchString, string sortOrder, string currentFilter, int? page)
         {
@@ -124,26 +125,27 @@ namespace AlfaAccounting.Controllers
       //      return View(blogs.ToList());
         }
 
-        // GET: Blogs/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Blog blog = db.Blogs.Find(id);
-            if (blog == null)
-            {
-                return HttpNotFound();
-            }
-            return View(blog);
-        }
+        //// GET: Blogs/Details/5
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Blog blog = db.Blogs.Find(id);
+        //    if (blog == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(blog);
+        //}
 
-        // GET: Blogs/Create
+
         /// <summary>
         /// returns a blank Blogs/Create view saves the input data in ot blog object
         /// </summary>
         /// <returns>Blog blog</returns>
+        /// <includesource>yes</includesource>
         public ActionResult Create()
         {
             var blog = new Blog();
@@ -154,7 +156,6 @@ namespace AlfaAccounting.Controllers
             return View(blog);
         }
 
-        // POST: Blogs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         /// <summary>
@@ -163,6 +164,7 @@ namespace AlfaAccounting.Controllers
         /// </summary>
         /// <param name="blog"></param>
         /// <returns> view Blogs/Index </returns>
+        /// <includesource>yes</includesource>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "BlogId,BlogTitle,BlogContent,BlogDate,BlogApproved,CategoryId,Id")] Blog blog)
@@ -181,13 +183,14 @@ namespace AlfaAccounting.Controllers
             return View(blog);
         }
 
-        // GET: Blogs/Edit/5
+
         /// <summary>
         /// Returns Blogs/Edit view filled with the data of selected blog 
         /// and pass updated object blog to the next Blogs/Edit vew
         /// </summary>
         /// <param name="id"></param>
         /// <returns> Blog blog</returns>
+        /// <includesource>yes</includesource>
         public ActionResult Edit(int? id)
         {//Blog tempblog = TempData["tempBlog"] as Blog;
             if (id == null)
@@ -214,6 +217,7 @@ namespace AlfaAccounting.Controllers
         /// </summary>
         /// <param name="blog"></param>
         /// <returns> BlogViewModels/BlogViewModelIndexView </returns>
+        /// <includesource>yes</includesource>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "BlogId,BlogTitle,BlogContent,BlogDate,BlogApproved,CategoryId,Id")] Blog blog)
@@ -231,13 +235,14 @@ namespace AlfaAccounting.Controllers
             return View(blog);
         }
 
-        // GET: Blogs/Delete/5
+
         /// <summary>
         /// Blogs/Delete view filled with the selected blog with delete confirmation button
         /// and pass the blog object to next Blogs/Edit view
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Blog blog</returns>
+        /// <includesource>yes</includesource>
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -258,6 +263,7 @@ namespace AlfaAccounting.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns> Blogs/Index </returns>
+        /// <includesource>yes</includesource>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -272,6 +278,7 @@ namespace AlfaAccounting.Controllers
         /// dispose deleted data appropriately form the database
         /// </summary>
         /// <param name="disposing"></param>
+        /// <includesource>yes</includesource>
         protected override void Dispose(bool disposing)
         {
             if (disposing)

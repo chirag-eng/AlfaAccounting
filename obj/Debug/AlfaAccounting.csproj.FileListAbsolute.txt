@@ -116,6 +116,8 @@ C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\
 C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\Braintree.dll
 C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\EntityFramework.dll
 C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\EntityFramework.SqlServer.dll
+C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\itextsharp.dll
+C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\itextsharp.xmlworker.dll
 C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\Microsoft.AI.Agent.Intercept.dll
 C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\Microsoft.AI.DependencyCollector.dll
 C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -147,6 +149,7 @@ C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\
 C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\PagedList.dll
 C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\PagedList.Mvc.dll
 C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\RestSharp.dll
+C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\Rotativa.dll
 C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\SendGrid.dll
 C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\SendGrid.SmtpApi.dll
 C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\SendGridMail.dll
@@ -160,6 +163,7 @@ C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\
 C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\System.Web.WebPages.Razor.dll
 C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\Twilio.Api.dll
 C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\WebGrease.dll
+C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\itextsharp.xml
 C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\Microsoft.AI.DependencyCollector.xml
 C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\Microsoft.AI.Web.xml
@@ -203,3 +207,4 @@ C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\
 C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\obj\Debug\AlfaAccounting.dll
 C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\obj\Debug\AlfaAccounting.pdb
+C:\Users\Me\Documents\Visual Studio 2015\Projects\AlfaAccounting\AlfaAccounting\obj\Debug\AlfaAccounting.csprojResolveAssemblyReference.cache

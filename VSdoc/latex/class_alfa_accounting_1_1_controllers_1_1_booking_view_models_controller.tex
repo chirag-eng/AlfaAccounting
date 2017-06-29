@@ -1,0 +1,859 @@
+\hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller}{}\section{Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller Class Reference}
+\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller}\index{Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller@{Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller}}
+
+
+ 
+
+
+
+
+Inherits Controller.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a5264795f04c49fa720e00514b644b57d}{Dashboard} (int? year)
+\begin{DoxyCompactList}\small\item\em with user specified year parameter, calcuates and displays the graph data also calucate and display user visits notification, admin visit notification and visit status update notification \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result $>$ \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a560b40cc15d83dc780c485d678e3e68c}{Send\+Admin\+Todays\+Visit\+Text} ()
+\begin{DoxyCompactList}\small\item\em On Click Ation to send todays visit\textquotesingle{}s users detail \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_aab2da8319a9b49c4dd060b669e230552}{Dash\+Board\+User} ()
+\begin{DoxyCompactList}\small\item\em Calculate and display count of invoice and total amount of unpaid invoice sum \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a1fa97ecedb9b4faaec9e994bfce18eb3}{Book\+Dates} ()
+\begin{DoxyCompactList}\small\item\em Returns a Book\+Dates View that displays calender makde of java script \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a5c17315b4daf73640327bfefa8b34ad7}{Add\+Booking} ()
+\begin{DoxyCompactList}\small\item\em opens empty booking start end date input view. \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a26b7e355b83aa0974f8b3a42c3096924}{Add\+Booking} (Add\+Booking\+View\+Model model)
+\begin{DoxyCompactList}\small\item\em post the input value and if successful save it to the database return user back to Book\+Dates if unsuccessful returns current Add\+Booking view with posted data and error message \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a27f68c32481b86742af2ecc237d8ec65}{Confirm\+Booking} ()
+\begin{DoxyCompactList}\small\item\em Create model using bookings in side booking cart saves the data inside of New\+Invoice Session \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_aa3cf39dd1c42f4d3277be49ee71bda48}{Confirm\+Visit} (int? id)
+\begin{DoxyCompactList}\small\item\em Get booking using the passed id saves it as a tempdata Booking\+Original Get invoice using the Booking\+Id of the booking saves it as a tempdata Invoice\+Original retrn it to the view \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result $>$ \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a30ebb6edf4dab2b9d02a3fbac9570bae}{Confirm\+Visit} (\mbox{[}Bind(Include=\char`\"{}Booking\+Id,Booked\+Date,Booking\+Start\+Date\+Time,Booking\+End\+Date\+Time,Booking\+Status,Booking\+Adjustment\+Hrs,Item\+Description,Subtotal,Booking\+Deposit,Booking\+Cancellation\+Fee,Unit\+Price\+Id,Id,Invoice\+Id\char`\"{})\mbox{]} Booking booking)
+\begin{DoxyCompactList}\small\item\em Get posted booking data,depending on the booking status chosen manipulate data and redirect to apprprirate view if booking status is unchanged or curtailed/extended without adjustment hrs input returns current view with error if booking status is visited, start\+Date, end\+Date, and item description updated and the booking saved to database Returns Admin\+Booking View if booking status is extended, subtotal, deposit cancellationfee value, start\+Date, end\+Date, and item description \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a0e2390ab528b31f0e6f08cb2e1e3b4d6}{Amend\+Book\+Dates} (int? id)
+\begin{DoxyCompactList}\small\item\em Find Booking matches with the passed Id, Create model of a booking that both start end date is in string to work with jquery ui Find Invoice of the found Booking Pass the model to return the view \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_ac7f71cbbf29ebdd1103368248f4f70f8}{Amend\+Book\+Dates} (\mbox{[}Bind(Include=\char`\"{}Booking\+Id,Booked\+Date,Booking\+Start\+Date\+Time,Booking\+End\+Date\+Time,Unit\+Price\+Id,Id,Invoice\+Id\char`\"{})\mbox{]} Amend\+Book\+Dates\+Date\+Filter\+Model model)
+\begin{DoxyCompactList}\small\item\em Find Booking using Booking\+Id passed Booking\+Original Temp\+Data and assign original data to binding local variable booking Find Invoice using Invoiceid from Invoice Original Temp\+Data and assing original data to local variable selected\+Inv Calcuate duration of original and updated booking if both duration is the same, start\+Date, end\+Date, Item Description, subtotal, of the booking save as Booking\+Updated Temp\+Data if Original duration is less than increase booking duration, updates start\+Date, end\+Date, Item Description, subtotal, of the booking also selected\+Inv\textquotesingle{}s Recievable deposit amount get increased that get saved as Invoice\+Updated. that get passed to Amend\+Bookingconfirmed view if Original duration is more than updated booking duration, updates the start\+Date, end\+Date, Item Description, subtotal, of the booking that get saved as Booking\+Updated also selected\+Inv\textquotesingle{}s Recievable deposit amount get reduced that get saved as Invoice\+Updated. then Booking\+Original, Invoice\+Original, Booking\+Updated, Invoice\+Updated get passed to Add\+Booking\+Confirmation View if not successful it returns the current view \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_afb2e1c7475bb061d45f7a810f5420d75}{Amend\+Booking\+Confirmation} ()
+\begin{DoxyCompactList}\small\item\em Create Visit\+Refund\+View\+Model model using data passed from tempdata Booking\+Original, Booking\+Upudated, Invoice Original, Invoice Updated that get passed to amend booking confirmation view \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a6e5358b2fd882c060e26353c85658d87}{Amend\+Booking\+Confirmation} (bool answer)
+\begin{DoxyCompactList}\small\item\em Only when additional payment amount is 0, and confirm button is clicked boolean value get passed to this action updates corresponding booking records in database \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a34296cd23c09ae737da8519afeb608ab}{Cancel\+Booking} (int? id)
+\begin{DoxyCompactList}\small\item\em careates My\+Booking\+Cancellation model using the routed booking id by finding it from the database if Booking\+Start\+Date\+Time is less than 48 hrs from now, add £25 of cancellation fee to the model, Saves the model as My\+Booking\+Cancellation\+Request session and if cancellation fee is more than paid deposit that session is used to pass the charge fee. that model get passed to cancel booking view \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_ae5344a979e68c8b3714902ad3bc2f98c}{New} ()
+\begin{DoxyCompactList}\small\item\em Get client token to access braintree gateway, if new\+Invoice session data is not null, pass pay new\+Invoice\+Seccion\textquotesingle{}s recievable deposit amount as pay amount to pay newly booked deposit if My\+Booking\+Cancellation\+Request session data is not null, if cancellation fee is more than 0 and payment\+Type is Deposit or Deposit\+Cancelled, pay amount is booking cancellation fee to pay cancelation fee. if booking cancellation fee is more than 0, cancellation fee is more than Booking deposit, deposit becomes pay amount to pay cancelation fee. if booking status is cancelled but booking deposit is more than 0, refund amount is original cancelled deposit amount to refund deposit. $\ast$$\ast$ only in this case return New view with Get Refund Post form. if temp\+Invoice\+Detail is not null pay amount becomes temp\+Invoice\+Detail.\+receibable\+Remaining\+Amount -\/ temp\+Invoice\+Detail.\+Payable\+Amount to pay remaining booking fee and saves temp\+Invoice\+Datail as Temp\+Data if invoice\+Updated or booking\+Updated is not null, amount becomes posted amount from the Amend\+Booking\+Confirmation for user to pay extra hrs deposit charge \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a6aab0900b3c5209a8674b3b909d7532b}{Create} ()
+\begin{DoxyCompactList}\small\item\em Open Gateway to the Braintree and make payment of the passed amount and submit for the settlement when successful and if New\+Invoice Session data is not null saves the new booking to the Boooking Invoice, Payemnt and Payment History databases and clear shopping cart item. if temp\+Invoice\+Detail\+Veiwmodel Temp\+Data is not null saves the remainging payment amount related update to the Invoice, Booking, Payemnt and Payment History databases if My\+Booking\+Cancelation\+Requrest Session data is not null, cancelation related payment amount updated on booking, invoice, payment and payment\+Hisotry database if Booking\+Updated and Invoice\+Updated Temp\+Data that is from amdend booking acion is not null, appropriate extra depsit charge or cancellation fee or reduced hrs deposit refund related change get amended to Booking, invoice, payemt and paymenthistory database. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result $>$ \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_aa3606d7cc1ee17ff8da3baaf866ea68b}{Show} (String id)
+\begin{DoxyCompactList}\small\item\em Gets the transaction id and find transaction status info and displays Calls for the payment confirmation email function before return view \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_adf4a14a9683e52f9dff922c5e58bc125}{Admin\+Booking} (string start\+Date, string end\+Date)
+\begin{DoxyCompactList}\small\item\em Allows admin view all the current bookings. allows fileter the booking data between start and end\+Date paramenter \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a2c4f4b56be6badae27c572180cb3d8fd}{Send\+Appt\+Confirmation} ()
+\begin{DoxyCompactList}\small\item\em Get Booking\+State\+Date\+Time is less tha 24hrs from now. and pass that list to the View \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result $>$ \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a047e63d34c2b64f178b55351fa544e77}{Send\+Appt\+Confirmation\+Text} ()
+\begin{DoxyCompactList}\small\item\em Get Booking\+State\+Date\+Time is less tha 24hrs from now and send confirmation text to all users \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a361d39aedee7dbfdacfaae1c1a9c67cc}{My\+Booking} (string start\+Date, string end\+Date)
+\begin{DoxyCompactList}\small\item\em Get the Bookings and create query with Invoice and payment amount and set those data in to My\+Bookings\+View\+Model\+Base model list if start\+Date and end\+Date parameter passed, allows user fileter the data by Booking\+Start\+Date\+Time allows user export in csv, in pdf of the filtered or unfiletered data \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a346f77626590a070d12e96a5d69a837e}{Invoice\+Index} (string start\+Date, string end\+Date)
+\begin{DoxyCompactList}\small\item\em Get the list of Bookings with Invoice and payment amount by user id if user is logged in, if admin/staff is logged in all user\textquotesingle{}s invoice data get returned and set those data in to Invoice\+Index\+View\+Model model list if start\+Date and end\+Date parameter passed, allows user fileter the model data by Booking\+Start\+Date\+Time allows user export in csv, in pdf of the filtered or unfiletered model data \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a041402af1bece6737df3fb799dc16550}{Invoice\+Detail} (int? id)
+\begin{DoxyCompactList}\small\item\em Gets Invoice Detail data using the passed id and returns it to the view \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_af36acd06396149c082418a6668673052}{Invoice\+Detail\+To\+P\+DF} ()
+\begin{DoxyCompactList}\small\item\em Convert passed model into a pdf view \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a0ed146c62729d4e05b0bc7b532319ed8}{Payment\+Index} (string start\+Date, string end\+Date)
+\begin{DoxyCompactList}\small\item\em Get the Bookings and create query with invoice and payment amount by user id if user is logged in, if admin/staff is logged in all user\textquotesingle{}s payment query data get returned and set above data into Payment\+Receipt\+View\+Model model list if start\+Date and end\+Date parameter passed, allows user fileter the data by the Booking\+Start\+Date\+Time allows user export in csv, in pdf of the filtered or unfiletered data \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_ac228b95707fb10fe6aca1e4cacc2be6d}{Payment\+Receipt} (int? id)
+\begin{DoxyCompactList}\small\item\em Get Invoice record found by the passed id and create query with payemnt and Invoice data set Payment\+Receipt\+View\+Model model with the query data \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_af89a68f628793df0d1b8b3167686b33e}{Payment\+Receipt\+To\+P\+DF} (int? id)
+\begin{DoxyCompactList}\small\item\em Calculate total credit, debt and paid from the data passed A\+Payment\+Receipt as Payment\+Receipt\+View\+Model and pass this model data to the Payment\+Receipt\+To\+P\+D\+F\+View \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_abe5d4ebb87b5c0e91f2617edd686509d}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_abe5d4ebb87b5c0e91f2617edd686509d}} 
+Action\+Result {\bfseries Payment\+Deposit\+Receipt} (int? id)
+\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a457bd52267b9065f75bbe5a82faeee02}{Payment\+Deposit\+Receipt\+To\+P\+DF} ()
+\begin{DoxyCompactList}\small\item\em Calculate total deposit from the data passed A\+Payment\+Receipt\+View\+Model as Payment\+Receipt\+View\+Model and pass this model data to the Payment\+Deposit\+Receipt\+To\+P\+D\+F\+View \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a32041a3c590714a7ce8b3b59db82ea24}{Visit\+Refund\+Confirmation} ()
+\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_abe04eeac8c2f30835c9661edad9d76a6}{Refund} ()
+\begin{DoxyCompactList}\small\item\em Get accessto Braintree gateway, get amount posted from the either confirm cancellation view or New view with get refund button if My\+Booking\+Cancellation\+Request is not null, get payment transaction from it if Invoice\+Updated from Amend\+Booking or Confirm\+Visit View is not null, get payment transaction from it, apply refund transaction with the transaction\+Id found, if successful, if My\+Booking\+Cancellation\+Request session is not null, save the change to the bookings, payments,invoices, payment\+Histories database and save the updated\+Invoice session as \char`\"{}updated\+Invoice\+Cancelled\+Bkg\char`\"{} to pass this to email fucntion if Invoice\+Updated from Amend\+Booking or Confirm\+Visit view is not null, save change to payments, payemnt histories, invoices and bookings database and save Tep\+Data Invoice\+Updated\+Debited to pass this to the email function. if successful in either way, retruns show view \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a5d73d599f1b0a2ef694e4fe462df8a21}{Add\+Payment\+History} (int? id)
+\begin{DoxyCompactList}\small\item\em Get Invoice record found from the passed id, create payment history and assign passed id as payment\+History Invoice Id assign the found invoice\textquotesingle{}s user id to this payment hiostory userid assin the found invoice\textquotesingle{}s payment id to this payment history payment\+Id calculate total remaining amount from data from the invoice data assign the total remaining into payment\+Hisotry\textquotesingle{}s credit amount. save the paymenthistory as \char`\"{}\+Null\+Payment\+Hisotry\+With\+Inv\+Pay\+Ids\char`\"{} sesion \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a2dd3ff554a0b0a99340572129dc87035}{Add\+Payment\+History} (\mbox{[}Bind(Include=\char`\"{}Payment\+History\+Id,Payment\+Date\+Time,Payment\+Type,Credit\+Amount,Debit\+Amount,Transaction\+Id,Payment\+Id,Invoice\+Id,Id\char`\"{})\mbox{]} Payment\+History payment\+History)
+\begin{DoxyCompactList}\small\item\em returns validation error if input payment\+Date\+Time is later than now, returns validation error if both credit and debit amount is filled by mistake returns validation error if Invoiced amount is more than remaining payment amount Assign Null\+Payment\+History\+With\+Inv\+Pay\+Ids session\textquotesingle{}s Invoice\+Id, booking\+Id and payment\+Id to the binded booking object as they are null at the moment save the binged booking data in payment Histories, and the payments record\textquotesingle{}s appropriate attributes gets updated according to the paymenttype \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a0dbca25c3000615589dd5f52b9d0df7b}{Edit\+Payment\+History} (int id)
+\begin{DoxyCompactList}\small\item\em Gets the payment\+History found with the passed id saves it as Session \char`\"{}\+Payment\+History\+With\+Ids\char`\"{} and pass it to the view \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a5f9d68347caac3e53ab18b4afb468a24}{Edit\+Payment\+History} (Payment\+History\+View\+Model model)
+\begin{DoxyCompactList}\small\item\em Gets the Session data Payemnt\+History\+With\+Ids returns validation error if input payment\+Date\+Time is later than now, returns validation error if both credit and debit amount is filled by mistake returns validation error if Invoiced amount is more than remaining payment amount Create payment history from the temppayent\+History\textquotesingle{}s paymenthistory id and assing the posted Payemnt\+History\+View\+Model model data to the created paymemn\+History save to payment\+Histoyr database, and the payments record\textquotesingle{}s appropriate attributes gets updated according to the paymenttype \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a174254ecf6118ecb99bd0cb915ae4514}{Index\+Payment\+History} (string start\+Date, string end\+Date)
+\begin{DoxyCompactList}\small\item\em Gets all the payment\+History from database if start\+Date and end\+Date is selected filters the data if payment date is btw those date pass the list of payment to the view \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a3b0b28c4b3de440bbaab4d0179bf5944}{Delete\+Payment\+History} (int? id)
+\begin{DoxyCompactList}\small\item\em Get Payemnt History found with the passed id from database and Returns the record of Payment\+History view that will be deleted once confirmed \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a8134c914666bdbb144ad94b15d1f84e6}{Delete\+Confirmed} (int id)
+\begin{DoxyCompactList}\small\item\em Get Payemnt History found with the passed id from database remove the found record from the database Change the related payments attributes. saves it to the database \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_af681755383e06aa0a5df31136be68926}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_af681755383e06aa0a5df31136be68926}} 
+\hyperlink{interface_alfa_accounting_1_1_controllers_1_1_i_braintree_configuration}{I\+Braintree\+Configuration} {\bfseries config} = new \hyperlink{class_alfa_accounting_1_1_controllers_1_1_braintree_configuration}{Braintree\+Configuration}()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static readonly Transaction\+Status \mbox{[}$\,$\mbox{]} \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_ad5c8b969ca7fc245ddaa2c9554832188}{transaction\+Success\+Statuses}
+\begin{DoxyCompactList}\small\item\em Array to sotre transaction status sent by braintree \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a913b40e51291dff52c980cf14a02343c}{Dispose} (bool disposing)
+\begin{DoxyCompactList}\small\item\em dispose database related garbege after use so that entitiy frame work can work properly \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Application\+User\+Manager \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_acc8f9d52de1f1e047284bab3a03de617}{User\+Manager}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em allow access to the http owin context\textquotesingle{}s properties \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a741b6cc23c814a19db514ad186687986}{Add\+To\+Cart} (int id)
+\begin{DoxyCompactList}\small\item\em Helper method to Add Booking To the Cart Booking\+Id \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a9a319bacf4cd2b5512566864c1cc6353}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a9a319bacf4cd2b5512566864c1cc6353}} 
+async Task$<$ string $>$ {\bfseries Send\+Invoice\+Url\+Email\+Token\+Async} (string user\+ID, int inv\+ID, string subject)
+\item 
+async Task$<$ string $>$ \hyperlink{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_afba945bda68b35457708ec76ba5ae3b9}{Send\+Payment\+Confirmation\+Email\+Token\+Async} (string user\+ID, string subject)
+\begin{DoxyCompactList}\small\item\em it ignores the user id and subejct passed, user\+Id and subject get extracted from the passed sessions always send user and admin related emails each. if New\+Invoice Session data is not null booking detail and user detail is extracted from it, and new booking confirmation email send to both user and admin. if updated\+Invoice\+Cancelledkg is not null, booking cancellation by admin. booking detail and user detail is extracted from it, and messagge get sent to both user and admin. if My\+Booking\+Cancellation\+Request is not null, Booking cancellation by user. booking detail and user detail is extracted from it, and message get sent to both user and admin. if Booking\+Updated is not null, Booking ajustment done by admin. booking detail and user detail is extracted from it. message sent to both user and admin. if updated\+Invoice is not null, Booking amendment done by customer. booking detail and user detail is extracted from it. payment confirmation message sent to both if Invoice\+Updated\+Debited is not null, Booking amendment done by customer with refund. booking detail and user detail is extracted from it. refund confirmation message sent to both \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a9d1735d1e296cc775c51775b052af941}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a9d1735d1e296cc775c51775b052af941}} 
+Application\+User\+Manager {\bfseries \+\_\+user\+Manager}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a529ad925d1c229227b1404ff1097fcc8}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a529ad925d1c229227b1404ff1097fcc8}} 
+Application\+Db\+Context {\bfseries db} = new Application\+Db\+Context()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Mie Tanaka Version 0.\+0 26/05/2017 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a5c17315b4daf73640327bfefa8b34ad7}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a5c17315b4daf73640327bfefa8b34ad7}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Add\+Booking@{Add\+Booking}}
+\index{Add\+Booking@{Add\+Booking}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Add\+Booking()}{AddBooking()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Add\+Booking (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+opens empty booking start end date input view. 
+
+\begin{DoxyReturn}{Returns}
+empty Add\+Booking View 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a26b7e355b83aa0974f8b3a42c3096924}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a26b7e355b83aa0974f8b3a42c3096924}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Add\+Booking@{Add\+Booking}}
+\index{Add\+Booking@{Add\+Booking}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Add\+Booking()}{AddBooking()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Add\+Booking (\begin{DoxyParamCaption}\item[{Add\+Booking\+View\+Model}]{model }\end{DoxyParamCaption})}
+
+
+
+post the input value and if successful save it to the database return user back to Book\+Dates if unsuccessful returns current Add\+Booking view with posted data and error message 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if value state is Returns Book\+Dates view if not valid, returns the current Add\+Booking view with posted data and error message 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a5d73d599f1b0a2ef694e4fe462df8a21}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a5d73d599f1b0a2ef694e4fe462df8a21}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Add\+Payment\+History@{Add\+Payment\+History}}
+\index{Add\+Payment\+History@{Add\+Payment\+History}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Add\+Payment\+History()}{AddPaymentHistory()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Add\+Payment\+History (\begin{DoxyParamCaption}\item[{int?}]{id }\end{DoxyParamCaption})}
+
+
+
+Get Invoice record found from the passed id, create payment history and assign passed id as payment\+History Invoice Id assign the found invoice\textquotesingle{}s user id to this payment hiostory userid assin the found invoice\textquotesingle{}s payment id to this payment history payment\+Id calculate total remaining amount from data from the invoice data assign the total remaining into payment\+Hisotry\textquotesingle{}s credit amount. save the paymenthistory as \char`\"{}\+Null\+Payment\+Hisotry\+With\+Inv\+Pay\+Ids\char`\"{} sesion 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return Add\+Payment view with the created payment\+Historydata
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a2dd3ff554a0b0a99340572129dc87035}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a2dd3ff554a0b0a99340572129dc87035}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Add\+Payment\+History@{Add\+Payment\+History}}
+\index{Add\+Payment\+History@{Add\+Payment\+History}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Add\+Payment\+History()}{AddPaymentHistory()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Add\+Payment\+History (\begin{DoxyParamCaption}\item[{\mbox{[}\+Bind(\+Include = \char`\"{}\+Payment\+History\+Id,\+Payment\+Date\+Time,\+Payment\+Type,\+Credit\+Amount,\+Debit\+Amount,\+Transaction\+Id,\+Payment\+Id,\+Invoice\+Id,\+Id\char`\"{})\mbox{]} Payment\+History}]{payment\+History }\end{DoxyParamCaption})}
+
+
+
+returns validation error if input payment\+Date\+Time is later than now, returns validation error if both credit and debit amount is filled by mistake returns validation error if Invoiced amount is more than remaining payment amount Assign Null\+Payment\+History\+With\+Inv\+Pay\+Ids session\textquotesingle{}s Invoice\+Id, booking\+Id and payment\+Id to the binded booking object as they are null at the moment save the binged booking data in payment Histories, and the payments record\textquotesingle{}s appropriate attributes gets updated according to the paymenttype 
+
+
+\begin{DoxyParams}{Parameters}
+{\em payment\+History} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a741b6cc23c814a19db514ad186687986}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a741b6cc23c814a19db514ad186687986}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Add\+To\+Cart@{Add\+To\+Cart}}
+\index{Add\+To\+Cart@{Add\+To\+Cart}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Add\+To\+Cart()}{AddToCart()}}
+{\footnotesize\ttfamily void Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Add\+To\+Cart (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Helper method to Add Booking To the Cart Booking\+Id 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_adf4a14a9683e52f9dff922c5e58bc125}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_adf4a14a9683e52f9dff922c5e58bc125}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Admin\+Booking@{Admin\+Booking}}
+\index{Admin\+Booking@{Admin\+Booking}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Admin\+Booking()}{AdminBooking()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Admin\+Booking (\begin{DoxyParamCaption}\item[{string}]{start\+Date,  }\item[{string}]{end\+Date }\end{DoxyParamCaption})}
+
+
+
+Allows admin view all the current bookings. allows fileter the booking data between start and end\+Date paramenter 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+Date} & \\
+\hline
+{\em end\+Date} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Admin\+Booking\+View
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a0e2390ab528b31f0e6f08cb2e1e3b4d6}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a0e2390ab528b31f0e6f08cb2e1e3b4d6}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Amend\+Book\+Dates@{Amend\+Book\+Dates}}
+\index{Amend\+Book\+Dates@{Amend\+Book\+Dates}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Amend\+Book\+Dates()}{AmendBookDates()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Amend\+Book\+Dates (\begin{DoxyParamCaption}\item[{int?}]{id }\end{DoxyParamCaption})}
+
+
+
+Find Booking matches with the passed Id, Create model of a booking that both start end date is in string to work with jquery ui Find Invoice of the found Booking Pass the model to return the view 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+model data in Amend Book Dates View
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_ac7f71cbbf29ebdd1103368248f4f70f8}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_ac7f71cbbf29ebdd1103368248f4f70f8}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Amend\+Book\+Dates@{Amend\+Book\+Dates}}
+\index{Amend\+Book\+Dates@{Amend\+Book\+Dates}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Amend\+Book\+Dates()}{AmendBookDates()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Amend\+Book\+Dates (\begin{DoxyParamCaption}\item[{\mbox{[}\+Bind(\+Include = \char`\"{}\+Booking\+Id,\+Booked\+Date,\+Booking\+Start\+Date\+Time,\+Booking\+End\+Date\+Time,\+Unit\+Price\+Id,\+Id,\+Invoice\+Id\char`\"{})\mbox{]} Amend\+Book\+Dates\+Date\+Filter\+Model}]{model }\end{DoxyParamCaption})}
+
+
+
+Find Booking using Booking\+Id passed Booking\+Original Temp\+Data and assign original data to binding local variable booking Find Invoice using Invoiceid from Invoice Original Temp\+Data and assing original data to local variable selected\+Inv Calcuate duration of original and updated booking if both duration is the same, start\+Date, end\+Date, Item Description, subtotal, of the booking save as Booking\+Updated Temp\+Data if Original duration is less than increase booking duration, updates start\+Date, end\+Date, Item Description, subtotal, of the booking also selected\+Inv\textquotesingle{}s Recievable deposit amount get increased that get saved as Invoice\+Updated. that get passed to Amend\+Bookingconfirmed view if Original duration is more than updated booking duration, updates the start\+Date, end\+Date, Item Description, subtotal, of the booking that get saved as Booking\+Updated also selected\+Inv\textquotesingle{}s Recievable deposit amount get reduced that get saved as Invoice\+Updated. then Booking\+Original, Invoice\+Original, Booking\+Updated, Invoice\+Updated get passed to Add\+Booking\+Confirmation View if not successful it returns the current view 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+redirect user to Amend\+Booking\+Confirmation view, if not successful returns current view
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_afb2e1c7475bb061d45f7a810f5420d75}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_afb2e1c7475bb061d45f7a810f5420d75}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Amend\+Booking\+Confirmation@{Amend\+Booking\+Confirmation}}
+\index{Amend\+Booking\+Confirmation@{Amend\+Booking\+Confirmation}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Amend\+Booking\+Confirmation()}{AmendBookingConfirmation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Amend\+Booking\+Confirmation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Create Visit\+Refund\+View\+Model model using data passed from tempdata Booking\+Original, Booking\+Upudated, Invoice Original, Invoice Updated that get passed to amend booking confirmation view 
+
+\begin{DoxyReturn}{Returns}
+Amend\+Booking\+Confirmation with the model data
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a6e5358b2fd882c060e26353c85658d87}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a6e5358b2fd882c060e26353c85658d87}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Amend\+Booking\+Confirmation@{Amend\+Booking\+Confirmation}}
+\index{Amend\+Booking\+Confirmation@{Amend\+Booking\+Confirmation}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Amend\+Booking\+Confirmation()}{AmendBookingConfirmation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Amend\+Booking\+Confirmation (\begin{DoxyParamCaption}\item[{bool}]{answer }\end{DoxyParamCaption})}
+
+
+
+Only when additional payment amount is 0, and confirm button is clicked boolean value get passed to this action updates corresponding booking records in database 
+
+
+\begin{DoxyParams}{Parameters}
+{\em answer} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+My\+Booking View
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a1fa97ecedb9b4faaec9e994bfce18eb3}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a1fa97ecedb9b4faaec9e994bfce18eb3}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Book\+Dates@{Book\+Dates}}
+\index{Book\+Dates@{Book\+Dates}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Book\+Dates()}{BookDates()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Book\+Dates (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns a Book\+Dates View that displays calender makde of java script 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a34296cd23c09ae737da8519afeb608ab}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a34296cd23c09ae737da8519afeb608ab}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Cancel\+Booking@{Cancel\+Booking}}
+\index{Cancel\+Booking@{Cancel\+Booking}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Cancel\+Booking()}{CancelBooking()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Cancel\+Booking (\begin{DoxyParamCaption}\item[{int?}]{id }\end{DoxyParamCaption})}
+
+
+
+careates My\+Booking\+Cancellation model using the routed booking id by finding it from the database if Booking\+Start\+Date\+Time is less than 48 hrs from now, add £25 of cancellation fee to the model, Saves the model as My\+Booking\+Cancellation\+Request session and if cancellation fee is more than paid deposit that session is used to pass the charge fee. that model get passed to cancel booking view 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+cancel booking view filled with model data
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a27f68c32481b86742af2ecc237d8ec65}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a27f68c32481b86742af2ecc237d8ec65}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Confirm\+Booking@{Confirm\+Booking}}
+\index{Confirm\+Booking@{Confirm\+Booking}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Confirm\+Booking()}{ConfirmBooking()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Confirm\+Booking (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Create model using bookings in side booking cart saves the data inside of New\+Invoice Session 
+
+\begin{DoxyReturn}{Returns}
+returns the view filled with the model
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_aa3cf39dd1c42f4d3277be49ee71bda48}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_aa3cf39dd1c42f4d3277be49ee71bda48}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Confirm\+Visit@{Confirm\+Visit}}
+\index{Confirm\+Visit@{Confirm\+Visit}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Confirm\+Visit()}{ConfirmVisit()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Confirm\+Visit (\begin{DoxyParamCaption}\item[{int?}]{id }\end{DoxyParamCaption})}
+
+
+
+Get booking using the passed id saves it as a tempdata Booking\+Original Get invoice using the Booking\+Id of the booking saves it as a tempdata Invoice\+Original retrn it to the view 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Confirm Booking
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a30ebb6edf4dab2b9d02a3fbac9570bae}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a30ebb6edf4dab2b9d02a3fbac9570bae}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Confirm\+Visit@{Confirm\+Visit}}
+\index{Confirm\+Visit@{Confirm\+Visit}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Confirm\+Visit()}{ConfirmVisit()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily async Task$<$Action\+Result$>$ Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Confirm\+Visit (\begin{DoxyParamCaption}\item[{\mbox{[}\+Bind(\+Include = \char`\"{}\+Booking\+Id,\+Booked\+Date,\+Booking\+Start\+Date\+Time,\+Booking\+End\+Date\+Time,\+Booking\+Status,\+Booking\+Adjustment\+Hrs,\+Item\+Description,\+Subtotal,\+Booking\+Deposit,\+Booking\+Cancellation\+Fee,\+Unit\+Price\+Id,\+Id,\+Invoice\+Id\char`\"{})\mbox{]} Booking}]{booking }\end{DoxyParamCaption})}
+
+
+
+Get posted booking data,depending on the booking status chosen manipulate data and redirect to apprprirate view if booking status is unchanged or curtailed/extended without adjustment hrs input returns current view with error if booking status is visited, start\+Date, end\+Date, and item description updated and the booking saved to database Returns Admin\+Booking View if booking status is extended, subtotal, deposit cancellationfee value, start\+Date, end\+Date, and item description 
+
+
+\begin{DoxyParams}{Parameters}
+{\em booking} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a6aab0900b3c5209a8674b3b909d7532b}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a6aab0900b3c5209a8674b3b909d7532b}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Create@{Create}}
+\index{Create@{Create}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Open Gateway to the Braintree and make payment of the passed amount and submit for the settlement when successful and if New\+Invoice Session data is not null saves the new booking to the Boooking Invoice, Payemnt and Payment History databases and clear shopping cart item. if temp\+Invoice\+Detail\+Veiwmodel Temp\+Data is not null saves the remainging payment amount related update to the Invoice, Booking, Payemnt and Payment History databases if My\+Booking\+Cancelation\+Requrest Session data is not null, cancelation related payment amount updated on booking, invoice, payment and payment\+Hisotry database if Booking\+Updated and Invoice\+Updated Temp\+Data that is from amdend booking acion is not null, appropriate extra depsit charge or cancellation fee or reduced hrs deposit refund related change get amended to Booking, invoice, payemt and paymenthistory database. 
+
+\begin{DoxyReturn}{Returns}
+returns show view
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a5264795f04c49fa720e00514b644b57d}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a5264795f04c49fa720e00514b644b57d}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Dashboard@{Dashboard}}
+\index{Dashboard@{Dashboard}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Dashboard()}{Dashboard()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Dashboard (\begin{DoxyParamCaption}\item[{int?}]{year }\end{DoxyParamCaption})}
+
+
+
+with user specified year parameter, calcuates and displays the graph data also calucate and display user visits notification, admin visit notification and visit status update notification 
+
+
+\begin{DoxyParams}{Parameters}
+{\em year} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Graph and notification in View
+\end{DoxyReturn}
+includesource$>$ /includesource$>$ \mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_aab2da8319a9b49c4dd060b669e230552}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_aab2da8319a9b49c4dd060b669e230552}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Dash\+Board\+User@{Dash\+Board\+User}}
+\index{Dash\+Board\+User@{Dash\+Board\+User}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Dash\+Board\+User()}{DashBoardUser()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Dash\+Board\+User (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calculate and display count of invoice and total amount of unpaid invoice sum 
+
+\begin{DoxyReturn}{Returns}
+View with notification data
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a8134c914666bdbb144ad94b15d1f84e6}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a8134c914666bdbb144ad94b15d1f84e6}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Delete\+Confirmed@{Delete\+Confirmed}}
+\index{Delete\+Confirmed@{Delete\+Confirmed}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Delete\+Confirmed()}{DeleteConfirmed()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Delete\+Confirmed (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Get Payemnt History found with the passed id from database remove the found record from the database Change the related payments attributes. saves it to the database 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns Index\+Payment\+Hisotry
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a3b0b28c4b3de440bbaab4d0179bf5944}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a3b0b28c4b3de440bbaab4d0179bf5944}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Delete\+Payment\+History@{Delete\+Payment\+History}}
+\index{Delete\+Payment\+History@{Delete\+Payment\+History}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Delete\+Payment\+History()}{DeletePaymentHistory()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Delete\+Payment\+History (\begin{DoxyParamCaption}\item[{int?}]{id }\end{DoxyParamCaption})}
+
+
+
+Get Payemnt History found with the passed id from database and Returns the record of Payment\+History view that will be deleted once confirmed 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Retrun Delete\+Payment\+History with payment\+History data
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a913b40e51291dff52c980cf14a02343c}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a913b40e51291dff52c980cf14a02343c}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Dispose()}{Dispose()}}
+{\footnotesize\ttfamily override void Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Dispose (\begin{DoxyParamCaption}\item[{bool}]{disposing }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+dispose database related garbege after use so that entitiy frame work can work properly 
+
+
+\begin{DoxyParams}{Parameters}
+{\em disposing} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a0dbca25c3000615589dd5f52b9d0df7b}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a0dbca25c3000615589dd5f52b9d0df7b}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Edit\+Payment\+History@{Edit\+Payment\+History}}
+\index{Edit\+Payment\+History@{Edit\+Payment\+History}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Edit\+Payment\+History()}{EditPaymentHistory()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Edit\+Payment\+History (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Gets the payment\+History found with the passed id saves it as Session \char`\"{}\+Payment\+History\+With\+Ids\char`\"{} and pass it to the view 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Edit\+Payment\+History view with paymenthistory data
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a5f9d68347caac3e53ab18b4afb468a24}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a5f9d68347caac3e53ab18b4afb468a24}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Edit\+Payment\+History@{Edit\+Payment\+History}}
+\index{Edit\+Payment\+History@{Edit\+Payment\+History}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Edit\+Payment\+History()}{EditPaymentHistory()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Edit\+Payment\+History (\begin{DoxyParamCaption}\item[{Payment\+History\+View\+Model}]{model }\end{DoxyParamCaption})}
+
+
+
+Gets the Session data Payemnt\+History\+With\+Ids returns validation error if input payment\+Date\+Time is later than now, returns validation error if both credit and debit amount is filled by mistake returns validation error if Invoiced amount is more than remaining payment amount Create payment history from the temppayent\+History\textquotesingle{}s paymenthistory id and assing the posted Payemnt\+History\+View\+Model model data to the created paymemn\+History save to payment\+Histoyr database, and the payments record\textquotesingle{}s appropriate attributes gets updated according to the paymenttype 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a174254ecf6118ecb99bd0cb915ae4514}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a174254ecf6118ecb99bd0cb915ae4514}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Index\+Payment\+History@{Index\+Payment\+History}}
+\index{Index\+Payment\+History@{Index\+Payment\+History}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Index\+Payment\+History()}{IndexPaymentHistory()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Index\+Payment\+History (\begin{DoxyParamCaption}\item[{string}]{start\+Date,  }\item[{string}]{end\+Date }\end{DoxyParamCaption})}
+
+
+
+Gets all the payment\+History from database if start\+Date and end\+Date is selected filters the data if payment date is btw those date pass the list of payment to the view 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+Date} & \\
+\hline
+{\em end\+Date} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns Payment\+History\+View with list of payment history data
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a041402af1bece6737df3fb799dc16550}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a041402af1bece6737df3fb799dc16550}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Invoice\+Detail@{Invoice\+Detail}}
+\index{Invoice\+Detail@{Invoice\+Detail}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Invoice\+Detail()}{InvoiceDetail()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Invoice\+Detail (\begin{DoxyParamCaption}\item[{int?}]{id }\end{DoxyParamCaption})}
+
+
+
+Gets Invoice Detail data using the passed id and returns it to the view 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Invoice\+Detail view with Invoice\+Detail\+View\+Model model data 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_af36acd06396149c082418a6668673052}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_af36acd06396149c082418a6668673052}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Invoice\+Detail\+To\+P\+DF@{Invoice\+Detail\+To\+P\+DF}}
+\index{Invoice\+Detail\+To\+P\+DF@{Invoice\+Detail\+To\+P\+DF}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Invoice\+Detail\+To\+P\+D\+F()}{InvoiceDetailToPDF()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Invoice\+Detail\+To\+P\+DF (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Convert passed model into a pdf view 
+
+\begin{DoxyReturn}{Returns}
+Invoiced\+Detail\+To\+P\+DF view with passed model
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a346f77626590a070d12e96a5d69a837e}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a346f77626590a070d12e96a5d69a837e}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Invoice\+Index@{Invoice\+Index}}
+\index{Invoice\+Index@{Invoice\+Index}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Invoice\+Index()}{InvoiceIndex()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Invoice\+Index (\begin{DoxyParamCaption}\item[{string}]{start\+Date,  }\item[{string}]{end\+Date }\end{DoxyParamCaption})}
+
+
+
+Get the list of Bookings with Invoice and payment amount by user id if user is logged in, if admin/staff is logged in all user\textquotesingle{}s invoice data get returned and set those data in to Invoice\+Index\+View\+Model model list if start\+Date and end\+Date parameter passed, allows user fileter the model data by Booking\+Start\+Date\+Time allows user export in csv, in pdf of the filtered or unfiletered model data 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+Date} & \\
+\hline
+{\em end\+Date} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Invoice\+Index View with Invoice\+Index\+Model\+View model list data
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a361d39aedee7dbfdacfaae1c1a9c67cc}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a361d39aedee7dbfdacfaae1c1a9c67cc}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!My\+Booking@{My\+Booking}}
+\index{My\+Booking@{My\+Booking}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{My\+Booking()}{MyBooking()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+My\+Booking (\begin{DoxyParamCaption}\item[{string}]{start\+Date,  }\item[{string}]{end\+Date }\end{DoxyParamCaption})}
+
+
+
+Get the Bookings and create query with Invoice and payment amount and set those data in to My\+Bookings\+View\+Model\+Base model list if start\+Date and end\+Date parameter passed, allows user fileter the data by Booking\+Start\+Date\+Time allows user export in csv, in pdf of the filtered or unfiletered data 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+Date} & \\
+\hline
+{\em end\+Date} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+My\+Booking View with My\+Bookings\+View\+Model\+Base model data 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_ae5344a979e68c8b3714902ad3bc2f98c}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_ae5344a979e68c8b3714902ad3bc2f98c}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!New@{New}}
+\index{New@{New}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{New()}{New()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+New (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get client token to access braintree gateway, if new\+Invoice session data is not null, pass pay new\+Invoice\+Seccion\textquotesingle{}s recievable deposit amount as pay amount to pay newly booked deposit if My\+Booking\+Cancellation\+Request session data is not null, if cancellation fee is more than 0 and payment\+Type is Deposit or Deposit\+Cancelled, pay amount is booking cancellation fee to pay cancelation fee. if booking cancellation fee is more than 0, cancellation fee is more than Booking deposit, deposit becomes pay amount to pay cancelation fee. if booking status is cancelled but booking deposit is more than 0, refund amount is original cancelled deposit amount to refund deposit. $\ast$$\ast$ only in this case return New view with Get Refund Post form. if temp\+Invoice\+Detail is not null pay amount becomes temp\+Invoice\+Detail.\+receibable\+Remaining\+Amount -\/ temp\+Invoice\+Detail.\+Payable\+Amount to pay remaining booking fee and saves temp\+Invoice\+Datail as Temp\+Data if invoice\+Updated or booking\+Updated is not null, amount becomes posted amount from the Amend\+Booking\+Confirmation for user to pay extra hrs deposit charge 
+
+\begin{DoxyReturn}{Returns}
+Returns New View with Pay or New view with refund amount, only when cancellation refund data passsed
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a457bd52267b9065f75bbe5a82faeee02}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a457bd52267b9065f75bbe5a82faeee02}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Payment\+Deposit\+Receipt\+To\+P\+DF@{Payment\+Deposit\+Receipt\+To\+P\+DF}}
+\index{Payment\+Deposit\+Receipt\+To\+P\+DF@{Payment\+Deposit\+Receipt\+To\+P\+DF}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Payment\+Deposit\+Receipt\+To\+P\+D\+F()}{PaymentDepositReceiptToPDF()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Payment\+Deposit\+Receipt\+To\+P\+DF (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calculate total deposit from the data passed A\+Payment\+Receipt\+View\+Model as Payment\+Receipt\+View\+Model and pass this model data to the Payment\+Deposit\+Receipt\+To\+P\+D\+F\+View 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Payment\+Deposit\+Receipt\+To\+P\+DF view with passed model data
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a0ed146c62729d4e05b0bc7b532319ed8}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a0ed146c62729d4e05b0bc7b532319ed8}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Payment\+Index@{Payment\+Index}}
+\index{Payment\+Index@{Payment\+Index}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Payment\+Index()}{PaymentIndex()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Payment\+Index (\begin{DoxyParamCaption}\item[{string}]{start\+Date,  }\item[{string}]{end\+Date }\end{DoxyParamCaption})}
+
+
+
+Get the Bookings and create query with invoice and payment amount by user id if user is logged in, if admin/staff is logged in all user\textquotesingle{}s payment query data get returned and set above data into Payment\+Receipt\+View\+Model model list if start\+Date and end\+Date parameter passed, allows user fileter the data by the Booking\+Start\+Date\+Time allows user export in csv, in pdf of the filtered or unfiletered data 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+Date} & \\
+\hline
+{\em end\+Date} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Payment\+Index\+View with the Payment\+Index\+View model list data
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_ac228b95707fb10fe6aca1e4cacc2be6d}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_ac228b95707fb10fe6aca1e4cacc2be6d}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Payment\+Receipt@{Payment\+Receipt}}
+\index{Payment\+Receipt@{Payment\+Receipt}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Payment\+Receipt()}{PaymentReceipt()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Payment\+Receipt (\begin{DoxyParamCaption}\item[{int?}]{id }\end{DoxyParamCaption})}
+
+
+
+Get Invoice record found by the passed id and create query with payemnt and Invoice data set Payment\+Receipt\+View\+Model model with the query data 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Payment\+Receipt View with the Payment\+Receipt\+Viewmodel model
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_af89a68f628793df0d1b8b3167686b33e}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_af89a68f628793df0d1b8b3167686b33e}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Payment\+Receipt\+To\+P\+DF@{Payment\+Receipt\+To\+P\+DF}}
+\index{Payment\+Receipt\+To\+P\+DF@{Payment\+Receipt\+To\+P\+DF}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Payment\+Receipt\+To\+P\+D\+F()}{PaymentReceiptToPDF()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Payment\+Receipt\+To\+P\+DF (\begin{DoxyParamCaption}\item[{int?}]{id }\end{DoxyParamCaption})}
+
+
+
+Calculate total credit, debt and paid from the data passed A\+Payment\+Receipt as Payment\+Receipt\+View\+Model and pass this model data to the Payment\+Receipt\+To\+P\+D\+F\+View 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Payment\+Receipt\+To\+P\+DF view with passed model data
+\end{DoxyReturn}
+summary$>$ Get Invoice record found by the passed id and create query with payemnt and Invoice data set Payment\+Receipt\+View\+Model model with the query data 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Payment\+Deposit\+Receipt View with the Payment\+Receipt\+Viewmodel model
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_abe04eeac8c2f30835c9661edad9d76a6}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_abe04eeac8c2f30835c9661edad9d76a6}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Refund@{Refund}}
+\index{Refund@{Refund}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Refund()}{Refund()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Refund (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get accessto Braintree gateway, get amount posted from the either confirm cancellation view or New view with get refund button if My\+Booking\+Cancellation\+Request is not null, get payment transaction from it if Invoice\+Updated from Amend\+Booking or Confirm\+Visit View is not null, get payment transaction from it, apply refund transaction with the transaction\+Id found, if successful, if My\+Booking\+Cancellation\+Request session is not null, save the change to the bookings, payments,invoices, payment\+Histories database and save the updated\+Invoice session as \char`\"{}updated\+Invoice\+Cancelled\+Bkg\char`\"{} to pass this to email fucntion if Invoice\+Updated from Amend\+Booking or Confirm\+Visit view is not null, save change to payments, payemnt histories, invoices and bookings database and save Tep\+Data Invoice\+Updated\+Debited to pass this to the email function. if successful in either way, retruns show view 
+
+\begin{DoxyReturn}{Returns}
+Booking\+View\+Models/\+Show View
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a560b40cc15d83dc780c485d678e3e68c}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a560b40cc15d83dc780c485d678e3e68c}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Send\+Admin\+Todays\+Visit\+Text@{Send\+Admin\+Todays\+Visit\+Text}}
+\index{Send\+Admin\+Todays\+Visit\+Text@{Send\+Admin\+Todays\+Visit\+Text}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Send\+Admin\+Todays\+Visit\+Text()}{SendAdminTodaysVisitText()}}
+{\footnotesize\ttfamily async Task$<$Action\+Result$>$ Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Send\+Admin\+Todays\+Visit\+Text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+On Click Ation to send todays visit\textquotesingle{}s users detail 
+
+\begin{DoxyReturn}{Returns}
+Dash\+Board View 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a2c4f4b56be6badae27c572180cb3d8fd}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a2c4f4b56be6badae27c572180cb3d8fd}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Send\+Appt\+Confirmation@{Send\+Appt\+Confirmation}}
+\index{Send\+Appt\+Confirmation@{Send\+Appt\+Confirmation}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Send\+Appt\+Confirmation()}{SendApptConfirmation()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Send\+Appt\+Confirmation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get Booking\+State\+Date\+Time is less tha 24hrs from now. and pass that list to the View 
+
+\begin{DoxyReturn}{Returns}
+Returns Send\+Appt\+Confirmation View
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a047e63d34c2b64f178b55351fa544e77}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a047e63d34c2b64f178b55351fa544e77}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Send\+Appt\+Confirmation\+Text@{Send\+Appt\+Confirmation\+Text}}
+\index{Send\+Appt\+Confirmation\+Text@{Send\+Appt\+Confirmation\+Text}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Send\+Appt\+Confirmation\+Text()}{SendApptConfirmationText()}}
+{\footnotesize\ttfamily async Task$<$Action\+Result$>$ Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Send\+Appt\+Confirmation\+Text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get Booking\+State\+Date\+Time is less tha 24hrs from now and send confirmation text to all users 
+
+\begin{DoxyReturn}{Returns}
+null
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_afba945bda68b35457708ec76ba5ae3b9}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_afba945bda68b35457708ec76ba5ae3b9}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Send\+Payment\+Confirmation\+Email\+Token\+Async@{Send\+Payment\+Confirmation\+Email\+Token\+Async}}
+\index{Send\+Payment\+Confirmation\+Email\+Token\+Async@{Send\+Payment\+Confirmation\+Email\+Token\+Async}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Send\+Payment\+Confirmation\+Email\+Token\+Async()}{SendPaymentConfirmationEmailTokenAsync()}}
+{\footnotesize\ttfamily async Task$<$string$>$ Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Send\+Payment\+Confirmation\+Email\+Token\+Async (\begin{DoxyParamCaption}\item[{string}]{user\+ID,  }\item[{string}]{subject }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+it ignores the user id and subejct passed, user\+Id and subject get extracted from the passed sessions always send user and admin related emails each. if New\+Invoice Session data is not null booking detail and user detail is extracted from it, and new booking confirmation email send to both user and admin. if updated\+Invoice\+Cancelledkg is not null, booking cancellation by admin. booking detail and user detail is extracted from it, and messagge get sent to both user and admin. if My\+Booking\+Cancellation\+Request is not null, Booking cancellation by user. booking detail and user detail is extracted from it, and message get sent to both user and admin. if Booking\+Updated is not null, Booking ajustment done by admin. booking detail and user detail is extracted from it. message sent to both user and admin. if updated\+Invoice is not null, Booking amendment done by customer. booking detail and user detail is extracted from it. payment confirmation message sent to both if Invoice\+Updated\+Debited is not null, Booking amendment done by customer with refund. booking detail and user detail is extracted from it. refund confirmation message sent to both 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+ID} & \\
+\hline
+{\em subject} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+null
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_aa3606d7cc1ee17ff8da3baaf866ea68b}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_aa3606d7cc1ee17ff8da3baaf866ea68b}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Show@{Show}}
+\index{Show@{Show}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Show()}{Show()}}
+{\footnotesize\ttfamily async Task$<$Action\+Result$>$ Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Show (\begin{DoxyParamCaption}\item[{String}]{id }\end{DoxyParamCaption})}
+
+
+
+Gets the transaction id and find transaction status info and displays Calls for the payment confirmation email function before return view 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Show view
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a32041a3c590714a7ce8b3b59db82ea24}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_a32041a3c590714a7ce8b3b59db82ea24}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!Visit\+Refund\+Confirmation@{Visit\+Refund\+Confirmation}}
+\index{Visit\+Refund\+Confirmation@{Visit\+Refund\+Confirmation}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Visit\+Refund\+Confirmation()}{VisitRefundConfirmation()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+Visit\+Refund\+Confirmation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_ad5c8b969ca7fc245ddaa2c9554832188}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_ad5c8b969ca7fc245ddaa2c9554832188}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!transaction\+Success\+Statuses@{transaction\+Success\+Statuses}}
+\index{transaction\+Success\+Statuses@{transaction\+Success\+Statuses}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{transaction\+Success\+Statuses}{transactionSuccessStatuses}}
+{\footnotesize\ttfamily readonly Transaction\+Status \mbox{[}$\,$\mbox{]} Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+transaction\+Success\+Statuses\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{
+                                                                                    TransactionStatus.
+      AUTHORIZED,
+                                                                                    TransactionStatus.
+      AUTHORIZING,
+                                                                             TransactionStatus.SETTLED,
+                                                                                    TransactionStatus.
+      SETTLING,
+                                                                                    TransactionStatus.
+      SETTLEMENT\_CONFIRMED,
+                                                                                    TransactionStatus.
+      SETTLEMENT\_PENDING,
+                                                                                    TransactionStatus.
+      SUBMITTED\_FOR\_SETTLEMENT
+                                                                                \}
+\end{DoxyCode}
+
+
+Array to sotre transaction status sent by braintree 
+
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_acc8f9d52de1f1e047284bab3a03de617}\label{class_alfa_accounting_1_1_controllers_1_1_booking_view_models_controller_acc8f9d52de1f1e047284bab3a03de617}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}!User\+Manager@{User\+Manager}}
+\index{User\+Manager@{User\+Manager}!Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Booking\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{User\+Manager}{UserManager}}
+{\footnotesize\ttfamily Application\+User\+Manager Alfa\+Accounting.\+Controllers.\+Booking\+View\+Models\+Controller.\+User\+Manager\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private set]}}
+
+
+
+allow access to the http owin context\textquotesingle{}s properties 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Me/\+Documents/\+Visual Studio 2015/\+Projects/\+Alfa\+Accounting/\+Alfa\+Accounting/\+Controllers/Booking\+View\+Models\+Controller.\+cs\end{DoxyCompactItemize}

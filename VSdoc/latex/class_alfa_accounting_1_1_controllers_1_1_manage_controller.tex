@@ -1,0 +1,125 @@
+\hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller}{}\section{Alfa\+Accounting.\+Controllers.\+Manage\+Controller Class Reference}
+\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller}\index{Alfa\+Accounting.\+Controllers.\+Manage\+Controller@{Alfa\+Accounting.\+Controllers.\+Manage\+Controller}}
+
+
+Inherits Controller.
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_ab3c09b6b38616c7973e321c508c88336}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_ab3c09b6b38616c7973e321c508c88336}} 
+enum {\bfseries Manage\+Message\+Id} \{ \newline
+{\bfseries Add\+Phone\+Success}, 
+{\bfseries Change\+Password\+Success}, 
+{\bfseries Set\+Two\+Factor\+Success}, 
+{\bfseries Set\+Password\+Success}, 
+\newline
+{\bfseries Remove\+Login\+Success}, 
+{\bfseries Remove\+Phone\+Success}, 
+{\bfseries Error}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_aa0f0be2f4c8106c78660faa2dd379beb}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_aa0f0be2f4c8106c78660faa2dd379beb}} 
+{\bfseries Manage\+Controller} (Application\+User\+Manager user\+Manager, Application\+Sign\+In\+Manager sign\+In\+Manager)
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_ae0d6ce621b8e19785c12e4bfd7d36883}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_ae0d6ce621b8e19785c12e4bfd7d36883}} 
+async Task$<$ Action\+Result $>$ {\bfseries Index} (Manage\+Message\+Id? message)
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a53cde16ca3522116b6aa1f0c801ebe1d}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a53cde16ca3522116b6aa1f0c801ebe1d}} 
+async Task$<$ Action\+Result $>$ {\bfseries Remove\+Login} (string login\+Provider, string provider\+Key)
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_ac9b0d0054c6c951870ef2b318ee7386f}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_ac9b0d0054c6c951870ef2b318ee7386f}} 
+Action\+Result {\bfseries Add\+Phone\+Number} ()
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a268f8e825aad6a1af2273c5279884927}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a268f8e825aad6a1af2273c5279884927}} 
+async Task$<$ Action\+Result $>$ {\bfseries Add\+Phone\+Number} (Add\+Phone\+Number\+View\+Model model)
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_affffaf9860bc5217375fad84d2cb728b}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_affffaf9860bc5217375fad84d2cb728b}} 
+async Task$<$ Action\+Result $>$ {\bfseries Enable\+Two\+Factor\+Authentication} ()
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a45fb91e0bbc95445a29854b3952eeaf9}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a45fb91e0bbc95445a29854b3952eeaf9}} 
+async Task$<$ Action\+Result $>$ {\bfseries Disable\+Two\+Factor\+Authentication} ()
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a408f216c8fcfae7db1ab1704b36831ac}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a408f216c8fcfae7db1ab1704b36831ac}} 
+async Task$<$ Action\+Result $>$ {\bfseries Verify\+Phone\+Number} (string phone\+Number)
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_af0637ce5c6a4b9fb33d26c816fd32976}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_af0637ce5c6a4b9fb33d26c816fd32976}} 
+async Task$<$ Action\+Result $>$ {\bfseries Verify\+Phone\+Number} (Verify\+Phone\+Number\+View\+Model model)
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_acede33f04dd1a1a411e1c1ae9ed73f5e}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_acede33f04dd1a1a411e1c1ae9ed73f5e}} 
+async Task$<$ Action\+Result $>$ {\bfseries Remove\+Phone\+Number} ()
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a54c528dcbde61ef29232d4d12489775c}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a54c528dcbde61ef29232d4d12489775c}} 
+Action\+Result {\bfseries Change\+Password} ()
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a2190f6ae6a50a480d586f74a3f5ca309}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a2190f6ae6a50a480d586f74a3f5ca309}} 
+async Task$<$ Action\+Result $>$ {\bfseries Change\+Password} (Change\+Password\+View\+Model model)
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a569e4942f8e877882596b085b773b713}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a569e4942f8e877882596b085b773b713}} 
+Action\+Result {\bfseries Set\+Password} ()
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a77f0d3fd5974668abcc9b3183cf89bc4}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a77f0d3fd5974668abcc9b3183cf89bc4}} 
+async Task$<$ Action\+Result $>$ {\bfseries Set\+Password} (Set\+Password\+View\+Model model)
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a6ec0abed8a0d990830f602369f808bb5}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a6ec0abed8a0d990830f602369f808bb5}} 
+async Task$<$ Action\+Result $>$ {\bfseries Manage\+Logins} (Manage\+Message\+Id? message)
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a2957de1573aca6f0ebb20ae7863ecbae}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a2957de1573aca6f0ebb20ae7863ecbae}} 
+Action\+Result {\bfseries Link\+Login} (string provider)
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_ac4cab7a52e2c4b5782a9cd40abc11861}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_ac4cab7a52e2c4b5782a9cd40abc11861}} 
+async Task$<$ Action\+Result $>$ {\bfseries Link\+Login\+Callback} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_ad2f5eb6176ba3e84fca94bc29c920d5e}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_ad2f5eb6176ba3e84fca94bc29c920d5e}} 
+override void {\bfseries Dispose} (bool disposing)
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a31fe7778f155eb01068d86c5ce8c7704}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a31fe7778f155eb01068d86c5ce8c7704}} 
+Application\+Sign\+In\+Manager {\bfseries Sign\+In\+Manager}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a6d00ab6b25367cc5bf01222a88e564a0}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a6d00ab6b25367cc5bf01222a88e564a0}} 
+Application\+User\+Manager {\bfseries User\+Manager}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_ac374566f564308fb8fd33b41465cd9ce}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_ac374566f564308fb8fd33b41465cd9ce}} 
+I\+Authentication\+Manager {\bfseries Authentication\+Manager}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a01d6765e3e620557668e088b39ab1b39}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a01d6765e3e620557668e088b39ab1b39}} 
+void {\bfseries Add\+Errors} (Identity\+Result result)
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_adbb5d05e535a12719155d192fa2779fb}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_adbb5d05e535a12719155d192fa2779fb}} 
+bool {\bfseries Has\+Password} ()
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a7fbcd49a15902a24c9b55088dd68a60a}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a7fbcd49a15902a24c9b55088dd68a60a}} 
+bool {\bfseries Has\+Phone\+Number} ()
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_aa112f462595bebb99f92142a63b969c0}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_aa112f462595bebb99f92142a63b969c0}} 
+async Task {\bfseries Sign\+In\+Async} (Application\+User user, bool is\+Persistent)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a5e1dca327f983375f40789e802a4a246}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a5e1dca327f983375f40789e802a4a246}} 
+Application\+Sign\+In\+Manager {\bfseries \+\_\+sign\+In\+Manager}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a6021a11b6662a2ad96b11c9f018d2b44}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a6021a11b6662a2ad96b11c9f018d2b44}} 
+Application\+User\+Manager {\bfseries \+\_\+user\+Manager}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a5770e68e86b2ee496a39047bd52125fc}\label{class_alfa_accounting_1_1_controllers_1_1_manage_controller_a5770e68e86b2ee496a39047bd52125fc}} 
+const string {\bfseries Xsrf\+Key} = \char`\"{}Xsrf\+Id\char`\"{}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Me/\+Documents/\+Visual Studio 2015/\+Projects/\+Alfa\+Accounting/\+Alfa\+Accounting/\+Controllers/Manage\+Controller.\+cs\end{DoxyCompactItemize}

@@ -1,0 +1,81 @@
+﻿@using AlfaAccounting.Models
+@model PaymentReceiptViewModel
+
+@{
+    ViewBag.Title = "PaymentDepositReceipt";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+<Section class="content content_content" style="width: 100%; margin: auto;">
+    <Section style="position: relative;background: #fff;border: 1px solid #f4f4f4;padding: 20px;margin: 10px 25px;">
+        <!-- title row -->
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 style="margin: 10px 0 20px 0;font-size: 22px;">
+                    <i class="fa fa-globe"></i> Alfa Accounting Deposit Reciept<br/>
+                    <small class="pull-left">Date of Reciept: @Html.DisplayFor(model => model.PaymentDateTime)</small>
+                </h2>
+            </div><!-- /.col -->
+        </div>
+        <!-- infor row -->
+        <div class="row invoice-info">
+            <div class="col-sm-4 invoice-col">
+                    Paid to:
+                    <address>
+                    <strong>
+                        Alfa Accounting <br />
+                        1 Glasgow Street<br />
+                        Glasgow <br />
+                        G1<br />
+                        01412223333<br />
+                    </strong>
+                </address>
+            </div><!-- /.col -->
+
+            <div class="col-sm-4 invoice-col">
+                Paid by:
+                <address>
+                    <strong>
+                        @Html.DisplayFor(model => model.ApplicationUser.Companyname)
+                    </strong>
+                    <br />
+                    Address:
+                    <br />
+                    @Html.DisplayFor(model => model.ApplicationUser.Street)<br />
+                    @Html.DisplayFor(model => model.ApplicationUser.Town)<br />
+                    @Html.DisplayFor(model => model.ApplicationUser.Postcode)<br />
+                    Phone: @Html.DisplayFor(model => model.ApplicationUser.PhoneNumber)<br />
+
+                    Email:@Html.DisplayFor(model => model.ApplicationUser.Postcode)<br />
+                </address>
+            </div><!-- /.col -->
+
+            <div class="row">
+
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        Sum of: @((ViewBag.TotalDeposit).ToString("C2"))<br/>
+                        has been deposited. <br/>
+                        
+                    </div>
+                </div>
+            </div>
+           </div>
+            <div class="row">
+                <div class="col-xs-12 table-responsive">
+                    <table class="table table-striped">
+                        <tbody>
+                            @{foreach (Booking bk in Model.Bookings)
+                                {
+                                    <tr>
+                                        <td>for the deposit of booking on @bk.ItemDescription</td>&nbsp;
+                                    </tr>
+                                } }
+                        </tbody>
+                    </table>
+                </div>@*col-xs-12 table responsive*@
+            </div>@*Div class row*@
+            Thank you for choosing Alfa Accounting.this Deposit will be deduced from the total payable sum as you pay remaining amount on the invoice.
+</Section>
+    <a href="@Url.Action("PaymentDepositReceiptToPDF", "BookingViewModels")" class="btn btn-success btn-block" style="width:15%"> PDF >> <i class="fa fa-angle-right"></i></a>
+</Section>

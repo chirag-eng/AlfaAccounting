@@ -1,26 +1,39 @@
-﻿using System;
+﻿using AlfaAccounting.Models;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-/// <summary>
-/// Name:Mie Tanaka
-/// Name:02/03/2017
-/// Description: returns HomeIndex Home/contact view
+
 namespace AlfaAccounting.Controllers
 {
-    public class HomeController : Controller
+    /// <summary>
+    /// Name:Mie Tanaka
+    /// Version 0.0
+    /// Name:26/05/2017
+    /// Description: returns HomeIndex Home/contact view
+    /// </summary>
 
+    public class HomeController : Controller
+        {
+        ApplicationDbContext db = new ApplicationDbContext();
         //returns Home/Index view
-    {   [AllowAnonymous]// allow this method accessible to unautonrized users
+        /// <summary>
+        /// returns Home/Index View
+        /// </summary>
+        /// <returns>returns Home/Index View</returns>
+        [AllowAnonymous]// allow this method accessible to unautonrized users
         public ActionResult Index()
         {
             return View();
         }
 
-        
 
-        //rerurns Home/Contact view
+        /// <summary>
+        ///rerurns Home/Contact view
+        /// </summary>
+        /// <returns> rerurns Home/Contact view</returns>
         [AllowAnonymous] // allow this method accessible to unautonrized users
         public ActionResult Contact()
         {

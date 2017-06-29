@@ -1,0 +1,89 @@
+﻿@model AlfaAccounting.Models.AddBookingViewModel
+
+
+@{
+    if (Request.IsAuthenticated)
+    {
+        ViewBag.Title = "AddBooking";
+        Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+    }else
+    {
+        ViewBag.Title = "AddBooking";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+<h2>AddBooking</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <h3 class="text-danger">@ViewBag.Error</h3>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BookingStartDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BookingStartDateTime, new { htmlAttributes = new { @class = "form-control", @id= "selectedDateTime1" } })
+                @Html.ValidationMessageFor(model => model.BookingStartDateTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BookingEndDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BookingEndDateTime, new { htmlAttributes = new { @class = "form-control" , @id = "selectedDateTime2" } })
+                @Html.ValidationMessageFor(model => model.BookingEndDateTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+ 
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Book Temporary" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+   
+        @Html.ActionLink("Back to BookDates", "BookDates", "BookingViewModels")
+    
+</div>
+@section scripts{
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery-ui-timepicker-addon.min.js"></script>
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/i18n/jquery-ui-timepicker-pt-BR.js"></script>*@
+    
+    <script type="text/javascript">
+       $(function () {
+           $('#selectedDateTime1').datetimepicker({
+               stepMinute: 30,
+               dateFormat: 'dd/mm/yy',
+               timeFormat: "HH:mm"
+           });
+       });
+    </script>
+    <script type="text/javascript">
+    $(function () {
+        $('#selectedDateTime2').datetimepicker({
+            stepMinute: 30,
+            dateFormat: 'dd/mm/yy',
+            timeFormat: "HH:mm"
+        });
+    });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#selectedDateTime1").change(function () {
+                $("#selectedDateTime2").val($('#selectedDateTime1').val());
+            });
+        });
+    </script>
+
+}

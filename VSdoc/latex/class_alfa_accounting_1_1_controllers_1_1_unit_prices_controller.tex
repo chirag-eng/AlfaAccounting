@@ -1,0 +1,134 @@
+\hypertarget{class_alfa_accounting_1_1_controllers_1_1_unit_prices_controller}{}\section{Alfa\+Accounting.\+Controllers.\+Unit\+Prices\+Controller Class Reference}
+\label{class_alfa_accounting_1_1_controllers_1_1_unit_prices_controller}\index{Alfa\+Accounting.\+Controllers.\+Unit\+Prices\+Controller@{Alfa\+Accounting.\+Controllers.\+Unit\+Prices\+Controller}}
+
+
+ 
+
+
+
+
+Inherits Controller.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_unit_prices_controller_ab1aa5af63ac3b67b987e0fd50ebeee05}{Index} ()
+\begin{DoxyCompactList}\small\item\em Returns Unit\+Prices/\+Index view filled with a list of all categories \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_unit_prices_controller_a4e1be84e28e21a170e5e0fda5f4a63d2}{Index} (\mbox{[}Bind(Include=\char`\"{}Unit\+Price\+Id,Unit\+Price\+Value,Unit\+Price\+Description\char`\"{})\mbox{]} Unit\+Price unit\+Price)
+\begin{DoxyCompactList}\small\item\em returns Unit\+Prices/\+Index view after input data got updated in the database if error return Unit\+Prices/create view with current category data \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_unit_prices_controller_a9313cc325e6706189e9e2a93e570d03b}{Edit} (int? id)
+\begin{DoxyCompactList}\small\item\em Returns Unit\+Prices/\+Edit view filled with previously selected category name \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_unit_prices_controller_a8a4eb97f0ffee3d8718b812603e4c358}{Edit} (\mbox{[}Bind(Include=\char`\"{}Unit\+Price\+Id,Unit\+Price\+Value,Unit\+Price\+Description\char`\"{})\mbox{]} Unit\+Price unit\+Price)
+\begin{DoxyCompactList}\small\item\em Returns Unit\+Prices/\+Index View after updating changed data on database if error returns current view \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_unit_prices_controller_a19b58ab06090cba97611b12107d0ff69}{Delete} (int? id)
+\begin{DoxyCompactList}\small\item\em Returns Unit\+Price index view after deleting selected category name on click of confirming delete \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_unit_prices_controller_a6c80838d6f8d30184402983ea2ccb086}\label{class_alfa_accounting_1_1_controllers_1_1_unit_prices_controller_a6c80838d6f8d30184402983ea2ccb086}} 
+override void {\bfseries Dispose} (bool disposing)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_unit_prices_controller_a42f637aa0faa83dabf2a5f55e893f08a}\label{class_alfa_accounting_1_1_controllers_1_1_unit_prices_controller_a42f637aa0faa83dabf2a5f55e893f08a}} 
+Application\+Db\+Context {\bfseries db} = new Application\+Db\+Context()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Mie Tanaka 26/05/2017 Varsion 0.\+0 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_unit_prices_controller_a19b58ab06090cba97611b12107d0ff69}\label{class_alfa_accounting_1_1_controllers_1_1_unit_prices_controller_a19b58ab06090cba97611b12107d0ff69}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Unit\+Prices\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Unit\+Prices\+Controller}!Delete@{Delete}}
+\index{Delete@{Delete}!Alfa\+Accounting\+::\+Controllers\+::\+Unit\+Prices\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Unit\+Prices\+Controller}}
+\subsubsection{\texorpdfstring{Delete()}{Delete()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Unit\+Prices\+Controller.\+Delete (\begin{DoxyParamCaption}\item[{int?}]{id }\end{DoxyParamCaption})}
+
+
+
+Returns Unit\+Price index view after deleting selected category name on click of confirming delete 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Unit\+Prices/\+Index
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_unit_prices_controller_a9313cc325e6706189e9e2a93e570d03b}\label{class_alfa_accounting_1_1_controllers_1_1_unit_prices_controller_a9313cc325e6706189e9e2a93e570d03b}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Unit\+Prices\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Unit\+Prices\+Controller}!Edit@{Edit}}
+\index{Edit@{Edit}!Alfa\+Accounting\+::\+Controllers\+::\+Unit\+Prices\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Unit\+Prices\+Controller}}
+\subsubsection{\texorpdfstring{Edit()}{Edit()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Unit\+Prices\+Controller.\+Edit (\begin{DoxyParamCaption}\item[{int?}]{id }\end{DoxyParamCaption})}
+
+
+
+Returns Unit\+Prices/\+Edit view filled with previously selected category name 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_unit_prices_controller_a8a4eb97f0ffee3d8718b812603e4c358}\label{class_alfa_accounting_1_1_controllers_1_1_unit_prices_controller_a8a4eb97f0ffee3d8718b812603e4c358}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Unit\+Prices\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Unit\+Prices\+Controller}!Edit@{Edit}}
+\index{Edit@{Edit}!Alfa\+Accounting\+::\+Controllers\+::\+Unit\+Prices\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Unit\+Prices\+Controller}}
+\subsubsection{\texorpdfstring{Edit()}{Edit()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Unit\+Prices\+Controller.\+Edit (\begin{DoxyParamCaption}\item[{\mbox{[}\+Bind(\+Include = \char`\"{}\+Unit\+Price\+Id,\+Unit\+Price\+Value,\+Unit\+Price\+Description\char`\"{})\mbox{]} Unit\+Price}]{unit\+Price }\end{DoxyParamCaption})}
+
+
+
+Returns Unit\+Prices/\+Index View after updating changed data on database if error returns current view 
+
+
+\begin{DoxyParams}{Parameters}
+{\em unit\+Price} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns Unit\+Prices/\+Index
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_unit_prices_controller_ab1aa5af63ac3b67b987e0fd50ebeee05}\label{class_alfa_accounting_1_1_controllers_1_1_unit_prices_controller_ab1aa5af63ac3b67b987e0fd50ebeee05}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Unit\+Prices\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Unit\+Prices\+Controller}!Index@{Index}}
+\index{Index@{Index}!Alfa\+Accounting\+::\+Controllers\+::\+Unit\+Prices\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Unit\+Prices\+Controller}}
+\subsubsection{\texorpdfstring{Index()}{Index()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Unit\+Prices\+Controller.\+Index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns Unit\+Prices/\+Index view filled with a list of all categories 
+
+\begin{DoxyReturn}{Returns}
+returns list of Unit\+Prices saved on database 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_unit_prices_controller_a4e1be84e28e21a170e5e0fda5f4a63d2}\label{class_alfa_accounting_1_1_controllers_1_1_unit_prices_controller_a4e1be84e28e21a170e5e0fda5f4a63d2}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Unit\+Prices\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Unit\+Prices\+Controller}!Index@{Index}}
+\index{Index@{Index}!Alfa\+Accounting\+::\+Controllers\+::\+Unit\+Prices\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Unit\+Prices\+Controller}}
+\subsubsection{\texorpdfstring{Index()}{Index()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Unit\+Prices\+Controller.\+Index (\begin{DoxyParamCaption}\item[{\mbox{[}\+Bind(\+Include = \char`\"{}\+Unit\+Price\+Id,\+Unit\+Price\+Value,\+Unit\+Price\+Description\char`\"{})\mbox{]} Unit\+Price}]{unit\+Price }\end{DoxyParamCaption})}
+
+
+
+returns Unit\+Prices/\+Index view after input data got updated in the database if error return Unit\+Prices/create view with current category data 
+
+
+\begin{DoxyParams}{Parameters}
+{\em unit\+Price} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Unit\+Prices/\+Index 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Me/\+Documents/\+Visual Studio 2015/\+Projects/\+Alfa\+Accounting/\+Alfa\+Accounting/\+Controllers/Unit\+Prices\+Controller.\+cs\end{DoxyCompactItemize}

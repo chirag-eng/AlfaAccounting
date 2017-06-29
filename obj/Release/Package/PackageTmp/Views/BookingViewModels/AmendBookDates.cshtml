@@ -1,0 +1,153 @@
+﻿@model AlfaAccounting.Models.AmendBookDatesDateFilterModel
+@{
+    ViewBag.Title = "AmendBookDates";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+<h2>AmendBookDates</h2>
+
+<div class="page-header">
+    <h2><small></small></h2>
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("Bookings", "MyBooking", "BookingViewModels")</li>
+        <li class="active">Amend Booking</li>
+    </ol>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container" style="width:100%">
+     @*   <hr />@Html.HiddenFor(model => model.BookingId)@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <table id="Amend_BookDates" class="table table-hover table-striped">
+        <thead>
+            <tr>
+
+                <th style="width:10%">@Html.LabelFor(model => model.BookedDate, htmlAttributes: new { @class = "control-label col-md-2" })</th>
+                <th style="width:10%">@Html.LabelFor(model => model.BookingStartDateTime, htmlAttributes: new { @class = "control-label col-md-2" })</th>
+                <th style="width:10%">@Html.LabelFor(model => model.BookingEndDateTime, htmlAttributes: new { @class = "control-label col-md-2" })</th>
+                <th style="width:10%">@Html.LabelFor(model => model.UnitPriceId, "UnitPriceId", htmlAttributes: new { @class = "control-label col-md-2" })</th>
+                <th style="width:10%">@Html.LabelFor(model => model.InvoiceId, "InvoiceId", htmlAttributes: new { @class = "control-label col-md-2" })</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+
+                <td>@Html.EditorFor(model => model.BookedDate, new { htmlAttributes = new { @class = "form-control", @readonly = true } })@Html.ValidationMessageFor(model => model.BookedDate, "", new { @class = "text-danger" })</td>
+                <td>@Html.EditorFor(model => model.BookingStartDateTime, new { htmlAttributes = new { @class = "form-control", @id = "selectedDateTime1", @name = "Date1" } })@Html.ValidationMessageFor(model => model.BookingStartDateTime, "", new { @class = "text-danger" })</td>
+                <td>@Html.EditorFor(model => model.BookingEndDateTime, new { htmlAttributes = new { @class = "form-control", @id = "selectedDateTime2", @name = "Date2" } })@Html.ValidationMessageFor(model => model.BookingEndDateTime, "", new { @class = "text-danger" })</td>
+                <td>@Html.DropDownList("UnitPriceId", null, htmlAttributes: new { @class = "form-control", @readonly = "true", @disabled = "disabled" })@Html.ValidationMessageFor(model => model.UnitPriceId, "", new { @class = "text-danger" })</td>
+                <td>@Html.DropDownList("InvoiceId", null, htmlAttributes: new { @class = "form-control", @readonly = "true", @disabled = "disabled" })@Html.ValidationMessageFor(model => model.InvoiceId, "", new { @class = "text-danger" })</td>
+            </tr>
+        </tbody>
+    </table>*@
+            
+            <div class="form-group">
+                @Html.LabelFor(model => model.BookedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.BookedDate, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                    @Html.ValidationMessageFor(model => model.BookedDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.BookingStartDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.BookingStartDateTime, new
+           {
+               htmlAttributes = new
+               {
+                   @class = "form-control",
+                   @id = "selectedDateTime1",
+                   @name = "Date"}
+           })
+                    @Html.ValidationMessageFor(model => model.BookingStartDateTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.BookingEndDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.BookingEndDateTime, new
+           {
+               htmlAttributes = new
+               {
+                   @class = "form-control",
+                   @id = "selectedDateTime2",
+                   @name = "Date" }
+           })
+                    @Html.ValidationMessageFor(model => model.BookingEndDateTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UnitPriceId, "UnitPriceId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("UnitPriceId", null, htmlAttributes: new { @class = "form-control", @readonly = "true", @disabled = "disabled" })
+                    @Html.ValidationMessageFor(model => model.UnitPriceId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.InvoiceId, "InvoiceId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("InvoiceId", null, htmlAttributes: new { @class = "form-control", @readonly = "true", @disabled = "disabled" })
+                    @Html.ValidationMessageFor(model => model.InvoiceId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        
+    </div>
+
+
+<div>
+    @Html.ActionLink("Back to List", "MyBooking")
+</div>
+}
+@*@{if (null != TempData["alertMessage"])
+                {
+            <script type="text/javascript">
+           alert("@TempData["alertMessage"]");
+            </script>
+        }
+    }*@
+@section scripts{
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="~/Scripts/jquery-ui-timepicker-addon.min.js"></script>
+   <script type="text/javascript">
+       $(function () {
+           $('#selectedDateTime1').datetimepicker({
+               stepMinute: 30,
+               dateFormat: 'dd/mm/yy',
+               timeFormat: "HH:mm"
+           });
+       });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $('#selectedDateTime2').datetimepicker({
+            stepMinute: 30,
+            dateFormat: 'dd/mm/yy',
+            timeFormat: "HH:mm"
+        });
+    });
+</script>
+    <script>
+        $(document).ready(function () {
+            $("#selectedDateTime1").change(function () {
+                $("#selectedDateTime2").val($('#selectedDateTime1').val());
+            });
+        });
+</script>
+    
+    }
+

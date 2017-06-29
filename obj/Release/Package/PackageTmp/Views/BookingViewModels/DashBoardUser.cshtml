@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "DashBoardUser";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+<h2>DashBoardUser</h2>
+
+<!-- Small boxes (Stat box) -->
+<br />
+<div class="row">
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-aqua" style="border-radius: 2px;position: relative;display: block;margin-bottom: 20px;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);background-color: #f39c12 !important; ">
+            <div class="inner" style="padding: 10px;">
+                <h2 class="text-center">@ViewBag.NoOfUnpaidInvoice : @ViewBag.UnpaidInvoice.ToString("C2")</h2>
+                <p class="text-center">No of unpaid Invoice: total unpaid amount</p>
+            </div>
+            <div class="icon text-center">
+                <i class="fa fa-bell"></i>
+            </div>
+            <a href="@Url.Action("MyBooking","BookingViewModels")" class="small-box-footer" style="position: relative;text-align: center; padding: 3px 0;color: #fff;color: rgba(255, 255, 255, 0.8);display: block;z-index: 10;background: rgba(0, 0, 0, 0.1);text-decoration: none;background-color: #f39c12 !important;
+">PaytheInvoice<i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+</div>

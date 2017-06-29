@@ -1,0 +1,88 @@
+\hypertarget{class_alfa_accounting_1_1_controllers_1_1_deposit_rates_controller}{}\section{Alfa\+Accounting.\+Controllers.\+Deposit\+Rates\+Controller Class Reference}
+\label{class_alfa_accounting_1_1_controllers_1_1_deposit_rates_controller}\index{Alfa\+Accounting.\+Controllers.\+Deposit\+Rates\+Controller@{Alfa\+Accounting.\+Controllers.\+Deposit\+Rates\+Controller}}
+
+
+Mie Tanaka 22/05/2017 Version1 Allows Admin change deposit rate  
+
+
+
+
+Inherits Controller.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_deposit_rates_controller_abfe77c962214c2d2b8eb58419fc6ad55}{Index} ()
+\begin{DoxyCompactList}\small\item\em Returns Deposit\+Rates/\+Index view filled with a depositrate if there are not rate stored in the database it create record with value 0.\+1f to display \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_deposit_rates_controller_a3aa92fede4c4258ab97202ac2788b0d9}{Index} (\mbox{[}Bind(Include=\char`\"{}Deposit\+Rate\+Id,Deposit\+Rate\+Value\char`\"{})\mbox{]} Deposit\+Rate deposit\+Rate)
+\begin{DoxyCompactList}\small\item\em returns Depositrates/\+Index view after input data got updated in the database if error return Depositrate/\+Index view with current value \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{class_alfa_accounting_1_1_controllers_1_1_deposit_rates_controller_a2f88e729e458962cfddc8428ebfc2a06}{Dispose} (bool disposing)
+\begin{DoxyCompactList}\small\item\em Dispose entity frame work database after finished using it \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_deposit_rates_controller_ab94475fbf8d9c8302c8bc1dff3b35adb}\label{class_alfa_accounting_1_1_controllers_1_1_deposit_rates_controller_ab94475fbf8d9c8302c8bc1dff3b35adb}} 
+Application\+Db\+Context {\bfseries db} = new Application\+Db\+Context()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Mie Tanaka 22/05/2017 Version1 Allows Admin change deposit rate 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_deposit_rates_controller_a2f88e729e458962cfddc8428ebfc2a06}\label{class_alfa_accounting_1_1_controllers_1_1_deposit_rates_controller_a2f88e729e458962cfddc8428ebfc2a06}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Deposit\+Rates\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Deposit\+Rates\+Controller}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!Alfa\+Accounting\+::\+Controllers\+::\+Deposit\+Rates\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Deposit\+Rates\+Controller}}
+\subsubsection{\texorpdfstring{Dispose()}{Dispose()}}
+{\footnotesize\ttfamily override void Alfa\+Accounting.\+Controllers.\+Deposit\+Rates\+Controller.\+Dispose (\begin{DoxyParamCaption}\item[{bool}]{disposing }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Dispose entity frame work database after finished using it 
+
+
+\begin{DoxyParams}{Parameters}
+{\em disposing} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_deposit_rates_controller_abfe77c962214c2d2b8eb58419fc6ad55}\label{class_alfa_accounting_1_1_controllers_1_1_deposit_rates_controller_abfe77c962214c2d2b8eb58419fc6ad55}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Deposit\+Rates\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Deposit\+Rates\+Controller}!Index@{Index}}
+\index{Index@{Index}!Alfa\+Accounting\+::\+Controllers\+::\+Deposit\+Rates\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Deposit\+Rates\+Controller}}
+\subsubsection{\texorpdfstring{Index()}{Index()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Deposit\+Rates\+Controller.\+Index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns Deposit\+Rates/\+Index view filled with a depositrate if there are not rate stored in the database it create record with value 0.\+1f to display 
+
+\begin{DoxyReturn}{Returns}
+returns list of Unit\+Prices saved on database 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_deposit_rates_controller_a3aa92fede4c4258ab97202ac2788b0d9}\label{class_alfa_accounting_1_1_controllers_1_1_deposit_rates_controller_a3aa92fede4c4258ab97202ac2788b0d9}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Deposit\+Rates\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Deposit\+Rates\+Controller}!Index@{Index}}
+\index{Index@{Index}!Alfa\+Accounting\+::\+Controllers\+::\+Deposit\+Rates\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Deposit\+Rates\+Controller}}
+\subsubsection{\texorpdfstring{Index()}{Index()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Deposit\+Rates\+Controller.\+Index (\begin{DoxyParamCaption}\item[{\mbox{[}\+Bind(\+Include = \char`\"{}\+Deposit\+Rate\+Id,\+Deposit\+Rate\+Value\char`\"{})\mbox{]} Deposit\+Rate}]{deposit\+Rate }\end{DoxyParamCaption})}
+
+
+
+returns Depositrates/\+Index view after input data got updated in the database if error return Depositrate/\+Index view with current value 
+
+
+\begin{DoxyParams}{Parameters}
+{\em deposit\+Rate} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Unit\+Prices/\+Index 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Me/\+Documents/\+Visual Studio 2015/\+Projects/\+Alfa\+Accounting/\+Alfa\+Accounting/\+Controllers/Deposit\+Rates\+Controller.\+cs\end{DoxyCompactItemize}

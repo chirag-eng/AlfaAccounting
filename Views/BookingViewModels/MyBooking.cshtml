@@ -1,0 +1,321 @@
+﻿@model IEnumerable<AlfaAccounting.Models.MyBookingsViewModelBase>
+
+@{
+    ViewBag.Title = "MyBooking";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+<div class="container" @*style="width:100%"*@>
+    <div class="page-header">
+        <h2>MyBookings <small></small></h2>
+        @*<ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Manage Booking", "Dashboard", "BookingViewModels")</li>
+            <li class="active">MyBooking</li>
+        </ol>*@
+    </div>
+
+    @using (Html.BeginForm("MyBooking", "BookingViewModels", FormMethod.Post))
+    {
+        <p>
+            Start Date: @Html.TextBox("startDate", null, ("dd/MM/yyyy"), new { id = "startDate" })
+            &nbsp; and &nbsp; End Date: @Html.TextBox("endDate", null, ("dd/MM/yyyy"), new { id = "endDate" })
+            @*//<input type="text" id="startDate" name="startDate:"> &nbsp; and &nbsp; End Date: <input type="text" id="endDate" name="endDate:">*@
+            @*Start Date:@Html.TextBox("startDate")&nbsp;and &nbsp; End Date:@Html.TextBox("endDate")*@
+
+
+            <input type="submit" value="Filter" />
+        </p>
+    }
+    <h3 class="text-danger">@TempData["ErrorMessage"]</h3>
+    <table id="mybooking" class="table table-hover table-striped">
+        <thead>
+
+            <tr>
+                <th style="width:5%">@Html.DisplayNameFor(model => model.BookingId)</th>
+                <th style="width:20%">@Html.DisplayNameFor(model => model.ItemDescription) </th>
+                <th style="width:10%">@Html.DisplayNameFor(model => model.InvoiceIssueDate) </th>
+                <th style="width:10%">@Html.DisplayNameFor(model => model.InvoicedDeposit) </th>
+                <th style="width:10%">@Html.DisplayNameFor(model => model.InvoicedRemaining) </th>
+                @*<th style="width:7.5%">Invoiced Amount</th>*@
+                <th style="width:10%">@Html.DisplayNameFor(model => model.BookingStatus) </th>
+                @*<th style="width:10%">@Html.DisplayNameFor(model => model.PaymentDateTime)</th>*@
+                <th style="width:10%">@Html.DisplayNameFor(model => model.PaidAmount)</th>
+                <th style="width:10%"></th>
+                @*<th style="width:5%"></th>*@
+            </tr>
+
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td data-th="Booking Id"><h4>@Html.DisplayFor(modelItem => item.BookingId)</h4></td>
+                    <td data-th="Booking Description"><h4>@Html.DisplayFor(modelItem => item.ItemDescription)</h4></td>
+                    <td data-th="Invoice issue Date"><h4>@Html.DisplayFor(modelItem => item.InvoiceIssueDate)</h4></td>
+                    <td data-th="Invoiced Deposit"><h4>@Html.DisplayFor(modelItem => item.InvoicedDeposit)</h4></td>
+                    <td data-th="Invoiced Remaining"><h4>@Html.DisplayFor(modelItem => item.InvoicedRemaining)</h4></td>
+                    <td data-th="Payment Type"><h4>@Html.DisplayFor(modelItem => item.BookingStatus)</h4></td>
+                    @*<td data-th="Payment Date time"><h4>@Html.DisplayFor(modelItem => item.PaymentDateTime)</h4></td>*@
+                    <td data-th="Paid Amount"><h4>@Html.DisplayFor(modelItem => item.PaidAmount)</h4></td>
+                    @*<td data-th="Invoiced Amount">
+                            <h4>
+                                @if (item.ReceivableDepositAmount > 0)
+                                {
+                                    if (item.ReceivableRemainingAmount == 0)
+                                    {
+                                        if (item.PayableDepositAmount == 0)
+                                        {
+                                            if (item.PayableAmount == 0)
+                                            {
+                                                @item.BookingDeposit;
+                                            }
+                                        }
+                                        else if (item.PayableDepositAmount > 0)
+                                        {
+                                            if (item.BookingStatus == "Cancelled")
+                                            {
+                                                @(item.BookingDeposit - item.PayableDepositAmount);
+                                            }
+                                            else
+                                            {
+                                                @(item.ReceivableDepositAmount - item.PayableDepositAmount);
+                                            }
+                                        }
+                                    }
+                                    else if (item.ReceivableRemainingAmount > 0)
+                                    {
+                                        if (item.PayableDepositAmount == 0)
+                                        {
+                                            if (item.PayableAmount == 0)
+                                            {
+                                                @(@item.BookingDeposit + item.ReceivableRemainingAmount);
+                                            }
+                                        }
+                                        else if (item.PayableDepositAmount > 0)
+                                        {
+                                            @(item.BookingDeposit + item.ReceivableRemainingAmount - item.PayableDepositAmount);
+                                        }
+                                    }
+
+                                }
+
+                            </h4>
+
+                        </td>
+                        <td data-th="Payment Type">
+                            <h4>
+                                @{if (item.BookingStatus != "Cancelled")
+                                    {
+                                        @item.PaymentType
+                                    }
+                                    else
+                                    {
+                                        @item.BookingStatus
+                                    }
+                                }
+                            </h4>
+                        </td>*@
+                    @* <td data-th="Payment Amount">
+                        <h4>
+                            @{if (item.CreditAmount > 0 /*&& ViewBag.DuplicatesId.Contains(item.BookingId)*/ && item.PaymentType == "Deposit" && item.BookingStatus != "Cancelled")
+                                { @(item.BookingDeposit);
+                                }
+                                else if (item.CreditAmount > 0 /*&& ViewBag.DuplicatesId.Contains(item.BookingId)*/ && item.PaymentType == "Deposit" && item.BookingStatus == "Cancelled")
+                                { @(item.BookingDeposit - item.DebitAmount);
+                                }
+                                else if (item.CreditAmount > 0 && item.PaymentType == "Remaining")
+                                { @(item.CreditAmount);
+                                }
+                                else if (item.DebitAmount > 0)
+                                { @(-item.DebitAmount);
+                                }
+
+                            }*@
+                    @*@{if (item.CreditAmount > 0)
+                                    {
+                                        if (item.PaymentType == "Deposit")
+                                        {
+                                            if (item.BookingStatus == "Cancelled")
+                                            {
+                                                @(item.BookingDeposit - item.DebitAmount);
+                                            }
+                                            else
+                                            {
+                                                @(item.BookingDeposit);
+                                            }
+                                        }
+                                        else if (item.PaymentType == "Remaining")
+                                        {
+                                            if (item.BookingStatus == "Cancelled")
+                                            {
+                                                @((item.Subtotal - item.BookingDeposit) - item.DebitAmount);
+
+                                            }
+                                            else
+                                            {
+                                                @(item.CreditAmount);
+                                            }
+                                        } /*else { 0f; }*/
+                                    }
+                                }
+
+                            </h4>
+                        </td>*@
+                    <td>
+                        @{if (item.ReceivableRemainingAmount == 0 && item.BookingStatus != "Cancelled")
+                            {
+                                if ((item.BookingStartDateTime - DateTime.Now).TotalHours >= 0 && item.BookingStatus == "Booked")
+                                {
+                                    @Html.ActionLink("Amend Booking", "AmendBookDates", "BookingViewModels", new { id = item.BookingId }, new { @class = "btn btn-primary" })<br />
+                                    @Html.ActionLink("Cancel Booking", "CancelBooking", "BookingViewModels", new { id = item.BookingId }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you wish to cancel this booking? if your canceling booking date time is within 48 hrs you will be charged £25 extra and no refund of of deposit given');" })
+                                }
+                                <br />
+                            }
+                            if (item.Statuscheck == true && (item.ReceivableDepositAmount + item.ReceivableRemainingAmount - item.PayableDepositAmount - item.PayableAmount) > (item.CreditDepositAmount - item.DebitDepositAmount + item.CreditRemainingAmount - item.DebitRemainingAmount) /*&& item.PaymentType == "Deposit" */)
+                            //if (item.InvoicedDeposit > 0 && item.InvoicedRemaining > 0 && (item.BookingStatus == "Visited" || item.PaymentType == "Remaining"))
+                            {
+                                @Html.ActionLink("Make Payment", "InvoiceDetail", new { id = item.InvoiceId }, new { @class = "btn btn-primary" })
+                            }
+                            @*else if (item.InvoicedDeposit > 0 && item.InvoicedRemaining == 0 && item.BookingStatus == "Visited")
+                            {
+                                @Html.ActionLink("Make Payment", "InvoiceDetail", new { id = item.InvoiceId }, new { @class = "btn btn-primary" })
+                            }*@
+                            if ((item.ReceivableDepositAmount - item.PayableDepositAmount /*item.InvoicedDeposit*/) == (item.CreditDepositAmount - item.DebitDepositAmount) && item.PaymentType == "Deposit")
+                            {
+                                @Html.ActionLink("Reciept", "PaymentDepositReceipt", "BookingViewModels", new { id = item.InvoiceId }, new { @class = "btn btn-primary" })<br />
+                            }
+                            if ((item.ReceivableRemainingAmount - item.PayableAmount /*item.InvoicedRemaining*/) == (item.CreditRemainingAmount - item.DebitRemainingAmount) && item.PaymentType == "Remaining")
+                            {
+                                @Html.ActionLink("Reciept", "PaymentReceipt", "BookingViewModels", new { id = item.InvoiceId }, new { @class = "btn btn-primary" })<br />
+                            }
+                            
+
+                        }
+                    </td>
+                </tr>
+                            }
+
+            @*@foreach (var item in Model.MyBookingsViewModelBases)
+                   {
+                       <tr>
+                           <td data-th="Item Description"><h4 >@item.ItemDescription</h4></td>
+                           <td data-th="Booking Status"><h4>@item.BookingStatus </h4></td>
+
+                           @{
+                               int i = 0;
+                               foreach (var invItem in item.Invoices)
+                               {
+                                   <td data-th="Invoiced Date"><h4>@invItem.InvoiceIssueDate</h4></td>
+                                   <td data-th="Invoiced Amount">
+                                       <h4>
+                                           @{if (invItem.ReceivableDepositAmount > 0)
+                                               { @invItem.ReceivableDepositAmount;
+                                               }
+                                               else if (invItem.ReceivableRemainingAmount > 0)
+                                               { @invItem.ReceivableRemainingAmount;
+                                               }
+                                           }
+                                       </h4>
+                                   </td>
+                                   <td data-th="Invoiced Type"><h4>@invItem.InvoiceType</h4></td>
+                                                   i++; if (i == 0) { break; }
+                                               }
+                           }
+
+
+                           @{int k = 0; foreach (var PayItem in item.Payments)
+                               {
+                                   <td data-th="Payment Date & time"><h4>@PayItem.PaymentDateTime</h4></td>
+                                   <td data-th="Amount">
+                                       <h4>
+                                             @{if (PayItem.CreditAmount > 0)
+                                       { @PayItem.CreditAmount;
+                                       }
+                                       else if (PayItem.DebitAmount > 0)
+                                       { @PayItem.DebitAmount;
+                                       } }
+                                       </h4>
+                                   </td>
+                                    k++; if (k > 0) { break; }
+                                }
+                             }
+                           <td data-th=""></td>
+                       </tr>
+
+                       {if (item.Invoices.Count() > 1)
+                           {
+
+                               int j = 0;
+                               foreach (var invItem in item.Invoices)
+                               {
+                                   if (j > 0)
+                                   {
+                                       continue;
+                                       <tr>
+                                           <td></td>
+                                           <td></td>
+                                           <td data-th="Invoiced Date"><h4>@invItem.InvoiceIssueDate</h4></td>
+                                           <td data-th="Invoiced Amount">
+                                               <h4>
+                                                   @{if (invItem.ReceivableDepositAmount > 0)
+                                                       { @invItem.ReceivableDepositAmount;
+                                                       }
+                                                       else if (invItem.ReceivableRemainingAmount > 0)
+                                                       { @invItem.ReceivableRemainingAmount;
+                                                       }
+                                                   }
+                                               </h4>
+                                           </td>
+                                           <td></td>
+                                           <td></td>
+                                       </tr>
+                                }
+                          i++;}
+                          }
+                       }
+                }*@
+        </tbody>
+    </table>
+</div>
+@section scripts{
+    <script src="//cdn.datatables.net/plug-ins/1.10.15/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/colreorder/1.3.3/js/dataTables.colReorder.min.js"></script>
+    <script src="//cdn.datatables.net/tabletools/2.2.4/js/dataTables.tableTools.min.js"></script>
+    @*<script src="@Url.Content("~/Scripts/DataTables/jquery.dataTables.min.js")"></script>
+            <script src="@Url.Content("~/Scripts/DataTables/dataTables.colReorder.min.js")"></script>
+        <script src="@Url.Content("~/Scripts/DataTables/tableTools.min.js")"></script>*@
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('.table').dataTable({
+                //colReorder: true,
+                //rowReorder: true,
+                "dom": 'Rlfrtip'
+            })
+            var tt = new $.fn.dataTable.TableTools(table);
+            $(tt.fnContainer()).insertBefore('div.dataTables_wrapper');
+        });
+    </script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#startDate").datepicker({ dateFormat: 'dd/mm/yy' });
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#endDate").datepicker({ dateFormat: 'dd/mm/yy' });
+
+        });
+    </script>
+    @{if (null != TempData["alertMessage"])
+        {
+            <script type="text/javascript">
+                alert("@TempData["alertMessage"]");
+            </script>
+        }
+    }
+}

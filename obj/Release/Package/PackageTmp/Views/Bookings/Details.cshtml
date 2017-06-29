@@ -1,0 +1,115 @@
+﻿@model AlfaAccounting.Models.Booking
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Booking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Companyname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Companyname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Invoice.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Invoice.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitPrice.UnitPriceDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitPrice.UnitPriceDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingStartDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingStartDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingEndDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingEndDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingAdjustmentHrs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingAdjustmentHrs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subtotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subtotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingDeposit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingDeposit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookingCancellationFee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingCancellationFee)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BookingId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

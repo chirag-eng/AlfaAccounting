@@ -1,0 +1,139 @@
+\hypertarget{class_alfa_accounting_1_1_controllers_1_1_categories_controller}{}\section{Alfa\+Accounting.\+Controllers.\+Categories\+Controller Class Reference}
+\label{class_alfa_accounting_1_1_controllers_1_1_categories_controller}\index{Alfa\+Accounting.\+Controllers.\+Categories\+Controller@{Alfa\+Accounting.\+Controllers.\+Categories\+Controller}}
+
+
+Inherits Controller.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_categories_controller_a0a0bd358cfb6fc63f52f4a8c7d86b23f}{Index} ()
+\begin{DoxyCompactList}\small\item\em Returns Categories/\+Index view filled with a list of all categories \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_categories_controller_afb5aa7304afa4262b327cfd80412ee32}{Create} ()
+\begin{DoxyCompactList}\small\item\em Returns a blank Categories/\+Create view of category \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_categories_controller_a7bb4f8825f6827ccf2acdb3a665e0960}{Create} (\mbox{[}Bind(Include=\char`\"{}Category\+Id,Category\+Name\char`\"{})\mbox{]} Category category)
+\begin{DoxyCompactList}\small\item\em returns Categories/\+Index view after input data got updated in the database if error return Categories/create view with current category data \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_categories_controller_a43567ef33be19e3785f033d50de30fa6}{Edit} (int? id)
+\begin{DoxyCompactList}\small\item\em Returns Categories/\+Edit view filled with previously selected category name \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_categories_controller_a142fd9f355a35281c7ad9ff87ab918a0}{Edit} (\mbox{[}Bind(Include=\char`\"{}Category\+Id,Category\+Name\char`\"{})\mbox{]} Category category)
+\begin{DoxyCompactList}\small\item\em Returns Categories/\+Index View after updating changed data on database if error returns current view \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_categories_controller_a4b6eab9f8217e12a9355096d8428ecce}{Delete} (int id)
+\begin{DoxyCompactList}\small\item\em Returns category index view after deleting selected category name on click of confirming delete \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_categories_controller_a1e0ca5fcea4ff7a470449b1ee2fd410e}\label{class_alfa_accounting_1_1_controllers_1_1_categories_controller_a1e0ca5fcea4ff7a470449b1ee2fd410e}} 
+override void {\bfseries Dispose} (bool disposing)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_categories_controller_a829492a2dbc101473ea8ebf9d9450788}\label{class_alfa_accounting_1_1_controllers_1_1_categories_controller_a829492a2dbc101473ea8ebf9d9450788}} 
+Application\+Db\+Context {\bfseries db} = new Application\+Db\+Context()
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_categories_controller_afb5aa7304afa4262b327cfd80412ee32}\label{class_alfa_accounting_1_1_controllers_1_1_categories_controller_afb5aa7304afa4262b327cfd80412ee32}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller}!Create@{Create}}
+\index{Create@{Create}!Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller}}
+\subsubsection{\texorpdfstring{Create()}{Create()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Categories\+Controller.\+Create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns a blank Categories/\+Create view of category 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_categories_controller_a7bb4f8825f6827ccf2acdb3a665e0960}\label{class_alfa_accounting_1_1_controllers_1_1_categories_controller_a7bb4f8825f6827ccf2acdb3a665e0960}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller}!Create@{Create}}
+\index{Create@{Create}!Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller}}
+\subsubsection{\texorpdfstring{Create()}{Create()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Categories\+Controller.\+Create (\begin{DoxyParamCaption}\item[{\mbox{[}\+Bind(\+Include = \char`\"{}\+Category\+Id,\+Category\+Name\char`\"{})\mbox{]} Category}]{category }\end{DoxyParamCaption})}
+
+
+
+returns Categories/\+Index view after input data got updated in the database if error return Categories/create view with current category data 
+
+
+\begin{DoxyParams}{Parameters}
+{\em category} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Category/\+Index 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_categories_controller_a4b6eab9f8217e12a9355096d8428ecce}\label{class_alfa_accounting_1_1_controllers_1_1_categories_controller_a4b6eab9f8217e12a9355096d8428ecce}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller}!Delete@{Delete}}
+\index{Delete@{Delete}!Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller}}
+\subsubsection{\texorpdfstring{Delete()}{Delete()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Categories\+Controller.\+Delete (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Returns category index view after deleting selected category name on click of confirming delete 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Categories/\+Index
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_categories_controller_a43567ef33be19e3785f033d50de30fa6}\label{class_alfa_accounting_1_1_controllers_1_1_categories_controller_a43567ef33be19e3785f033d50de30fa6}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller}!Edit@{Edit}}
+\index{Edit@{Edit}!Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller}}
+\subsubsection{\texorpdfstring{Edit()}{Edit()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Categories\+Controller.\+Edit (\begin{DoxyParamCaption}\item[{int?}]{id }\end{DoxyParamCaption})}
+
+
+
+Returns Categories/\+Edit view filled with previously selected category name 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_categories_controller_a142fd9f355a35281c7ad9ff87ab918a0}\label{class_alfa_accounting_1_1_controllers_1_1_categories_controller_a142fd9f355a35281c7ad9ff87ab918a0}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller}!Edit@{Edit}}
+\index{Edit@{Edit}!Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller}}
+\subsubsection{\texorpdfstring{Edit()}{Edit()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Categories\+Controller.\+Edit (\begin{DoxyParamCaption}\item[{\mbox{[}\+Bind(\+Include = \char`\"{}\+Category\+Id,\+Category\+Name\char`\"{})\mbox{]} Category}]{category }\end{DoxyParamCaption})}
+
+
+
+Returns Categories/\+Index View after updating changed data on database if error returns current view 
+
+
+\begin{DoxyParams}{Parameters}
+{\em category} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns Categories/\+Index View
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_categories_controller_a0a0bd358cfb6fc63f52f4a8c7d86b23f}\label{class_alfa_accounting_1_1_controllers_1_1_categories_controller_a0a0bd358cfb6fc63f52f4a8c7d86b23f}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller}!Index@{Index}}
+\index{Index@{Index}!Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Categories\+Controller}}
+\subsubsection{\texorpdfstring{Index()}{Index()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Categories\+Controller.\+Index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns Categories/\+Index view filled with a list of all categories 
+
+\begin{DoxyReturn}{Returns}
+returns list of categories saved on database 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Me/\+Documents/\+Visual Studio 2015/\+Projects/\+Alfa\+Accounting/\+Alfa\+Accounting/\+Controllers/Categories\+Controller.\+cs\end{DoxyCompactItemize}

@@ -1,0 +1,81 @@
+﻿@model AlfaAccounting.Models.PaymentHistory
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PaymentHistory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Companyname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Companyname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoiceId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreditAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreditAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DebitAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DebitAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
+

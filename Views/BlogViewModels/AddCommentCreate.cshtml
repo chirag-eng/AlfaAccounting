@@ -44,7 +44,8 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "BlogViewModelIndex","BlogViewModels",new { blogid = Model.BlogId },null)
+    @*@Html.ActionLink("Back to List", "BlogViewModelIndex","BlogViewModels",new { blogid = Model.BlogId },null)*@
+@Html.ActionLink("Back to List", "Index", "Blogs",  null, new { @class = "btn btn-primary"})
 </div>
 
 

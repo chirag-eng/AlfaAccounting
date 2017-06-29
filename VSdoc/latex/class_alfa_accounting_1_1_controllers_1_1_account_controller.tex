@@ -1,0 +1,410 @@
+\hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller}{}\section{Alfa\+Accounting.\+Controllers.\+Account\+Controller Class Reference}
+\label{class_alfa_accounting_1_1_controllers_1_1_account_controller}\index{Alfa\+Accounting.\+Controllers.\+Account\+Controller@{Alfa\+Accounting.\+Controllers.\+Account\+Controller}}
+
+
+Name\+:Mie Tanaka Name\+:26/05/2017 Description\+: allows users log in and register their account  
+
+
+
+
+Inherits Controller.
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class {\bfseries Challenge\+Result}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_alfa_accounting_1_1_controllers_1_1_account_controller_a31bb8afad3df5a35af60d598886942d2}{Account\+Controller} ()
+\begin{DoxyCompactList}\small\item\em default constructor of account controller \end{DoxyCompactList}\item 
+\hyperlink{class_alfa_accounting_1_1_controllers_1_1_account_controller_adff8966cf2dd3222d2198cce217cedd5}{Account\+Controller} (Application\+User\+Manager user\+Manager, Application\+Sign\+In\+Manager sign\+In\+Manager)
+\begin{DoxyCompactList}\small\item\em Get user manager and signin mananger as parameter and set it to the Usr\+Manager and Sign\+In\+Manager property \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_account_controller_a56dad7128774d78fc1679f133f9dacaa}{Login} (string return\+Url)
+\begin{DoxyCompactList}\small\item\em returns empty log in view \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result $>$ \hyperlink{class_alfa_accounting_1_1_controllers_1_1_account_controller_af11c863e7062228c7f066a01772b6c5c}{Login} (Login\+View\+Model model, string return\+Url)
+\begin{DoxyCompactList}\small\item\em Checks input detail if passed model state is detail is valid, removes booking which does not have Invoice\+Id and its user id is same as logged in user. redirect user to privious url if does not have previous url returns Home/\+Index \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_aa7efed3ed876dcfa29c031345b193727}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_aa7efed3ed876dcfa29c031345b193727}} 
+async Task$<$ Action\+Result $>$ {\bfseries Verify\+Code} (string provider, string return\+Url, bool remember\+Me)
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a758db6d952fd76b782ebb39320abe08b}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a758db6d952fd76b782ebb39320abe08b}} 
+async Task$<$ Action\+Result $>$ {\bfseries Verify\+Code} (Verify\+Code\+View\+Model model)
+\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_account_controller_a27ab611adeb70fd17fa7bac10fcc3532}{Register} ()
+\begin{DoxyCompactList}\small\item\em returns blank register view \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result $>$ \hyperlink{class_alfa_accounting_1_1_controllers_1_1_account_controller_a0330ad4c73165a5e1a1051a732c77112}{Register} (Register\+View\+Model model)
+\begin{DoxyCompactList}\small\item\em allow user to register their detail send user email to verify their email address \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_af9ec71efe908ba684ccee8bfd27f53d9}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_af9ec71efe908ba684ccee8bfd27f53d9}} 
+async Task$<$ Action\+Result $>$ {\bfseries Confirm\+Email} (string user\+Id, string code)
+\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_account_controller_a8b4dd78f4e62fb1858176f83e071f320}{Forgot\+Password} ()
+\begin{DoxyCompactList}\small\item\em returns blank forgotpassword view \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result $>$ \hyperlink{class_alfa_accounting_1_1_controllers_1_1_account_controller_a197a77ef42b5d09fea5ff4d6381d7f36}{Forgot\+Password} (Forgot\+Password\+View\+Model model)
+\begin{DoxyCompactList}\small\item\em Gets posted model data, generate varification code and send it viea email \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_account_controller_a42199ed23564186b3277f4c030cb4976}{Forgot\+Password\+Confirmation} ()
+\begin{DoxyCompactList}\small\item\em Returns Gorgot\+Password\+Confirmation View \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_account_controller_ae9f8d4a9533cc8e78fa3ed7216f36837}{Reset\+Password} (string code)
+\begin{DoxyCompactList}\small\item\em returns blank resest password view \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result $>$ \hyperlink{class_alfa_accounting_1_1_controllers_1_1_account_controller_a65a2a1f6a9de8c5c9f458346a9b820e6}{Reset\+Password} (Reset\+Password\+View\+Model model)
+\begin{DoxyCompactList}\small\item\em Get post reset password data \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_afcfcfa575bc285843ebb0d1fe67ffcde}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_afcfcfa575bc285843ebb0d1fe67ffcde}} 
+Action\+Result {\bfseries Reset\+Password\+Confirmation} ()
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_acfc74c76545c819bd861bd7651f874d9}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_acfc74c76545c819bd861bd7651f874d9}} 
+Action\+Result {\bfseries External\+Login} (string provider, string return\+Url)
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a99f4d6df339b4698d427e9d8ff87a9ce}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a99f4d6df339b4698d427e9d8ff87a9ce}} 
+async Task$<$ Action\+Result $>$ {\bfseries Send\+Code} (string return\+Url, bool remember\+Me)
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a56dde3690edce7d9b07efd25237538c8}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a56dde3690edce7d9b07efd25237538c8}} 
+async Task$<$ Action\+Result $>$ {\bfseries Send\+Code} (Send\+Code\+View\+Model model)
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_ab37a07ed56c5a029013419b661ef34f4}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_ab37a07ed56c5a029013419b661ef34f4}} 
+async Task$<$ Action\+Result $>$ {\bfseries External\+Login\+Callback} (string return\+Url)
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a4af08224d55461ea02f9539439d1fbb7}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a4af08224d55461ea02f9539439d1fbb7}} 
+async Task$<$ Action\+Result $>$ {\bfseries External\+Login\+Confirmation} (External\+Login\+Confirmation\+View\+Model model, string return\+Url)
+\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_account_controller_a528cb9ea0f972171ecad9424be46bcc1}{Log\+Off} ()
+\begin{DoxyCompactList}\small\item\em deletes the bookings which does not have Invoice Id then logg off users \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_ad9dbad59719b81c4b28f33669993ade2}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_ad9dbad59719b81c4b28f33669993ade2}} 
+Action\+Result {\bfseries External\+Login\+Failure} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a286d0b6e745a7a03d42b5b3a78822e6c}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a286d0b6e745a7a03d42b5b3a78822e6c}} 
+override void {\bfseries Dispose} (bool disposing)
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Application\+Sign\+In\+Manager \hyperlink{class_alfa_accounting_1_1_controllers_1_1_account_controller_acc05fd520ca89799979b9b0d389407d7}{Sign\+In\+Manager}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em allow access to owing context throug signin manager \end{DoxyCompactList}\item 
+Application\+User\+Manager \hyperlink{class_alfa_accounting_1_1_controllers_1_1_account_controller_af407b4124a36361363279ce45a2d8e78}{User\+Manager}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em allows access to the ownin context through usermanager \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a70d354918dbd3b0c18f08871722b53ca}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a70d354918dbd3b0c18f08871722b53ca}} 
+I\+Authentication\+Manager {\bfseries Authentication\+Manager}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a40b23f6c7851ae1134f37cf1ddb319f5}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a40b23f6c7851ae1134f37cf1ddb319f5}} 
+Application\+Sign\+In\+Manager.\+Application\+Role\+Manager {\bfseries Role\+Manager}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_alfa_accounting_1_1_controllers_1_1_account_controller_a87ae473251c220a1da2786b60780c8e7}{Migrate\+Shopping\+Cart} (string Userid)
+\begin{DoxyCompactList}\small\item\em when user logged in shopping cart temp user id is given passed in user id \end{DoxyCompactList}\item 
+async Task$<$ string $>$ \hyperlink{class_alfa_accounting_1_1_controllers_1_1_account_controller_a1fa3a682bb8d5ec0d2338412decc261a}{Send\+Email\+Confirmation\+Token\+Async} (string user\+ID, string subject)
+\begin{DoxyCompactList}\small\item\em send email confirmation using passed user\+ID and subject data \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_ac71173e2b61957f19b3bf18ddff3d350}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_ac71173e2b61957f19b3bf18ddff3d350}} 
+void {\bfseries Add\+Errors} (Identity\+Result result)
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a3cf6df00103aab96806529581aeefd69}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a3cf6df00103aab96806529581aeefd69}} 
+Action\+Result {\bfseries Redirect\+To\+Local} (string return\+Url)
+\item 
+void \hyperlink{class_alfa_accounting_1_1_controllers_1_1_account_controller_aac2167dbfab02458f4bb690ed818e946}{Create\+Admin\+If\+Needed} ()
+\begin{DoxyCompactList}\small\item\em cretate Addmin\+Account specifed in web config if required. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a879b7c9b7b0835f6c03365d83f346a0a}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a879b7c9b7b0835f6c03365d83f346a0a}} 
+Application\+Db\+Context {\bfseries db} = new Application\+Db\+Context()
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a5bfac4ebeaa597bc2681ba392adb455a}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a5bfac4ebeaa597bc2681ba392adb455a}} 
+Application\+Sign\+In\+Manager {\bfseries \+\_\+sign\+In\+Manager}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_aab890e510d97ecbf226a14833fbc02d7}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_aab890e510d97ecbf226a14833fbc02d7}} 
+Application\+User\+Manager {\bfseries \+\_\+user\+Manager}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a4246449469968efb41f0b5b4c6d19bf0}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a4246449469968efb41f0b5b4c6d19bf0}} 
+const string {\bfseries Xsrf\+Key} = \char`\"{}Xsrf\+Id\char`\"{}
+\item 
+Application\+Sign\+In\+Manager.\+Application\+Role\+Manager \hyperlink{class_alfa_accounting_1_1_controllers_1_1_account_controller_a312898ad37c6e9c3c3a188110563508b}{\+\_\+role\+Manager}
+\begin{DoxyCompactList}\small\item\em Utitily method to allow access to Role\+Manager \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Name\+:Mie Tanaka Name\+:26/05/2017 Description\+: allows users log in and register their account 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a31bb8afad3df5a35af60d598886942d2}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a31bb8afad3df5a35af60d598886942d2}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}!Account\+Controller@{Account\+Controller}}
+\index{Account\+Controller@{Account\+Controller}!Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}}
+\subsubsection{\texorpdfstring{Account\+Controller()}{AccountController()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Alfa\+Accounting.\+Controllers.\+Account\+Controller.\+Account\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+default constructor of account controller 
+
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_adff8966cf2dd3222d2198cce217cedd5}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_adff8966cf2dd3222d2198cce217cedd5}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}!Account\+Controller@{Account\+Controller}}
+\index{Account\+Controller@{Account\+Controller}!Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}}
+\subsubsection{\texorpdfstring{Account\+Controller()}{AccountController()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Alfa\+Accounting.\+Controllers.\+Account\+Controller.\+Account\+Controller (\begin{DoxyParamCaption}\item[{Application\+User\+Manager}]{user\+Manager,  }\item[{Application\+Sign\+In\+Manager}]{sign\+In\+Manager }\end{DoxyParamCaption})}
+
+
+
+Get user manager and signin mananger as parameter and set it to the Usr\+Manager and Sign\+In\+Manager property 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Manager} & \\
+\hline
+{\em sign\+In\+Manager} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_aac2167dbfab02458f4bb690ed818e946}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_aac2167dbfab02458f4bb690ed818e946}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}!Create\+Admin\+If\+Needed@{Create\+Admin\+If\+Needed}}
+\index{Create\+Admin\+If\+Needed@{Create\+Admin\+If\+Needed}!Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}}
+\subsubsection{\texorpdfstring{Create\+Admin\+If\+Needed()}{CreateAdminIfNeeded()}}
+{\footnotesize\ttfamily void Alfa\+Accounting.\+Controllers.\+Account\+Controller.\+Create\+Admin\+If\+Needed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+cretate Addmin\+Account specifed in web config if required. 
+
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a8b4dd78f4e62fb1858176f83e071f320}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a8b4dd78f4e62fb1858176f83e071f320}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}!Forgot\+Password@{Forgot\+Password}}
+\index{Forgot\+Password@{Forgot\+Password}!Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}}
+\subsubsection{\texorpdfstring{Forgot\+Password()}{ForgotPassword()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Account\+Controller.\+Forgot\+Password (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+returns blank forgotpassword view 
+
+\begin{DoxyReturn}{Returns}
+returns blank forgotpassword view
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a197a77ef42b5d09fea5ff4d6381d7f36}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a197a77ef42b5d09fea5ff4d6381d7f36}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}!Forgot\+Password@{Forgot\+Password}}
+\index{Forgot\+Password@{Forgot\+Password}!Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}}
+\subsubsection{\texorpdfstring{Forgot\+Password()}{ForgotPassword()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily async Task$<$Action\+Result$>$ Alfa\+Accounting.\+Controllers.\+Account\+Controller.\+Forgot\+Password (\begin{DoxyParamCaption}\item[{Forgot\+Password\+View\+Model}]{model }\end{DoxyParamCaption})}
+
+
+
+Gets posted model data, generate varification code and send it viea email 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Forgotpassowrd confirmation view
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a42199ed23564186b3277f4c030cb4976}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a42199ed23564186b3277f4c030cb4976}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}!Forgot\+Password\+Confirmation@{Forgot\+Password\+Confirmation}}
+\index{Forgot\+Password\+Confirmation@{Forgot\+Password\+Confirmation}!Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}}
+\subsubsection{\texorpdfstring{Forgot\+Password\+Confirmation()}{ForgotPasswordConfirmation()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Account\+Controller.\+Forgot\+Password\+Confirmation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns Gorgot\+Password\+Confirmation View 
+
+\begin{DoxyReturn}{Returns}
+Returns Gorgot\+Password\+Confirmation View
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a56dad7128774d78fc1679f133f9dacaa}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a56dad7128774d78fc1679f133f9dacaa}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}!Login@{Login}}
+\index{Login@{Login}!Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}}
+\subsubsection{\texorpdfstring{Login()}{Login()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Account\+Controller.\+Login (\begin{DoxyParamCaption}\item[{string}]{return\+Url }\end{DoxyParamCaption})}
+
+
+
+returns empty log in view 
+
+
+\begin{DoxyParams}{Parameters}
+{\em return\+Url} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns empty log in view
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_af11c863e7062228c7f066a01772b6c5c}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_af11c863e7062228c7f066a01772b6c5c}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}!Login@{Login}}
+\index{Login@{Login}!Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}}
+\subsubsection{\texorpdfstring{Login()}{Login()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily async Task$<$Action\+Result$>$ Alfa\+Accounting.\+Controllers.\+Account\+Controller.\+Login (\begin{DoxyParamCaption}\item[{Login\+View\+Model}]{model,  }\item[{string}]{return\+Url }\end{DoxyParamCaption})}
+
+
+
+Checks input detail if passed model state is detail is valid, removes booking which does not have Invoice\+Id and its user id is same as logged in user. redirect user to privious url if does not have previous url returns Home/\+Index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & \\
+\hline
+{\em return\+Url} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if model state is not valid returs current view else redirect user to privious url if not revious url returns Home/\+Index
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a528cb9ea0f972171ecad9424be46bcc1}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a528cb9ea0f972171ecad9424be46bcc1}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}!Log\+Off@{Log\+Off}}
+\index{Log\+Off@{Log\+Off}!Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}}
+\subsubsection{\texorpdfstring{Log\+Off()}{LogOff()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Account\+Controller.\+Log\+Off (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+deletes the bookings which does not have Invoice Id then logg off users 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a87ae473251c220a1da2786b60780c8e7}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a87ae473251c220a1da2786b60780c8e7}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}!Migrate\+Shopping\+Cart@{Migrate\+Shopping\+Cart}}
+\index{Migrate\+Shopping\+Cart@{Migrate\+Shopping\+Cart}!Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}}
+\subsubsection{\texorpdfstring{Migrate\+Shopping\+Cart()}{MigrateShoppingCart()}}
+{\footnotesize\ttfamily void Alfa\+Accounting.\+Controllers.\+Account\+Controller.\+Migrate\+Shopping\+Cart (\begin{DoxyParamCaption}\item[{string}]{Userid }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+when user logged in shopping cart temp user id is given passed in user id 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Userid} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a27ab611adeb70fd17fa7bac10fcc3532}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a27ab611adeb70fd17fa7bac10fcc3532}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}!Register@{Register}}
+\index{Register@{Register}!Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}}
+\subsubsection{\texorpdfstring{Register()}{Register()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Account\+Controller.\+Register (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+returns blank register view 
+
+\begin{DoxyReturn}{Returns}
+Register view
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a0330ad4c73165a5e1a1051a732c77112}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a0330ad4c73165a5e1a1051a732c77112}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}!Register@{Register}}
+\index{Register@{Register}!Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}}
+\subsubsection{\texorpdfstring{Register()}{Register()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily async Task$<$Action\+Result$>$ Alfa\+Accounting.\+Controllers.\+Account\+Controller.\+Register (\begin{DoxyParamCaption}\item[{Register\+View\+Model}]{model }\end{DoxyParamCaption})}
+
+
+
+allow user to register their detail send user email to verify their email address 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Info view
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_ae9f8d4a9533cc8e78fa3ed7216f36837}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_ae9f8d4a9533cc8e78fa3ed7216f36837}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}!Reset\+Password@{Reset\+Password}}
+\index{Reset\+Password@{Reset\+Password}!Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}}
+\subsubsection{\texorpdfstring{Reset\+Password()}{ResetPassword()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Account\+Controller.\+Reset\+Password (\begin{DoxyParamCaption}\item[{string}]{code }\end{DoxyParamCaption})}
+
+
+
+returns blank resest password view 
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns blank resest password view
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a65a2a1f6a9de8c5c9f458346a9b820e6}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a65a2a1f6a9de8c5c9f458346a9b820e6}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}!Reset\+Password@{Reset\+Password}}
+\index{Reset\+Password@{Reset\+Password}!Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}}
+\subsubsection{\texorpdfstring{Reset\+Password()}{ResetPassword()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily async Task$<$Action\+Result$>$ Alfa\+Accounting.\+Controllers.\+Account\+Controller.\+Reset\+Password (\begin{DoxyParamCaption}\item[{Reset\+Password\+View\+Model}]{model }\end{DoxyParamCaption})}
+
+
+
+Get post reset password data 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns reset password view
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a1fa3a682bb8d5ec0d2338412decc261a}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a1fa3a682bb8d5ec0d2338412decc261a}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}!Send\+Email\+Confirmation\+Token\+Async@{Send\+Email\+Confirmation\+Token\+Async}}
+\index{Send\+Email\+Confirmation\+Token\+Async@{Send\+Email\+Confirmation\+Token\+Async}!Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}}
+\subsubsection{\texorpdfstring{Send\+Email\+Confirmation\+Token\+Async()}{SendEmailConfirmationTokenAsync()}}
+{\footnotesize\ttfamily async Task$<$string$>$ Alfa\+Accounting.\+Controllers.\+Account\+Controller.\+Send\+Email\+Confirmation\+Token\+Async (\begin{DoxyParamCaption}\item[{string}]{user\+ID,  }\item[{string}]{subject }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+send email confirmation using passed user\+ID and subject data 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+ID} & \\
+\hline
+{\em subject} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_a312898ad37c6e9c3c3a188110563508b}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_a312898ad37c6e9c3c3a188110563508b}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}!\+\_\+role\+Manager@{\+\_\+role\+Manager}}
+\index{\+\_\+role\+Manager@{\+\_\+role\+Manager}!Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}}
+\subsubsection{\texorpdfstring{\+\_\+role\+Manager}{\_roleManager}}
+{\footnotesize\ttfamily Application\+Sign\+In\+Manager.\+Application\+Role\+Manager Alfa\+Accounting.\+Controllers.\+Account\+Controller.\+\_\+role\+Manager\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Utitily method to allow access to Role\+Manager 
+
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_acc05fd520ca89799979b9b0d389407d7}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_acc05fd520ca89799979b9b0d389407d7}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}!Sign\+In\+Manager@{Sign\+In\+Manager}}
+\index{Sign\+In\+Manager@{Sign\+In\+Manager}!Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}}
+\subsubsection{\texorpdfstring{Sign\+In\+Manager}{SignInManager}}
+{\footnotesize\ttfamily Application\+Sign\+In\+Manager Alfa\+Accounting.\+Controllers.\+Account\+Controller.\+Sign\+In\+Manager\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private set]}}
+
+
+
+allow access to owing context throug signin manager 
+
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_account_controller_af407b4124a36361363279ce45a2d8e78}\label{class_alfa_accounting_1_1_controllers_1_1_account_controller_af407b4124a36361363279ce45a2d8e78}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}!User\+Manager@{User\+Manager}}
+\index{User\+Manager@{User\+Manager}!Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Account\+Controller}}
+\subsubsection{\texorpdfstring{User\+Manager}{UserManager}}
+{\footnotesize\ttfamily Application\+User\+Manager Alfa\+Accounting.\+Controllers.\+Account\+Controller.\+User\+Manager\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private set]}}
+
+
+
+allows access to the ownin context through usermanager 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Me/\+Documents/\+Visual Studio 2015/\+Projects/\+Alfa\+Accounting/\+Alfa\+Accounting/\+Controllers/Account\+Controller.\+cs\end{DoxyCompactItemize}

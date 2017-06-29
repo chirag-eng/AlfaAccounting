@@ -1,0 +1,412 @@
+\hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller}{}\section{Alfa\+Accounting.\+Controllers.\+Admin\+Controller Class Reference}
+\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller}\index{Alfa\+Accounting.\+Controllers.\+Admin\+Controller@{Alfa\+Accounting.\+Controllers.\+Admin\+Controller}}
+
+
+ 
+
+
+
+
+Inherits Controller.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_admin_controller_ad5443e8c6d9c2b3777f9fba513e3a671}{Index} (string search\+String\+User\+Name\+Or\+Email, string current\+Filter, int? page)
+\begin{DoxyCompactList}\small\item\em list of username of all users, a user can be filtered out by inputing the part of user name in serch string text box it is put in page list \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a47eec1c8309957dd23123d70b40cb9a8}{Create} ()
+\begin{DoxyCompactList}\small\item\em returns a black Admin/\+Create view \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a9b10157b4c6ffb1a37d8871e5c3d5df1}{Create} (Expanded\+User\+D\+TO param\+Expanded\+User\+D\+TO)
+\begin{DoxyCompactList}\small\item\em Gets input data and save it to database if successful, go to Admin/\+Index view Returns same screen with error message \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a1780b7c4be2391ed0d5cbc266851bfe8}{Edit\+User} (string User\+Name)
+\begin{DoxyCompactList}\small\item\em Show editable Admin/\+Edit user view filled with selected user deatil, pass input to the next Edit\+User\+View \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a4b86dd20b249b83effa34719bb32bcf3}{Edit\+User} (Expanded\+User\+D\+TO param\+Expanded\+User\+D\+TO)
+\begin{DoxyCompactList}\small\item\em Gets input data and if state changed update it to database if successful, go to Admin/\+Index view Returns same screen with error message \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_admin_controller_ab319343f23e122e5e097ab991d7b4570}{Delete\+User} (string User\+Name)
+\begin{DoxyCompactList}\small\item\em Gets selected user data and display pop up view with confirm delete, if confirm yes, delete the user record from database and returns Admin/\+Index view \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a39fd305b2aeaf168ce24304fea1fa3c5}{Edit\+Roles} (string User\+Name)
+\begin{DoxyCompactList}\small\item\em Gets selected role name data and display editable Admin/\+Edit\+Role view, when submit button clicked send the input as obj\+User\+And\+Roles\+D\+TO to the next Admin/\+Edit\+Roles view \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a47736fcfb27b8c74c6e19efbcf3752f0}{Edit\+Roles} (User\+And\+Roles\+D\+TO param\+User\+And\+Roles\+D\+TO)
+\begin{DoxyCompactList}\small\item\em Gets passed updated role name data and save it on to database \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_admin_controller_aea25bbf8560b6a0906c84e09b0845508}{Delete\+Role} (string User\+Name, string Role\+Name)
+\begin{DoxyCompactList}\small\item\em pop delete confirmation message with confirm delete, if yes delete role name data and save it on to database \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_admin_controller_ab80cc7f0ef15de30d04a72e93cb16a98}{View\+All\+Roles} ()
+\begin{DoxyCompactList}\small\item\em displays list of all role names extracted from database \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a59853ef1d5370e88b096ff325cd1ff6f}{Add\+Role} ()
+\begin{DoxyCompactList}\small\item\em Displays blank role name view and pass the input to the next Add\+Role view \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a3d687320b749a1965076591cac812ef4}{Add\+Role} (Role\+D\+TO param\+Role\+D\+TO)
+\begin{DoxyCompactList}\small\item\em saves the passed pram\+Role\+D\+TO data on to database if successful returns View\+Alll\+Roles view \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_admin_controller_affbab160f6a2b99cf1caa77c57ac0bd3}{Delete\+User\+Role} (string Role\+Name)
+\begin{DoxyCompactList}\small\item\em On click of delete, pops up delete confirmation message, if yes, deletes the role name from the role database \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a8097d4b01a88147e8fe371710977f508}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a8097d4b01a88147e8fe371710977f508}} 
+Application\+User\+Manager {\bfseries User\+Manager}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a0f725433f340d0ee968cf44eb1c8dc76}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a0f725433f340d0ee968cf44eb1c8dc76}} 
+Application\+Sign\+In\+Manager.\+Application\+Role\+Manager {\bfseries Role\+Manager}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ Select\+List\+Item $>$ \hyperlink{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a03803020e0e8f8234efe548a440dfb73}{Get\+All\+Roles\+As\+Select\+List} ()
+\begin{DoxyCompactList}\small\item\em Get all roles and saves it as a list as a select\+Role\+List\+Item returns a List$<$\+Select\+List\+Item$>$ Select\+Role\+List\+Items filled with Role names saved in database \end{DoxyCompactList}\item 
+Expanded\+User\+D\+TO \hyperlink{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a28a65a7e1ec9bcff2726efd067ac96a7}{Get\+User} (string param\+User\+Name)
+\begin{DoxyCompactList}\small\item\em gets the logged in user\textquotesingle{}s detail from database and returns Expanded\+User\+D\+TO obj\+Expanded\+User\+D\+TO from database. \end{DoxyCompactList}\item 
+Expanded\+User\+D\+TO \hyperlink{class_alfa_accounting_1_1_controllers_1_1_admin_controller_acc3ea39bdbcb2412a2ad2d1d6c46c9e7}{Update\+D\+T\+O\+User} (Expanded\+User\+D\+TO param\+Expanded\+User\+D\+TO)
+\begin{DoxyCompactList}\small\item\em returns the updated Expanded\+User\+D\+TO class object param\+Expanded\+User\+D\+TO after updating database user detail with input data \end{DoxyCompactList}\item 
+void \hyperlink{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a655bceb6a08f850821d527726e8412e1}{Delete\+User} (Expanded\+User\+D\+TO param\+Expanded\+User\+D\+TO)
+\begin{DoxyCompactList}\small\item\em delete user from database \end{DoxyCompactList}\item 
+User\+And\+Roles\+D\+TO \hyperlink{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a29957ccd465eb001f6964bce6ddbcfff}{Get\+User\+And\+Roles} (string User\+Name)
+\begin{DoxyCompactList}\small\item\em returns User\+And\+Roles\+D\+TO obj\+User\+And\+Roles\+D\+TO that contains user and role \end{DoxyCompactList}\item 
+List$<$ string $>$ \hyperlink{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a16b3d517afd4ab2e92aa4d47fa0b2f42}{Roles\+User\+Is\+Not\+In} (string User\+Name)
+\begin{DoxyCompactList}\small\item\em returns role names that has no user allocated to it as a list \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a07ed864a13e44326f125f2f82c662b28}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a07ed864a13e44326f125f2f82c662b28}} 
+Application\+User\+Manager {\bfseries \+\_\+user\+Manager}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a42b3851c6a9271d44931e8a81f21e05c}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a42b3851c6a9271d44931e8a81f21e05c}} 
+Application\+Sign\+In\+Manager.\+Application\+Role\+Manager {\bfseries \+\_\+role\+Manager}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a8bdc93613c4724b2bc244a088b560026}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a8bdc93613c4724b2bc244a088b560026}} 
+Application\+Db\+Context {\bfseries db} = new Application\+Db\+Context()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Name\+:Mie Tanaka Name\+:26/05/2017 Description\+: allows admin edit all users detail and roles\+: 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a59853ef1d5370e88b096ff325cd1ff6f}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a59853ef1d5370e88b096ff325cd1ff6f}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}!Add\+Role@{Add\+Role}}
+\index{Add\+Role@{Add\+Role}!Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}}
+\subsubsection{\texorpdfstring{Add\+Role()}{AddRole()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Admin\+Controller.\+Add\+Role (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Displays blank role name view and pass the input to the next Add\+Role view 
+
+\begin{DoxyReturn}{Returns}
+returns returns empty Add\+Role view and pass input data as obj\+Role\+D\+TO to next Add\+Role view
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a3d687320b749a1965076591cac812ef4}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a3d687320b749a1965076591cac812ef4}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}!Add\+Role@{Add\+Role}}
+\index{Add\+Role@{Add\+Role}!Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}}
+\subsubsection{\texorpdfstring{Add\+Role()}{AddRole()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Admin\+Controller.\+Add\+Role (\begin{DoxyParamCaption}\item[{Role\+D\+TO}]{param\+Role\+D\+TO }\end{DoxyParamCaption})}
+
+
+
+saves the passed pram\+Role\+D\+TO data on to database if successful returns View\+Alll\+Roles view 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pram\+Role\+D\+TO} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return View\+All\+Roles view after saving passed updated Rol\+D\+TO input data on to database if error, keep returning Add\+Role view 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a47eec1c8309957dd23123d70b40cb9a8}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a47eec1c8309957dd23123d70b40cb9a8}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}!Create@{Create}}
+\index{Create@{Create}!Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}}
+\subsubsection{\texorpdfstring{Create()}{Create()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Admin\+Controller.\+Create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+returns a black Admin/\+Create view 
+
+\begin{DoxyReturn}{Returns}
+returns empty view filled with Expanded\+User\+D\+TO obj\+Expanded\+User\+D\+TO parameter
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a9b10157b4c6ffb1a37d8871e5c3d5df1}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a9b10157b4c6ffb1a37d8871e5c3d5df1}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}!Create@{Create}}
+\index{Create@{Create}!Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}}
+\subsubsection{\texorpdfstring{Create()}{Create()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Admin\+Controller.\+Create (\begin{DoxyParamCaption}\item[{Expanded\+User\+D\+TO}]{param\+Expanded\+User\+D\+TO }\end{DoxyParamCaption})}
+
+
+
+Gets input data and save it to database if successful, go to Admin/\+Index view Returns same screen with error message 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param\+Expanded\+User\+D\+TO} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns Admin/\+Index View if input parameter successfully saved on to database returns create method with curren input data with error message, if input parameter failed to load on to database 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_aea25bbf8560b6a0906c84e09b0845508}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_aea25bbf8560b6a0906c84e09b0845508}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}!Delete\+Role@{Delete\+Role}}
+\index{Delete\+Role@{Delete\+Role}!Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}}
+\subsubsection{\texorpdfstring{Delete\+Role()}{DeleteRole()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Admin\+Controller.\+Delete\+Role (\begin{DoxyParamCaption}\item[{string}]{User\+Name,  }\item[{string}]{Role\+Name }\end{DoxyParamCaption})}
+
+
+
+pop delete confirmation message with confirm delete, if yes delete role name data and save it on to database 
+
+
+\begin{DoxyParams}{Parameters}
+{\em User\+Name} & \\
+\hline
+{\em Role\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns the Edit\+Role view with current username data after successfully deleting the role from database if error, return Edit\+Role view with current user role data saved in User\+Adn\+Roles\+D\+TO obj\+User\+And\+Roles\+D\+TO
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_ab319343f23e122e5e097ab991d7b4570}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_ab319343f23e122e5e097ab991d7b4570}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}!Delete\+User@{Delete\+User}}
+\index{Delete\+User@{Delete\+User}!Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}}
+\subsubsection{\texorpdfstring{Delete\+User()}{DeleteUser()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Admin\+Controller.\+Delete\+User (\begin{DoxyParamCaption}\item[{string}]{User\+Name }\end{DoxyParamCaption})}
+
+
+
+Gets selected user data and display pop up view with confirm delete, if confirm yes, delete the user record from database and returns Admin/\+Index view 
+
+
+\begin{DoxyParams}{Parameters}
+{\em string User\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns Admin/\+Index view if successful , if error returns current Edit\+User view with error message. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a655bceb6a08f850821d527726e8412e1}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a655bceb6a08f850821d527726e8412e1}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}!Delete\+User@{Delete\+User}}
+\index{Delete\+User@{Delete\+User}!Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}}
+\subsubsection{\texorpdfstring{Delete\+User()}{DeleteUser()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Alfa\+Accounting.\+Controllers.\+Admin\+Controller.\+Delete\+User (\begin{DoxyParamCaption}\item[{Expanded\+User\+D\+TO}]{param\+Expanded\+User\+D\+TO }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+delete user from database 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param\+Expanded\+User\+D\+TT} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_affbab160f6a2b99cf1caa77c57ac0bd3}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_affbab160f6a2b99cf1caa77c57ac0bd3}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}!Delete\+User\+Role@{Delete\+User\+Role}}
+\index{Delete\+User\+Role@{Delete\+User\+Role}!Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}}
+\subsubsection{\texorpdfstring{Delete\+User\+Role()}{DeleteUserRole()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Admin\+Controller.\+Delete\+User\+Role (\begin{DoxyParamCaption}\item[{string}]{Role\+Name }\end{DoxyParamCaption})}
+
+
+
+On click of delete, pops up delete confirmation message, if yes, deletes the role name from the role database 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Role\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return current view of View\+All\+Roles filled with updated roles list after deleteing the role from database 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a39fd305b2aeaf168ce24304fea1fa3c5}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a39fd305b2aeaf168ce24304fea1fa3c5}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}!Edit\+Roles@{Edit\+Roles}}
+\index{Edit\+Roles@{Edit\+Roles}!Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}}
+\subsubsection{\texorpdfstring{Edit\+Roles()}{EditRoles()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Admin\+Controller.\+Edit\+Roles (\begin{DoxyParamCaption}\item[{string}]{User\+Name }\end{DoxyParamCaption})}
+
+
+
+Gets selected role name data and display editable Admin/\+Edit\+Role view, when submit button clicked send the input as obj\+User\+And\+Roles\+D\+TO to the next Admin/\+Edit\+Roles view 
+
+
+\begin{DoxyParams}{Parameters}
+{\em string User\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns Admin/\+Edit\+Roels
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a47736fcfb27b8c74c6e19efbcf3752f0}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a47736fcfb27b8c74c6e19efbcf3752f0}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}!Edit\+Roles@{Edit\+Roles}}
+\index{Edit\+Roles@{Edit\+Roles}!Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}}
+\subsubsection{\texorpdfstring{Edit\+Roles()}{EditRoles()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Admin\+Controller.\+Edit\+Roles (\begin{DoxyParamCaption}\item[{User\+And\+Roles\+D\+TO}]{param\+User\+And\+Roles\+D\+TO }\end{DoxyParamCaption})}
+
+
+
+Gets passed updated role name data and save it on to database 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pram\+User\+And\+Roles\+D\+TO} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns Admin/\+Edit\+Roles view filled with updated obj\+User\+And\+Roles\+D\+TO data if successful, if error returns Admin/\+Edit\+Roles with input data with error message
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a1780b7c4be2391ed0d5cbc266851bfe8}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a1780b7c4be2391ed0d5cbc266851bfe8}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}!Edit\+User@{Edit\+User}}
+\index{Edit\+User@{Edit\+User}!Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}}
+\subsubsection{\texorpdfstring{Edit\+User()}{EditUser()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Admin\+Controller.\+Edit\+User (\begin{DoxyParamCaption}\item[{string}]{User\+Name }\end{DoxyParamCaption})}
+
+
+
+Show editable Admin/\+Edit user view filled with selected user deatil, pass input to the next Edit\+User\+View 
+
+\begin{DoxyReturn}{Returns}
+Returns an editable Edit\+User\+View filled with selected user detail.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a4b86dd20b249b83effa34719bb32bcf3}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a4b86dd20b249b83effa34719bb32bcf3}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}!Edit\+User@{Edit\+User}}
+\index{Edit\+User@{Edit\+User}!Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}}
+\subsubsection{\texorpdfstring{Edit\+User()}{EditUser()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Admin\+Controller.\+Edit\+User (\begin{DoxyParamCaption}\item[{Expanded\+User\+D\+TO}]{param\+Expanded\+User\+D\+TO }\end{DoxyParamCaption})}
+
+
+
+Gets input data and if state changed update it to database if successful, go to Admin/\+Index view Returns same screen with error message 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param\+Expanded\+User\+D\+TO} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns Home/\+Index view after successfully updating database with updated data in pram\+Expanded\+User\+D\+TO if error, returns Admin/\+Edit$\vert$\+User with input data with error message 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a03803020e0e8f8234efe548a440dfb73}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a03803020e0e8f8234efe548a440dfb73}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}!Get\+All\+Roles\+As\+Select\+List@{Get\+All\+Roles\+As\+Select\+List}}
+\index{Get\+All\+Roles\+As\+Select\+List@{Get\+All\+Roles\+As\+Select\+List}!Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}}
+\subsubsection{\texorpdfstring{Get\+All\+Roles\+As\+Select\+List()}{GetAllRolesAsSelectList()}}
+{\footnotesize\ttfamily List$<$Select\+List\+Item$>$ Alfa\+Accounting.\+Controllers.\+Admin\+Controller.\+Get\+All\+Roles\+As\+Select\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Get all roles and saves it as a list as a select\+Role\+List\+Item returns a List$<$\+Select\+List\+Item$>$ Select\+Role\+List\+Items filled with Role names saved in database 
+
+\begin{DoxyReturn}{Returns}
+List$<$\+Select\+List\+Item$>$ Select\+Role\+List\+Items
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a28a65a7e1ec9bcff2726efd067ac96a7}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a28a65a7e1ec9bcff2726efd067ac96a7}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}!Get\+User@{Get\+User}}
+\index{Get\+User@{Get\+User}!Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}}
+\subsubsection{\texorpdfstring{Get\+User()}{GetUser()}}
+{\footnotesize\ttfamily Expanded\+User\+D\+TO Alfa\+Accounting.\+Controllers.\+Admin\+Controller.\+Get\+User (\begin{DoxyParamCaption}\item[{string}]{param\+User\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+gets the logged in user\textquotesingle{}s detail from database and returns Expanded\+User\+D\+TO obj\+Expanded\+User\+D\+TO from database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param\+User\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Expanded\+User\+D\+TO obj\+Expanded\+User\+D\+TO
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a29957ccd465eb001f6964bce6ddbcfff}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a29957ccd465eb001f6964bce6ddbcfff}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}!Get\+User\+And\+Roles@{Get\+User\+And\+Roles}}
+\index{Get\+User\+And\+Roles@{Get\+User\+And\+Roles}!Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}}
+\subsubsection{\texorpdfstring{Get\+User\+And\+Roles()}{GetUserAndRoles()}}
+{\footnotesize\ttfamily User\+And\+Roles\+D\+TO Alfa\+Accounting.\+Controllers.\+Admin\+Controller.\+Get\+User\+And\+Roles (\begin{DoxyParamCaption}\item[{string}]{User\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+returns User\+And\+Roles\+D\+TO obj\+User\+And\+Roles\+D\+TO that contains user and role 
+
+
+\begin{DoxyParams}{Parameters}
+{\em User\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+obj\+User\+And\+Roles\+D\+TO
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_ad5443e8c6d9c2b3777f9fba513e3a671}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_ad5443e8c6d9c2b3777f9fba513e3a671}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}!Index@{Index}}
+\index{Index@{Index}!Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}}
+\subsubsection{\texorpdfstring{Index()}{Index()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Admin\+Controller.\+Index (\begin{DoxyParamCaption}\item[{string}]{search\+String\+User\+Name\+Or\+Email,  }\item[{string}]{current\+Filter,  }\item[{int?}]{page }\end{DoxyParamCaption})}
+
+
+
+list of username of all users, a user can be filtered out by inputing the part of user name in serch string text box it is put in page list 
+
+
+\begin{DoxyParams}{Parameters}
+{\em search\+String\+User\+Name\+Or\+Email} & \\
+\hline
+{\em current\+Filter} & \\
+\hline
+{\em page} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns the list of username of all users with edit delete link
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a16b3d517afd4ab2e92aa4d47fa0b2f42}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_a16b3d517afd4ab2e92aa4d47fa0b2f42}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}!Roles\+User\+Is\+Not\+In@{Roles\+User\+Is\+Not\+In}}
+\index{Roles\+User\+Is\+Not\+In@{Roles\+User\+Is\+Not\+In}!Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}}
+\subsubsection{\texorpdfstring{Roles\+User\+Is\+Not\+In()}{RolesUserIsNotIn()}}
+{\footnotesize\ttfamily List$<$string$>$ Alfa\+Accounting.\+Controllers.\+Admin\+Controller.\+Roles\+User\+Is\+Not\+In (\begin{DoxyParamCaption}\item[{string}]{User\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+returns role names that has no user allocated to it as a list 
+
+
+\begin{DoxyParams}{Parameters}
+{\em User\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+col\+Roles\+User\+In\+Not\+In
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_acc3ea39bdbcb2412a2ad2d1d6c46c9e7}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_acc3ea39bdbcb2412a2ad2d1d6c46c9e7}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}!Update\+D\+T\+O\+User@{Update\+D\+T\+O\+User}}
+\index{Update\+D\+T\+O\+User@{Update\+D\+T\+O\+User}!Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}}
+\subsubsection{\texorpdfstring{Update\+D\+T\+O\+User()}{UpdateDTOUser()}}
+{\footnotesize\ttfamily Expanded\+User\+D\+TO Alfa\+Accounting.\+Controllers.\+Admin\+Controller.\+Update\+D\+T\+O\+User (\begin{DoxyParamCaption}\item[{Expanded\+User\+D\+TO}]{param\+Expanded\+User\+D\+TO }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+returns the updated Expanded\+User\+D\+TO class object param\+Expanded\+User\+D\+TO after updating database user detail with input data 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj\+Expanded\+User\+D\+TO} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Expanded\+User\+D\+TO param\+Expanded\+User\+D\+TO
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_admin_controller_ab80cc7f0ef15de30d04a72e93cb16a98}\label{class_alfa_accounting_1_1_controllers_1_1_admin_controller_ab80cc7f0ef15de30d04a72e93cb16a98}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}!View\+All\+Roles@{View\+All\+Roles}}
+\index{View\+All\+Roles@{View\+All\+Roles}!Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Admin\+Controller}}
+\subsubsection{\texorpdfstring{View\+All\+Roles()}{ViewAllRoles()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Admin\+Controller.\+View\+All\+Roles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+displays list of all role names extracted from database 
+
+\begin{DoxyReturn}{Returns}
+returns View\+All\+Roles view filled with list of all the Role names
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Me/\+Documents/\+Visual Studio 2015/\+Projects/\+Alfa\+Accounting/\+Alfa\+Accounting/\+Controllers/Admin\+Controller.\+cs\end{DoxyCompactItemize}

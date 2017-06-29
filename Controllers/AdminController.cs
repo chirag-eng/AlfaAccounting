@@ -11,23 +11,20 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using PagedList;
 
-/// <summary>
-/// Name:Mie Tanaka
-/// Name:02/03/2017
-/// Description: allows admin edit all users detail and roles:
 
-/// private RolesUserIsNotIn(string userName0
-///         returns role names that has no user allocated to it as a list
-/// </summary>
 namespace AlfaAccounting.Controllers
-{
+{/// <summary>
+ ///Name:Mie Tanaka
+ /// Name:26/05/2017
+ /// Description: allows admin edit all users detail and roles:
+ /// </summary>
+
+
     public class AdminController : Controller
     {
         private ApplicationUserManager _userManager;
         private ApplicationSignInManager.ApplicationRoleManager _roleManager;
-
-        // Controllers
-
+        ApplicationDbContext db = new ApplicationDbContext();
 
         /// <summary>
         /// list of username of all users, 
@@ -38,6 +35,7 @@ namespace AlfaAccounting.Controllers
         /// <param name="currentFilter"></param>
         /// <param name="page"></param>
         /// <returns>returns the list of username of all users with edit delete link</returns>
+        /// <includesource>yes</includesource>
         [Authorize(Roles = "Administrator")]
         #region public ActionResult Index(string searchStringUserNameOrEmail)       
         public ActionResult Index(string searchStringUserNameOrEmail, string currentFilter, int? page)
@@ -118,7 +116,8 @@ namespace AlfaAccounting.Controllers
         /// <summary>
         /// returns a black Admin/Create view
         /// </summary>
-        /// <returns>returns empty view filled with ExpandedUserDTO objExpandedUserDTO parameter</returns> 
+        /// <returns>returns empty view filled with ExpandedUserDTO objExpandedUserDTO parameter</returns>
+        /// <includesource>yes</includesource>
         [Authorize(Roles = "Administrator")]
         #region public ActionResult Create()
         public ActionResult Create()
@@ -140,6 +139,7 @@ namespace AlfaAccounting.Controllers
         /// <returns>returns Admin/Index View if input parameter successfully saved on to database 
         ///         returns create method with curren input data with error message, 
         ///         if input parameter failed to load on to database </returns>
+        ///         <includesource>yes</includesource>
         [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -162,6 +162,7 @@ namespace AlfaAccounting.Controllers
                 var Email = paramExpandedUserDTO.Email.Trim();
                 var UserName = paramExpandedUserDTO.Email.Trim();
                 var Password = paramExpandedUserDTO.Password.Trim();
+                var BacsApproved = paramExpandedUserDTO.BacsApproved;
 
                 if (Email == "")
                 {
@@ -187,7 +188,8 @@ namespace AlfaAccounting.Controllers
                     Street = Street,
                     Town = Town,
                     Postcode = Postcode,
-                    PhoneNumber = PhoneNumber
+                    PhoneNumber = PhoneNumber,
+                    BacsApproved = BacsApproved,
                 };
                 //Create user with objNewAdminUser with Password
                 var AdminUserCreateResult = UserManager.Create(objNewAdminUser, Password);
@@ -227,6 +229,7 @@ namespace AlfaAccounting.Controllers
         /// Show editable Admin/Edit user view filled with selected user deatil, pass input to the next EditUserView
         /// </summary>
         /// <returns> Returns an editable EditUserView filled with selected user detail.</returns>
+        /// <includesource>yes</includesource>
         [Authorize(Roles = "Administrator")]
         #region public ActionResult EditUser(string UserName)
         public ActionResult EditUser(string UserName)
@@ -252,6 +255,7 @@ namespace AlfaAccounting.Controllers
         /// <param name="paramExpandedUserDTO"></param>
         /// <returns>returns Home/Index view after successfully updating database with updated data in pramExpandedUserDTO
         ///         if error, returns Admin/Edit|User with input data with error message </returns>
+        ///         <includesource>yes</includesource>
         [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -290,6 +294,7 @@ namespace AlfaAccounting.Controllers
         /// <param name="string UserName"></param>
         /// <returns>returns Admin/Index view if successful , 
         ///         if error returns current EditUser view with error message. </returns>
+        ///         <includesource>yes</includesource>
         [Authorize(Roles = "Administrator")]
         #region public ActionResult DeleteUser(string UserName)
         public ActionResult DeleteUser(string UserName)
@@ -338,6 +343,7 @@ namespace AlfaAccounting.Controllers
         /// </summary>
         /// <param name="string UserName"></param>
         /// <returns>returns Admin/EditRoels</returns> 
+        /// <includesource>yes</includesource>
         [Authorize(Roles = "Administrator")]
         #region ActionResult EditRoles(string UserName)
         public ActionResult EditRoles(string UserName)
@@ -371,6 +377,7 @@ namespace AlfaAccounting.Controllers
         /// <param name="pramUserAndRolesDTO"></param>
         /// <returns>Returns Admin/EditRoles view filled with updated objUserAndRolesDTO data if successful, 
         ///         if error returns Admin/EditRoles with input data with error message</returns>
+        ///         <includesource>yes</includesource>
         [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -420,6 +427,7 @@ namespace AlfaAccounting.Controllers
         /// <param name="RoleName"></param>
         /// <returns>returns the EditRole view with current username data after successfully deleting the role from database
         ///         if error, return EditRole view with current user role data saved in UserAdnRolesDTO objUserAndRolesDTO</returns>
+        ///<includesource>yes</includesource>
         [Authorize(Roles = "Administrator")]
         #region public ActionResult DeleteRole(string UserName, string RoleName)
         public ActionResult DeleteRole(string UserName, string RoleName)
@@ -479,6 +487,7 @@ namespace AlfaAccounting.Controllers
         /// displays list of all role names extracted from database
         /// </summary>
         /// <returns>returns ViewAllRoles view filled with list of all the Role names</returns>
+        ///<includesource>yes</includesource>
         [Authorize(Roles = "Administrator")]
         #region public ActionResult ViewAllRoles()
         public ActionResult ViewAllRoles()
@@ -506,6 +515,7 @@ namespace AlfaAccounting.Controllers
         /// </summary>
         /// <returns>returns returns empty AddRole view 
         /// and pass input data as objRoleDTO to next AddRole view</returns>
+        /// <includesource>yes</includesource>
         [Authorize(Roles = "Administrator")]
         #region public ActionResult AddRole()
         public ActionResult AddRole()
@@ -519,9 +529,11 @@ namespace AlfaAccounting.Controllers
         // PUT: /Admin/AddRole
         /// <summary>
         /// saves the passed pramRoleDTO data on to database if successful returns ViewAlllRoles view
+        /// </summary>
         /// <param name="pramRoleDTO"></param>
         /// <returns>return ViewAllRoles view after saving passed updated RolDTO input data on to database
         ///          if error, keep returning AddRole view </returns>
+        ///          <includesource>yes</includesource>
         [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -567,8 +579,10 @@ namespace AlfaAccounting.Controllers
         /// <summary>
         /// On click of delete, pops up delete confirmation message, 
         /// if yes, deletes the role name from the role database
+        /// </summary>
         /// <param name="RoleName"></param>
         /// <returns>return current view of ViewAllRoles filled with updated roles list after deleteing the role from database </returns>
+        ///<includesource>yes</includesource>
         [Authorize(Roles = "Administrator")]
         #region public ActionResult DeleteUserRole(string RoleName)
         public ActionResult DeleteUserRole(string RoleName)
@@ -676,11 +690,14 @@ namespace AlfaAccounting.Controllers
             }
         }
         #endregion
+
         /// <summary>
         /// Get all roles and saves it as a list as a selectRoleListItem 
         /// returns a List<SelectListItem> SelectRoleListItems filled with Role names saved in database
+        /// </summary>
         /// <returns>List<SelectListItem> SelectRoleListItems</returns>
-        #region private List<SelectListItem> GetAllRolesAsSelectList()
+        ///<includesource>yes</includesource>
+            #region private List<SelectListItem> GetAllRolesAsSelectList()
         private List<SelectListItem> GetAllRolesAsSelectList()
         {
             List<SelectListItem> SelectRoleListItems =
@@ -716,14 +733,26 @@ namespace AlfaAccounting.Controllers
         /// <summary>
         /// gets the logged in user's detail from database and 
         /// returns ExpandedUserDTO objExpandedUserDTO from database.
+        /// </summary>
         /// <param name="paramUserName"></param>
         /// <returns>ExpandedUserDTO objExpandedUserDTO</returns>
+        /// <includesource>yes</includesource>
         #region private ExpandedUserDTO GetUser(string paramUserName)
         private ExpandedUserDTO GetUser(string paramUserName)
         {
             ExpandedUserDTO objExpandedUserDTO = new ExpandedUserDTO();
 
             var result = UserManager.FindByName(paramUserName);
+            List<UserRolesDTO> roles = new List<UserRolesDTO>();
+            var roleslist = UserManager.FindByName(paramUserName).Roles.ToList();
+            foreach (IdentityUserRole rs in roleslist)
+            {   //find role name
+                string rolename = (db.Roles.Where(r => r.Id == rs.RoleId).Single().Name);
+                UserRolesDTO userRoleDTO = new UserRolesDTO();
+                userRoleDTO.RoleName = rolename;
+                //userRoleDTO.UserName = paramUserName;
+                roles.Add(userRoleDTO);
+            }
 
             // If we could not find the user, throw an exception
             if (result == null) throw new Exception("Could not find the User");
@@ -739,6 +768,8 @@ namespace AlfaAccounting.Controllers
             objExpandedUserDTO.LockoutEndDateUtc = result.LockoutEndDateUtc;
             objExpandedUserDTO.LockoutEnabled = result.LockoutEnabled;
             objExpandedUserDTO.AccessFailedCount = result.AccessFailedCount;
+            objExpandedUserDTO.BacsApproved = result.BacsApproved;
+            objExpandedUserDTO.Roles = roles;
 
 
             return objExpandedUserDTO;
@@ -748,14 +779,17 @@ namespace AlfaAccounting.Controllers
         /// <summary>
         /// returns the updated ExpandedUserDTO class object paramExpandedUserDTO 
         /// after updating database user detail with input data
+        /// </summary>
         /// <param name="objExpandedUserDTO"></param>
         /// <returns>ExpandedUserDTO paramExpandedUserDTO</returns>
+        /// <includesource>yes</includesource>
         #region private ExpandedUserDTO UpdateDTOUser(ExpandedUserDTO objExpandedUserDTO)
         private ExpandedUserDTO UpdateDTOUser(ExpandedUserDTO paramExpandedUserDTO)
         {
             ApplicationUser result =
                 UserManager.FindByName(paramExpandedUserDTO.UserName);
-
+            List<UserRolesDTO> roles = new List<UserRolesDTO>();
+            
             // If we could not find the user, throw an exception
             if (result == null)
             {
@@ -770,10 +804,13 @@ namespace AlfaAccounting.Controllers
             result.Postcode = paramExpandedUserDTO.Postcode;
             result.PhoneNumber = paramExpandedUserDTO.PhoneNumber;
             result.UserName = paramExpandedUserDTO.UserName;
-            result.Email = paramExpandedUserDTO.Email;
+            result.Email = paramExpandedUserDTO.UserName;
             result.LockoutEndDateUtc = paramExpandedUserDTO.LockoutEndDateUtc;
             result.LockoutEnabled = paramExpandedUserDTO.LockoutEnabled;
             result.AccessFailedCount = paramExpandedUserDTO.AccessFailedCount;
+            result.BacsApproved = paramExpandedUserDTO.BacsApproved;
+            
+            
             
 
 
@@ -783,8 +820,9 @@ namespace AlfaAccounting.Controllers
                 // Unlock user
                 UserManager.ResetAccessFailedCountAsync(result.Id);
             }
-
+            
             UserManager.Update(result);
+
 
             // Was a password sent across?
             if (!string.IsNullOrEmpty(paramExpandedUserDTO.Password))
@@ -813,8 +851,10 @@ namespace AlfaAccounting.Controllers
 
         /// <summary>
         /// delete user from database
+        /// </summary>
         /// <param name="paramExpandedUserDTT"></param>
         /// <returns>void</returns>
+        /// <includesource>yes</includesource>
         #region private void DeleteUser(ExpandedUserDTO paramExpandedUserDTO)
         private void DeleteUser(ExpandedUserDTO paramExpandedUserDTO)
         {
@@ -835,8 +875,10 @@ namespace AlfaAccounting.Controllers
 
         /// <summary>
         /// returns UserAndRolesDTO objUserAndRolesDTO that contains user and role 
+        /// </summary>
         /// <param name="UserName"></param>
         /// <returns>objUserAndRolesDTO</returns>
+        /// <includesource>yes</includesource>
         #region private UserAndRolesDTO GetUserAndRoles(string UserName)
         private UserAndRolesDTO GetUserAndRoles(string UserName)
         {
@@ -869,8 +911,10 @@ namespace AlfaAccounting.Controllers
 
         /// <summary>
         /// returns role names that has no user allocated to it as a list 
+        /// </summary>
         /// <param name="UserName"></param>
         /// <returns>colRolesUserInNotIn</returns>
+        /// <includesource>yes</includesource>
         #region private List<string> RolesUserIsNotIn(string UserName)
         private List<string> RolesUserIsNotIn(string UserName)
         {

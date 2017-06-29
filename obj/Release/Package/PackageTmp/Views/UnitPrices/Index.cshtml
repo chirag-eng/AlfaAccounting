@@ -1,0 +1,40 @@
+﻿@model IEnumerable<AlfaAccounting.Models.UnitPrice>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitPriceValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitPriceDescription)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitPriceValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitPriceDescription)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UnitPriceId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UnitPriceId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UnitPriceId })
+        </td>
+    </tr>
+}
+
+</table>

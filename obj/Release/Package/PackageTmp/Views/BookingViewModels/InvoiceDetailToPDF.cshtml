@@ -1,0 +1,225 @@
+﻿@using AlfaAccounting.Models
+@model InvoiceDetailViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>InvoiceDetailToPDF</title>
+</head>
+<body>
+    <section class="content content_content" style="width: 100%; margin: auto;">
+        <section style="position: relative;background: #fff;border: 1px solid #f4f4f4;padding: 20px;margin: 10px 25px;">
+            <!-- title row -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 style="margin: 10px 0 20px 0;font-size: 22px;">
+                        <i class="fa fa-globe"></i> Alfa Accounting
+                        <small class="pull-right">Date: @Model.InvoiceIssueDate.Date</small>
+                        <b>Invoice</b>
+                    </h2>
+                </div><!-- /.col -->
+            </div>
+            <!-- infor row -->
+            <div class="row invoice-info">
+                <div class="col-sm-4 invoice-col">
+                    
+                    <address>
+                        <strong>
+                            1 Glasgow Street,<br />
+                            Glasgow <br />
+                            G1<br />
+                            01412223333<br />
+                        </strong>
+
+
+                    </address>
+                </div><!-- /.col -->
+                <div class="col-sm-4 invoice-col">
+                    To
+                    <address>
+                        <strong>
+                            @Html.DisplayFor(model => model.ApplicationUser.Companyname)
+                        </strong>
+                        <br />
+                        Address:
+                        <br />
+
+                        @Html.DisplayFor(model => model.ApplicationUser.Street)<br />
+                        @Html.DisplayFor(model => model.ApplicationUser.Town)<br />
+                        @Html.DisplayFor(model => model.ApplicationUser.Postcode)<br />
+                        Phone: @Html.DisplayFor(model => model.ApplicationUser.PhoneNumber)<br />
+
+                        Email:@Html.DisplayFor(model => model.ApplicationUser.Postcode)<br />
+                    </address>
+                </div><!-- /.col -->
+                <div class="col-sm-4 invoice-col">
+                    <b>Invoice ID: </b>@Html.DisplayFor(model => model.InvoiceId)<br/>
+                    <b>Payment Due: </b> @ViewBag.DueDate<br/>
+                    <b>Sort code: </b>  89-90-11<br />
+                    <b>Account: </b> 968-34567<br />
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+            <!-- Table row -->
+            <div class="row">
+                <div class="col-xs-12 table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ItemDescription</th>&nbsp;
+                                <th>UnitPrice</th>&nbsp;
+                                <th>Subtotal</th>&nbsp;
+                                <th>BookingStatus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{foreach (Booking bk in Model.Bookings)
+                                {
+                                    <tr>
+                                        <td>Service on @bk.ItemDescription</td>&nbsp;
+                                        <td>@bk.UnitPrice.UnitPriceValue</td>&nbsp;
+                                        <td>@bk.Subtotal</td>&nbsp;
+                                        <td>@bk.BookingStatus</td>
+                                    </tr>
+                                } }
+                        </tbody>
+                    </table>
+                </div>@*col-xs-12 table responsive*@
+            </div>@*Div class row*@
+            <br />
+            <div class="row">
+
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        Base Amount:
+                    </div>
+                    <div class="col-sm-9">
+                        @(((float)ViewBag.TotalSubtotal / 1.2).ToString("C2"))
+                        @*@(((float)ViewBag.TotalPayable).ToString("C2"))*@
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        VAT Amount:
+                    </div>
+                    <div class="col-sm-9">
+                        @*<span style="border-bottom: 4px solid #CC4040;">*@ @(((float)ViewBag.TotalSubtotal / 6).ToString("C2")) @*</span>*@
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        Invoice Amount:
+                    </div>
+                    <div class="col-sm-9">
+                        <b> @(((float)ViewBag.TotalSubtotal).ToString("C2"))</b>
+                        @*@(((float)ViewBag.TotalPayable).ToString("C2"))*@
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        Deposit Paid:
+                    </div>
+                    <div class="col-sm-9">
+                        @("(" + ((float)Model.ReceivableDepositAmount - Model.PayableDepositAmount).ToString("C2") + ")")
+                    </div>
+                </div>
+            </div>
+            @{ if (Model.InvoiceCancellationFee > 0)
+                {
+                    <div class="row">
+
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                Deposit Paid:
+                            </div>
+                            <div class="col-sm-9">
+                                @("(" + ((float)Model.InvoiceCancellationFee).ToString("C2") + ")")
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            <div class="row">
+
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        Balance Due:
+                    </div>
+                    <div class="col-sm-9">
+                        @(((float)ViewBag.TotalSubtotal + (float)Model.InvoiceCancellationFee - (float)Model.ReceivableDepositAmount - Model.PayableDepositAmount).ToString("C2"))
+                    </div>
+                </div>
+            </div>
+
+            @*@if (Model.ReceivableDepositAmount != 0)
+                    {
+                    <div class="row">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ReceivableDepositAmount, htmlAttributes: new { @class = "control-label col-sm-3" })
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.ReceivableDepositAmount)
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (Model.PayableDepositAmount != 0)
+                    {
+                    <div class="row">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PayableDepositAmount, htmlAttributes: new { @class = "control-label col-sm-3" })
+                            <div class="col-sm-9">
+                                @Html.DisplayFor(model => model.PayableDepositAmount)
+                            </div>
+                        </div>
+                    </div>
+                }*@
+
+
+
+            @*<div class="row">
+
+                    <div class="form-group">
+                        <div class="col-sm-3">
+                            (Includs VAT
+                        </div>
+                        <div class="col-sm-9">
+
+
+                        </div>
+                    </div>
+
+                </div>*@
+            @*<p>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.InvoiceId }) |
+                    @Html.ActionLink("Back to List", "Index")
+                </p>
+            *@
+            @{
+                if (((float)ViewBag.TotalSubtotal + (float)Model.InvoiceCancellationFee - (float)Model.ReceivableDepositAmount - Model.PayableDepositAmount) - ViewBag.TotalPaid > 0)
+                {
+                    <a href="@Url.Action("New", "BookingViewModels", new { id = Model.InvoiceId }, null)" class="btn btn-success btn-block" style="width:200px"> Make Payment >> <i class="fa fa-angle-right"></i></a>
+                }
+            }
+            
+        </section>
+    </section>
+</body>
+</html>

@@ -7,28 +7,27 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace AlfaAccounting.Controllers
 {
+    /// <summary>
+    /// Mie Tanaka
+    /// 22/5/2017 Version 1
+    /// Load Existing Booking to BookDates Calendar View 
+    /// Creates New Booking, alows Edit of booking date by resizing and moving
+    /// selectiong box on the calender, of only the current session booking,
+    /// </summary>
+    /// <includesource>yes</includesource>
+
+    [AllowAnonymous]
     public class BackendController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
-        Invoice newInvoice = new Invoice();
-        private ApplicationUserManager _userManager;
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
 
-
-
-
+        /// <summary>
+        /// JsonEvent Class olny used to store and manipulate 
+        /// selected data passed from the BookDates View.
+        /// </summary>
         public class JsonEvent
         {
             public string id { get; set; }
@@ -36,19 +35,25 @@ namespace AlfaAccounting.Controllers
             public string start { get; set; }
             public string end { get; set; }
         }
-
+        /// <summary>
+        /// Returns Data from database and parse it into JsonEvent class data to display in javascript on BookDates View 
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <returns>Json result data to BokDates View</returns>
+        /// <includesource>yes</includesource>
         public ActionResult Events(DateTime? start, DateTime? end)
         {
 
             //         SQL: SELECT* FROM[event] WHERE NOT (([end] <= @start) OR ([start] >= @end))
-            var events = from ev in db.Bookings.AsEnumerable() where !(ev.BookingEndDateTime <= start || ev.BookingStartDateTime >= end) select ev;
+            var events = from ev in db.Bookings.AsEnumerable() where !(ev.BookingEndDateTime <= start || ev.BookingStartDateTime >= end) && ev.BookingStatus != BookingStatus.Cancelled select ev;
 
             var result = events
                 .Select(e => new JsonEvent()
                 {
                     start = e.BookingStartDateTime.ToString("s"),
                     end = e.BookingEndDateTime.ToString("s"),
-                    text = e.BookingStatus,
+                    text = e.BookingStatus.ToString(),
                     id = e.BookingId.ToString()
                 })
                 .ToList();
@@ -58,25 +63,54 @@ namespace AlfaAccounting.Controllers
                 Data = result
             };
         }
-
+        /// <summary>
+        /// Save Bookings if input is valid
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="name"></param>
+        /// <returns>data to the BookDates view calender</returns>
+        /// <includesource>yes</includesource>
         public ActionResult Create(string start, string end, string name)
         {
+            DateTime startT = Convert.ToDateTime(start);
+            DateTime endT = Convert.ToDateTime(end);
+            //find out if user try to book past time
+
+            if(startT< DateTime.Now)
+            {
+                TempData["viewBag.Error"] = "You can not book any date and time before now.";
+                ViewBag.Error = TempData["viewBag.Error"].ToString();
+                return RedirectToAction("BookDates");
+                
+            }
+            //find out if there are any time overlapping bookings
+            var overlappingbkgs = db.Bookings.Where(b => b.BookingEndDateTime > startT && b.BookingStartDateTime < endT && b.BookingStatus != BookingStatus.Cancelled).Count();
+            // if already booking exist between start and end time, return the bookdate view with alert message else book
+            if (overlappingbkgs > 0)
+            {
+                TempData["viewBag.Error"] = "You can not change already booked details";
+                ViewBag.Error = TempData["viewBag.Error"].ToString();
+                return RedirectToAction("BookDates"); 
+            }
+            else { 
             var toBeCreated = new Booking
             {
                 BookingStartDateTime = Convert.ToDateTime(start),
                 BookingEndDateTime = Convert.ToDateTime(end),
-                BookingStatus = name
+                BookingStatus = (BookingStatus)Enum.Parse(typeof(BookingStatus),name)
             };
-//            var defaultUnitPrices = db.UnitPrices.Where(u => u.UnitPriceDescription == "Standard").ToDictionary<UnitPrice, string>(u => u.UnitPriceDescription);
+            var userid = User.Identity.GetUserId();
+            //            var DictionaryUnitPrices = db.UnitPrices.Where(u => u.UnitPriceDescription == "Standard").ToDictionary<UnitPrice, string>(u => u.UnitPriceDescription);
+            var standardUnitPrice = db.UnitPrices.SingleOrDefault(u => u.UnitPriceDescription == "Standard");
             var newBooking = new Booking()
             {
                 BookingStartDateTime = Convert.ToDateTime(start),
                 BookingEndDateTime = Convert.ToDateTime(end),
-                BookingStatus = name,
-//                UnitPriceId = defaultUnitPrices["Standard"].UnitPriceId,
-                UnitPriceId = db.UnitPrices.SingleOrDefault(u=>u.UnitPriceDescription == "Standard").UnitPriceId,
-//                UnitPrice = defaultUnitPrices["Standard"],
-                Id = User.Identity.GetUserId()
+                BookingStatus = (BookingStatus)Enum.Parse(typeof(BookingStatus), name),
+                UnitPriceId = standardUnitPrice.UnitPriceId,
+               // UnitPriceId = DictionaryUnitPrices["Standard"].UnitPriceId,
+                Id = userid
             };
             //var newBkgInvLine = new BookingInvoiceLine()
             //{
@@ -90,197 +124,144 @@ namespace AlfaAccounting.Controllers
             //        + " "+ (newBooking.BookingEndDateTime - newBooking.BookingStartDateTime).Hours + "hr" + (newBooking.BookingEndDateTime - newBooking.BookingStartDateTime).Minutes + "min",
             //    BookingId = newBooking.BookingId
             //};
-            newBooking.BookingDuration = newBooking.BookingEndDateTime - newBooking.BookingStartDateTime;
-             newBooking.Subtotal = db.UnitPrices.SingleOrDefault(u=>u.UnitPriceId == newBooking.UnitPriceId).UnitPriceValue * (float)newBooking.BookingDuration.TotalMinutes / 60;
-            newBooking.Subtotal = newBooking.UnitPrice.UnitPriceValue * (float)newBooking.BookingDuration.TotalMinutes / 60;
+
+            newBooking.Subtotal = db.UnitPrices.SingleOrDefault(u => u.UnitPriceId == newBooking.UnitPriceId).UnitPriceValue * (float)(newBooking.BookingEndDateTime - newBooking.BookingStartDateTime).TotalMinutes / 60;
+            newBooking.BookingDeposit = newBooking.Subtotal * db.DepositRates.Select(d=>d.DepositRateValue).FirstOrDefault();
             newBooking.ItemDescription = newBooking.BookingStartDateTime.Date.ToString("d")
                     + " From " + newBooking.BookingStartDateTime.Hour + ":" + newBooking.BookingStartDateTime.Minute
-                    + " to " + newBooking.BookingEndDateTime.Minute + ":" + newBooking.BookingEndDateTime.Minute
-                    + newBooking.BookingDuration.Hours + "hr" + newBooking.BookingDuration.Minutes + "min";
+                    + " to " + newBooking.BookingEndDateTime.Hour + ":" + newBooking.BookingEndDateTime.Minute
+                    + "  "+ (newBooking.BookingEndDateTime - newBooking.BookingStartDateTime).Hours + "hr" + (newBooking.BookingEndDateTime - newBooking.BookingStartDateTime).Minutes + "min";
 
-//               db.Bookings.Add(newBooking);
-//               db.SaveChanges();
-
-            List<Booking> listNewBookingToBeSavedToDb = new List<Booking>();
-            listNewBookingToBeSavedToDb.Add(newBooking);
-            Session["ListNewBookingToBeSavedToDb"] = listNewBookingToBeSavedToDb;
-
-            //List<BookingInvoiceLine> listNewBookingInvoiceLineToBeSavedToDb = new List<BookingInvoiceLine>();
-            //listNewBookingInvoiceLineToBeSavedToDb.Add(newBkgInvLine);
-            //Session["ListNewBookingInvoiceLineToBeSavedToDb"] = listNewBookingInvoiceLineToBeSavedToDb;
-
-            //newInvoice.Bookings.Add(newBooking);
-            //Session["ListNewBookingToBeSavedToDb"] = newInvoice;
+                           db.Bookings.Add(newBooking);
+                           db.SaveChanges();
+            AddToCart(newBooking.BookingId);
 
             return new JsonResult { Data = new Dictionary<string, object> { { "id", toBeCreated.BookingId } } };
-
+           }
         }
 
+        private void AddToCart(int id)
+        {
+            // Retrieve the booking from the database
+            var addedBooking = db.Bookings
+                .Single(b => b.BookingId == id);
+
+            // Add it to the shopping cart
+            var cart = ShoppingCart.GetCart(this.HttpContext);
+
+            cart.AddToCart(addedBooking);
+        }
+        /// <summary>
+        /// Saves the changes of new and end date if not overlapping with existing booking.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="newStart"></param>
+        /// <param name="newEnd"></param>
+        /// <returns>updated data to the BookDates view calender</returns>
+        /// <includesource>yes</includesource>
         public ActionResult Move(int id, string newStart, string newEnd)
         {
-            var existingbkgs = db.Bookings.Where(b => b.BookingId == id);
-            if (existingbkgs == null)
+            DateTime newStartT = Convert.ToDateTime(newStart);
+            DateTime newEndT = Convert.ToDateTime(newEnd);
+            //find out if user try to change booking to past time
+            
+            if (newStartT < DateTime.Now)
             {
-                var overlappingbkgs = db.Bookings.Where(b => b.BookingEndDateTime >= Convert.ToDateTime(newStart) && b.BookingStartDateTime <= Convert.ToDateTime(newEnd));
-                if (overlappingbkgs == null)
-                {
-                    var toBeResized = (from ev in db.Bookings where ev.BookingId == id select ev).First();
-                    toBeResized.BookingStartDateTime = Convert.ToDateTime(newStart);
-                    toBeResized.BookingEndDateTime = Convert.ToDateTime(newEnd);
-                    //           db.SubmitChanges();
-                    //db.SaveChanges();
-                    var listNewBookingToBeSavedToDb = Session["ListNewBookingToBeSavedToDb"] as List<Booking>;
-                    foreach (Booking nbkg in listNewBookingToBeSavedToDb)
-                    {
-                        var newbkgid = nbkg.BookingId.Equals(id);
-                        if (newbkgid)
-                        {
-                            nbkg.BookingStartDateTime = Convert.ToDateTime(newStart);
-                            nbkg.BookingEndDateTime = Convert.ToDateTime(newEnd);
-                        }
-                    }
-                    Session["ListNewBookingToBeSavedToDb"] = listNewBookingToBeSavedToDb;
-                    return new JsonResult { Data = new Dictionary<string, object> { { "id", toBeResized.BookingId } } };
-                }
+                TempData["viewBag.Error"] = "You can not book any date and time before now.";
+                ViewBag.Error = TempData["viewBag.Error"].ToString();
+                return RedirectToAction("BookDates");               
             }
-            return null;
+            //find out if the selected booking is overlapping with existing booking
+            var overlappingbkgs = db.Bookings.Where(b => b.BookingEndDateTime > newStartT && b.BookingStartDateTime < newEndT && b.BookingStatus != BookingStatus.Cancelled && b.Invoice != null).Count();
+            //find out if the selected booking is already paid bookings or cancelled bookings
+            var notPaidBkgs = db.Bookings.Where(b => b.Invoice == null && b.BookingId == id).ToList();
+            // if not paidBkgs exist(is more than 0), it is ok to amend
+            if (notPaidBkgs.Count() > 0)
+            {
+                var toBeResized = (from ev in db.Bookings where ev.BookingId == id select ev).First();
+                toBeResized.BookingStartDateTime = Convert.ToDateTime(newStart);
+                toBeResized.BookingEndDateTime = Convert.ToDateTime(newEnd);
+                db.SaveChanges();
+
+                return new JsonResult { Data = new Dictionary<string, object> { { "id", toBeResized.BookingId } } };
+            }
+            else if (overlappingbkgs>0)
+            {
+                TempData["viewBag.Error"] = "You can not change already booked details";
+                ViewBag.Error = TempData["viewBag.Error"].ToString();
+                return RedirectToAction("BookDates");
+            }
+            return View();
         }
 
-
+        /// <summary>
+        /// Saves the changes of new and end date if not overlapping with existing booking.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="newStart"></param>
+        /// <param name="newEnd"></param>
+        /// <returns>updated data to the BookDates view calender</returns>
+        /// <includesource>yes</includesource>
         public ActionResult Resize(int id, string newStart, string newEnd)
-        {
-            /*           var existingBkgsWithInvlookup = db.Bookings.Where(b => b.ApplicationUser.UserName == User.Identity.Name).ToList();
-                                                                    && b.BookingId == id 
-                                                                    && b.Invoices.Any()).ToLookup(b=>b.BookingId, b=>b.Invoices).ToList();
-                       var existingBkgslookup = db.Bookings.Where(b => b.BookingId == id && !b.Invoices.Any()).ToList();
-                                   var existingBkgs = db.Bookings.Where(b => b.BookingId == id && b.InvoiceId.ToString().Contains(null)).ToList();
-
-                       check if existing booking with invoice exist, if exist, check if payment exist for the invoice if not, allow user to save
-                       if (existingBkgsWithInvlookup.Count()>0) {
-                                      var invid = existingBkgs.TakeWhile(b=>!b.InvoiceId.ToString().Equals(null)).ToString();
-
-                           var existingBkgsInvoice = new List<Invoice>();
-                                           var queryable = existingBkgslookup.AsQueryable();
-                               foreach (var iv in existingBkgsWithInvlookup)
-                               {
-                                   existingBkgsInvoice.Add((Invoice)db.Invoices.Where(i => i.Bookings == iv..ElementAt(0).SingleOrDefault()));
-                               };
-
-                           var existingBkgsPayments = new List<Payment>();
-
-                               existingBkgsPayments.Add((Payment)db.Payments.Where(p => p.InvoiceId == existingBkgsInvoice.ElementAt(0).InvoiceId).SingleOrDefault());
-
-                                       var existingBkgsInvoice = db.Invoices.Where(i => i.InvoiceId.ToString().Contains(invid));
-                                       var existingBkgsPayments = db.Payments.Where(p => p.Invoice.InvoiceId.ToString().Contains(invid));
-
-                           check if payments of the invoice exist, if null allows user to book.
-                           if (existingBkgsPayments.Count() == 0)
-                           {
-                               var bkgs = db.Bookings.Where(b => b.BookingEndDateTime >= Convert.ToDateTime(newStart) && b.BookingStartDateTime <= Convert.ToDateTime(newEnd));
-                               if (bkgs == null)
-                               {
-                                   var toBeResized = (from ev in db.Bookings where ev.BookingId == id select ev).First();
-                                   toBeResized.BookingStartDateTime = Convert.ToDateTime(newStart);
-                                   toBeResized.BookingEndDateTime = Convert.ToDateTime(newEnd);
-                                   db.SubmitChanges();
-                                   db.SaveChanges();
-
-                                   return new JsonResult { Data = new Dictionary<string, object> { { "id", toBeResized.BookingId } } };
-                               }
-                           }
-                       }
-                       check if booking without invoice  exist if so.
-                       if (existingBkgsWithInvlookup.Count() == 0)
-                       {   //check if booking time and start does not over lap existing boooking, if not allows user to book.
-                           var bkgs = db.Bookings.Where(b => b.BookingEndDateTime >= Convert.ToDateTime(newStart) && b.BookingStartDateTime <= Convert.ToDateTime(newEnd));
-                           if (bkgs == null)
-                           {
-                               var toBeResized = (from ev in db.Bookings where ev.BookingId == id select ev).First();
-                               toBeResized.BookingStartDateTime = Convert.ToDateTime(newStart);
-                               toBeResized.BookingEndDateTime = Convert.ToDateTime(newEnd);
-                               db.SubmitChanges();
-                               db.SaveChanges();
-
-                               return new JsonResult { Data = new Dictionary<string, object> { { "id", toBeResized.BookingId } } };
-                           }
-                       }
-                       return null;
-                      */
-            //var loggedInUser = User.Identity.Name;
-            //var existingBkgsWithInv = db.Bookings.Where(b => b.ApplicationUser.UserName == loggedInUser
-            //                                             && b.BookingId == id
-            //                                            && b.Invoices.Any()).ToList()/*.ToLookup(b=>b.BookingId, b=>b.Invoices).ToList()*/;
-            //var bkgs = db.Bookings.Where(b => b.BookingEndDateTime >= Convert.ToDateTime(newStart) && b.BookingStartDateTime <= Convert.ToDateTime(newEnd));
-
-            //    if (existingBkgsWithInv.Count() > 0)
-            //    {
-            //        var existingBkgsInvoice = new List<Invoice>();
-            //        var existingBkgsWithInvElementi = new Booking();
-            //        for (int i = 0; i < existingBkgsWithInv.Count(); i++)
-            //        {
-            //            existingBkgsWithInvElementi = existingBkgsWithInv.ElementAt(i);
-            //            for (int j = 0; j < existingBkgsWithInvElementi.Invoices.Count(); j++)
-            //            {
-            //                existingBkgsInvoice.Add(existingBkgsWithInvElementi.Invoices.ElementAt(j));
-            //            }
-            //        }
-
-            //        var existingBkgsPayments = new List<Payment>();
-            //        var existingBkgsInvoiceElementi = new Invoice();
-
-            //        for (int k = 0; k < existingBkgsInvoice.Count(); k++)
-            //        {
-            //            existingBkgsInvoiceElementi = existingBkgsInvoice.ElementAt(k);
-            //            for (int l = 0; l < existingBkgsInvoiceElementi.Payments.Count(); l++)
-            //            {
-            //                db.Payments.Contains(existingBkgsInvoiceElementi.Payments.ElementAt(l));
-            //            }
-            //        }
-
-            //        if (existingBkgsPayments == null)
-            //        {
-            //            var toBeResized = (from ev in db.Bookings where ev.BookingId == id select ev).First();
-            //            toBeResized.BookingStartDateTime = Convert.ToDateTime(newStart);
-            //            toBeResized.BookingEndDateTime = Convert.ToDateTime(newEnd);
-            ////            db.SubmitChanges();
-            //            db.SaveChanges();
-
-            //            return new JsonResult { Data = new Dictionary<string, object> { { "id", toBeResized.BookingId } } };
-            //        }
-            //    }
-            //    else if (bkgs == null)
-            if (id != 0)
+        {   DateTime newStartT = Convert.ToDateTime(newStart);
+            DateTime newEndT = Convert.ToDateTime(newEnd);
+            //find out if user try to change booking to past time
+            if (newStartT< DateTime.Now)
             {
-                var existingbkgs = db.Bookings.Where(b => b.BookingId == id);
-                if (existingbkgs == null)
-                {
-                    var overlappingbkgs = db.Bookings.Where(b => b.BookingEndDateTime >= Convert.ToDateTime(newStart) && b.BookingStartDateTime <= Convert.ToDateTime(newEnd));
-                    if (overlappingbkgs == null)
-                    {
-                        var toBeResized = (from ev in db.Bookings where ev.BookingId == id select ev).First();
-                        toBeResized.BookingStartDateTime = Convert.ToDateTime(newStart);
-                        toBeResized.BookingEndDateTime = Convert.ToDateTime(newEnd);
-                        //       db.SubmitChanges();
-                        //db.SaveChanges();
-
-                        var listNewBookingToBeSavedToDb = Session["ListNewBookingToBeSavedToDb"] as List<Booking>;
-                        foreach (Booking nbkg in listNewBookingToBeSavedToDb)
-                        {
-                            var newbkgid = nbkg.BookingId.Equals(id);
-                            if (newbkgid)
-                            {
-                                nbkg.BookingStartDateTime = Convert.ToDateTime(newStart);
-                                nbkg.BookingEndDateTime = Convert.ToDateTime(newEnd);
-                            }
-                        }
-                        Session["ListNewBookingToBeSavedToDb"] = listNewBookingToBeSavedToDb;
-
-                        return new JsonResult { Data = new Dictionary<string, object> { { "id", toBeResized.BookingId } } };
-                    }
-                }
+                TempData["viewBag.Error"] = "You can not book any date and time before now.";
+                ViewBag.Error = TempData["viewBag.Error"].ToString();
+                return RedirectToAction("BookDates");
             }
-            ViewBag.Message = "You can't change your already paid booking from this page, click manage booking";
-            return null;
+            //find out if the selected booking is overlapping with existing booking
+            var overlappingbkgs = db.Bookings.Where(b => b.BookingEndDateTime > newStartT && b.BookingStartDateTime < newEndT && b.BookingStatus != BookingStatus.Cancelled && b.Invoice != null).Count();
+            //find out if the selected booking is already paid bookings or cancelled bookings
+            var notPaidBkgs = db.Bookings.Where(b => b.Invoice == null && b.BookingId == id).ToList();
+            // if not paidBkgs exist(is more than 0), it is ok to amend
+            if (notPaidBkgs.Count() > 0)
+            {
+                    var toBeResized = (from ev in db.Bookings where ev.BookingId == id select ev).First();
+                toBeResized.BookingStartDateTime = Convert.ToDateTime(newStart);
+                toBeResized.BookingEndDateTime = Convert.ToDateTime(newEnd);
+                db.SaveChanges();
+
+                return new JsonResult { Data = new Dictionary<string, object> { { "id", toBeResized.BookingId } } };
+                
+            }
+            else if (overlappingbkgs >0)
+            {
+                //RedirectToAction(Request.RawUrl);
+                TempData["viewBag.Error"] = "You can not change already booked details";
+                ViewBag.Error = TempData["viewBag.Error"].ToString();
+                //ViewBag.Message = "You can't change detail of booking you already paid from this page, click manage booking";
+                return RedirectToAction("BookDates");
+            }
+            return View();
         }
+        //public override void OnActionExecuting(ActionExecutingContext filterContext)
+        //{
+        //    HttpContext ctx = HttpContext.Current;
+
+        //    // check if session is supported
+        //    if (ctx.Session != null)
+        //    {
+
+        //        // check if a new session id was generated
+        //        if (ctx.Session.IsNewSession)
+        //        {
+
+        //            // If it says it is a new session, but an existing cookie exists, then it must
+        //            // have timed out
+        //            string sessionCookie = ctx.Request.Headers["Cookie"];
+        //            if ((null != sessionCookie) && (sessionCookie.IndexOf("ASP.NET_SessionId") >= 0))
+        //            {
+        //                
+        //            }
+        //        }
+        //    }
+
+        //    base.OnActionExecuting(filterContext);
+        //}
+
     }
+
 }

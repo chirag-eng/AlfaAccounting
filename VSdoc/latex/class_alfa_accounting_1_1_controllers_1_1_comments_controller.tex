@@ -1,0 +1,125 @@
+\hypertarget{class_alfa_accounting_1_1_controllers_1_1_comments_controller}{}\section{Alfa\+Accounting.\+Controllers.\+Comments\+Controller Class Reference}
+\label{class_alfa_accounting_1_1_controllers_1_1_comments_controller}\index{Alfa\+Accounting.\+Controllers.\+Comments\+Controller@{Alfa\+Accounting.\+Controllers.\+Comments\+Controller}}
+
+
+Inherits Controller.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_comments_controller_a0979158eb6ccd32150adb4ab2dfd76e1}\label{class_alfa_accounting_1_1_controllers_1_1_comments_controller_a0979158eb6ccd32150adb4ab2dfd76e1}} 
+Action\+Result {\bfseries Index} ()
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_comments_controller_a6927dd0f57c3e5d5f3f13e1ce9d78b8d}\label{class_alfa_accounting_1_1_controllers_1_1_comments_controller_a6927dd0f57c3e5d5f3f13e1ce9d78b8d}} 
+Action\+Result {\bfseries Details} (int? id)
+\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_comments_controller_a1f9ba95111373ab74f529d964905b30e}{Create} ()
+\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_comments_controller_aef2592b237b0e8b61fe7b489a32c6f41}{Create} (\mbox{[}Bind(Include=\char`\"{}Comment\+Id,Commented\+Date,Comment\+Title,Comment\+Body,Blog\+Id,Id\char`\"{})\mbox{]} Comment comment)
+\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_comments_controller_a493788d37b588a20e84e4f5a6f056e4a}{Edit} (int? id)
+\begin{DoxyCompactList}\small\item\em Returns Comments/\+Edit view with selected user comment \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_comments_controller_a13d26382297b8f6934fcace5d3393c3d}{Edit} (\mbox{[}Bind(Include=\char`\"{}Comment\+Id,Commented\+Date,Comment\+Title,Comment\+Body,Blog\+Id,Id\char`\"{})\mbox{]} Comment comment)
+\begin{DoxyCompactList}\small\item\em Returns Blog\+View\+Model/\+Blog\+View\+Model\+Index view after successfully saving the valid edited data onto database \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_comments_controller_acac79b483d887f146be3e3c8ba4b751a}{Delete} (int id)
+\begin{DoxyCompactList}\small\item\em Returns Blog\+View\+Model\+Index after successfully deleteing the comment from the database \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{class_alfa_accounting_1_1_controllers_1_1_comments_controller_a39958b019025eecac9c85cd8acf6f1db}{Dispose} (bool disposing)
+\begin{DoxyCompactList}\small\item\em dispose the database memory of the deleted comment \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_comments_controller_a31240ba172f62f7b2a2fce6a4e8a9fab}\label{class_alfa_accounting_1_1_controllers_1_1_comments_controller_a31240ba172f62f7b2a2fce6a4e8a9fab}} 
+Application\+Db\+Context {\bfseries db} = new Application\+Db\+Context()
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_comments_controller_a1f9ba95111373ab74f529d964905b30e}\label{class_alfa_accounting_1_1_controllers_1_1_comments_controller_a1f9ba95111373ab74f529d964905b30e}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller}!Create@{Create}}
+\index{Create@{Create}!Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller}}
+\subsubsection{\texorpdfstring{Create()}{Create()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Comments\+Controller.\+Create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+pass blog temp\+Data to next View \mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_comments_controller_aef2592b237b0e8b61fe7b489a32c6f41}\label{class_alfa_accounting_1_1_controllers_1_1_comments_controller_aef2592b237b0e8b61fe7b489a32c6f41}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller}!Create@{Create}}
+\index{Create@{Create}!Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller}}
+\subsubsection{\texorpdfstring{Create()}{Create()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Comments\+Controller.\+Create (\begin{DoxyParamCaption}\item[{\mbox{[}\+Bind(\+Include = \char`\"{}\+Comment\+Id,\+Commented\+Date,\+Comment\+Title,\+Comment\+Body,\+Blog\+Id,\+Id\char`\"{})\mbox{]} Comment}]{comment }\end{DoxyParamCaption})}
+
+pass blog temp\+Data to next View \mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_comments_controller_acac79b483d887f146be3e3c8ba4b751a}\label{class_alfa_accounting_1_1_controllers_1_1_comments_controller_acac79b483d887f146be3e3c8ba4b751a}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller}!Delete@{Delete}}
+\index{Delete@{Delete}!Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller}}
+\subsubsection{\texorpdfstring{Delete()}{Delete()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Comments\+Controller.\+Delete (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Returns Blog\+View\+Model\+Index after successfully deleteing the comment from the database 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Blog\+View\+Model\+Index 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_comments_controller_a39958b019025eecac9c85cd8acf6f1db}\label{class_alfa_accounting_1_1_controllers_1_1_comments_controller_a39958b019025eecac9c85cd8acf6f1db}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller}}
+\subsubsection{\texorpdfstring{Dispose()}{Dispose()}}
+{\footnotesize\ttfamily override void Alfa\+Accounting.\+Controllers.\+Comments\+Controller.\+Dispose (\begin{DoxyParamCaption}\item[{bool}]{disposing }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+dispose the database memory of the deleted comment 
+
+
+\begin{DoxyParams}{Parameters}
+{\em disposing} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_comments_controller_a493788d37b588a20e84e4f5a6f056e4a}\label{class_alfa_accounting_1_1_controllers_1_1_comments_controller_a493788d37b588a20e84e4f5a6f056e4a}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller}!Edit@{Edit}}
+\index{Edit@{Edit}!Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller}}
+\subsubsection{\texorpdfstring{Edit()}{Edit()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Comments\+Controller.\+Edit (\begin{DoxyParamCaption}\item[{int?}]{id }\end{DoxyParamCaption})}
+
+
+
+Returns Comments/\+Edit view with selected user comment 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+comment
+\end{DoxyReturn}
+pass blog temp\+Data to next View \mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_comments_controller_a13d26382297b8f6934fcace5d3393c3d}\label{class_alfa_accounting_1_1_controllers_1_1_comments_controller_a13d26382297b8f6934fcace5d3393c3d}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller}!Edit@{Edit}}
+\index{Edit@{Edit}!Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Comments\+Controller}}
+\subsubsection{\texorpdfstring{Edit()}{Edit()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Comments\+Controller.\+Edit (\begin{DoxyParamCaption}\item[{\mbox{[}\+Bind(\+Include = \char`\"{}\+Comment\+Id,\+Commented\+Date,\+Comment\+Title,\+Comment\+Body,\+Blog\+Id,\+Id\char`\"{})\mbox{]} Comment}]{comment }\end{DoxyParamCaption})}
+
+
+
+Returns Blog\+View\+Model/\+Blog\+View\+Model\+Index view after successfully saving the valid edited data onto database 
+
+
+\begin{DoxyParams}{Parameters}
+{\em comment} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Blog\+Viewmodels/\+Blog\+View\+Model\+Index view
+\end{DoxyReturn}
+pass blog temp\+Data to next View 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Me/\+Documents/\+Visual Studio 2015/\+Projects/\+Alfa\+Accounting/\+Alfa\+Accounting/\+Controllers/Comments\+Controller.\+cs\end{DoxyCompactItemize}

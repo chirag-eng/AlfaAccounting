@@ -1,0 +1,105 @@
+﻿@model AlfaAccounting.Models.AdminBookingsViewModel
+@{
+    ViewBag.Title = "AdminBooking";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+<div class="container" style="width:100%">
+    <div class="page-header">
+        <h2>AllBookings <small></small></h2>
+        @*<ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li class="active">Payments</li>
+        </ol>*@
+    </div>
+
+    @using (Html.BeginForm("AdminBooking", "BookingViewModels", FormMethod.Post))
+    { 
+        <p>
+                              Start Date: @Html.TextBox("startDate",null, @*("dd/MM/yyyy"),*@new { id = "startDate" })
+            &nbsp; and &nbsp; End Date: @Html.TextBox("endDate", null, @*("dd/MM/yyyy"),*@ new { id = "endDate" })
+            @*//<input type="text" id="startDate" name="startDate:"> &nbsp; and &nbsp; End Date: <input type="text" id="endDate" name="endDate:">*@
+            @*Start Date:@Html.TextBox("startDate")&nbsp;and &nbsp; End Date:@Html.TextBox("endDate")*@
+
+
+            <input type="submit" value="Filter" />
+        </p>
+    }
+    <table id="Adminbooking" class="table table-hover table-condensed">
+        <thead>
+            <tr><th style="width:10%">BookingId</th>
+                <th style="width:10%">Company name</th>
+                <th style="width:10%">Address</th>
+                <th style="width:10%">Tel</th>
+                <th style="width:10%">Date of Visit</th>
+                <th style="width:10%">Status</th>
+                <th style="width:10%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Bookings)
+            {
+                <tr><td data-th="Company name"><h4 @*class="nomargin"*@>@item.BookingId</h4></td>
+                    <td data-th="Company name"><h4 @*class="nomargin"*@>@item.ApplicationUser.Companyname</h4></td>
+                    <td data-th="Address"><h4>@item.ApplicationUser.Street, @item.ApplicationUser.Town, @item.ApplicationUser.Postcode</h4></td>
+                    <td data-th="Tel"style="max-width:10%; word-wrap: break-word"><h4>@item.ApplicationUser.PhoneNumber</h4></td>
+                    <td data-th="Date of Visit"><h4>@item.ItemDescription</h4></td>
+                    <td data-th="Staus" class="text-center"><h4>@item.BookingStatus</h4></td>
+                    <td data-th="">
+                        @*@if ((item.BookingStartDateTime - DateTime.Now).TotalHours <= 0 && item.BookingStatus.ToString() == "Booked" && User.IsInRole("Administrator"))
+                        {
+                            @Html.ActionLink("Confirm Visit", "ConfirmVisit", "BookingViewModels", new { id = item.BookingId }, new { @class = "btn btn-primary" })
+                        }*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+        @*<tfoot>
+                <tr class="visible-xs">
+                    <td class="text-center" id="cart-total"><h4><strong>Total @Model.CartTotal</strong></h4></td>
+                </tr>
+                <tr class="visible-xs">
+                    <td class="text-center" id="cart-deposit"><h4><strong>Deposit @Model.DepositTotal</strong></h4></td>
+                </tr>
+                <tr>
+                    <td><a href="@Url.Action("BookDates", "BookingViewModels")" class="btn btn-warning"><i class="fa fa-angle-left"></i> << Continue Booking </a></td>
+                    <td colspan="2" class="hidden-xs"></td>
+                    <td class="hidden-xs text-center"><strong>Total @Model.CartTotal</strong></td>
+                    <td class="hidden-xs text-center"><strong>Deposit @Model.DepositTotal</strong></td>
+                    <td><a href="@Url.Action("ConfirmBooking", "BookingViewModels")" class="btn btn-success btn-block"> Checkout >> <i class="fa fa-angle-right"></i></a></td>
+                </tr>
+                <tr></tr>
+            </tfoot>*@
+    </table>
+</div>
+@section scripts{
+<script src="//cdn.datatables.net/plug-ins/1.10.15/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+<script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/colreorder/1.3.3/js/dataTables.colReorder.min.js"></script>
+<script src="//cdn.datatables.net/tabletools/2.2.4/js/dataTables.tableTools.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    @*<script src="@Url.Content("~/Scripts/DataTables/jquery.dataTables.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/DataTables/dataTables.colReorder.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/DataTables/tableTools.min.js")"></script>*@
+    <script type="text/javascript">
+            $(document).ready(function () {
+                var table = $('.table').dataTable({
+                    "dom": 'Rlfrtip'
+                })
+                var tt = new $.fn.dataTable.TableTools(table);
+                $(tt.fnContainer()).insertBefore('div.dataTables_wrapper');
+            });
+    </script>
+<script>
+  $( function() {
+      $("#startDate").datepicker({ dateFormat: 'dd/mm/yy' });
+  } );
+</script>
+<script>
+  $( function() {
+      $("#endDate").datepicker({ dateFormat: 'dd/mm/yy' });
+      
+  } );
+</script>
+
+}

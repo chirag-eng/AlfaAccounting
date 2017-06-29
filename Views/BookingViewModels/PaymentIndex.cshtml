@@ -1,0 +1,229 @@
+﻿@model IEnumerable<AlfaAccounting.Models.PaymentIndexViewModel>
+@{
+    ViewBag.Title = "PaymentIndex";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+<div class="container" style="width:100%">
+    <div class="page-header">
+        <h2>Payments <small></small></h2>
+        @*<ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Manage Booking", "Dashboard", "BookingViewModels")</li>
+            <li class="active">Payments</li>
+        </ol>*@
+    </div>
+    @using (Html.BeginForm("PaymentIndex", "BookingViewModels", FormMethod.Post))
+    {
+        <p>
+            Start Date: @Html.TextBox("startDate", null, ("dd/MM/yyyy"), new { id = "startDate" })
+            &nbsp; and &nbsp; End Date: @Html.TextBox("endDate", null, ("dd/MM/yyyy"), new { id = "endDate" })
+            @*//<input type="text" id="startDate" name="startDate:"> &nbsp; and &nbsp; End Date: <input type="text" id="endDate" name="endDate:">*@
+            @*Start Date:@Html.TextBox("startDate")&nbsp;and &nbsp; End Date:@Html.TextBox("endDate")*@
+
+
+            <input type="submit" value="Filter" />
+        </p>
+    }
+    <table id="PaymentIndex" class="table table-hover table-striped">
+        <thead>
+
+            <tr>
+                <th style="width:10%">Actions</th>
+                <th style="width:5%">@Html.DisplayNameFor(model => model.PaymentId)</th>
+                @*<th style = "width:10%">@Html.DisplayNameFor(model=>model.PaymentDateTime)</th>*@
+
+                @{if (User.IsInRole("Administrator") || User.IsInRole("Staff"))
+                    {
+                        <th style="width:10%">@Html.DisplayNameFor(model => model.Companyname)</th>
+                    } }
+                <th style="width:10%">@Html.DisplayNameFor(model => model.PaidAmount)</th>
+                <th style="width:10%">@Html.DisplayNameFor(model => model.PaymentType) </th>
+                <th style="width:15%">@Html.DisplayNameFor(model => model.ItemDescription) </th>
+                <th style="width:10%">@Html.DisplayNameFor(model => model.InvoiceIssueDate) </th>
+                <th style="width:10%">@Html.DisplayNameFor(model => model.InvoicedDeposit) </th>
+                <th style="width:10%">@Html.DisplayNameFor(model => model.InvoicedRemaining) </th>
+            </tr>
+
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @{
+                            if (item.InvoicedDeposit > 0 && item.InvoicedRemaining > 0 && item.PaymentType == "Deposit")
+                            {
+                                @Html.ActionLink("Reciept", "PaymentDepositReceipt", "BookingViewModels", new { id = item.InvoiceId }, new { @class = "btn btn-primary" })<br />
+                                @*@Html.ActionLink("Make Payment", "NewPayRemaining", "BookingViewModels", new { id = item.InvoiceId }, null)*@
+                            }
+                            if (item.InvoicedDeposit > 0 && item.InvoicedRemaining == 0 && item.PaymentType == "Deposit")
+                            {
+                                @Html.ActionLink("Reciept", "PaymentDepositReceipt", "BookingViewModels", new { id = item.InvoiceId }, new { @class = "btn btn-primary" })<br />
+                                @*@Html.ActionLink("Make Payment", "NewPayRemaining", "BookingViewModels", new { id = item.InvoiceId }, null)*@
+                            }
+                            if (item.InvoicedDeposit > 0 && item.InvoicedRemaining > 0 && item.PaymentType == "Remaining" && item.Statuscheck == true)
+                            {
+                                @Html.ActionLink("Reciept", "PaymentReceipt", "BookingViewModels", new { id = item.InvoiceId }, new { @class = "btn btn-primary" })
+                            }
+                            //if ((item.ReceivableDepositAmount - item.PayableDepositAmount + item.ReceivableRemainingAmount - item.PayableAmount)>=(item.CreditDepositAmount - item.DebitDepositAmount + item.CreditRemainingAmount - item.DebitRemainingAmount) /*&& item.PaymentType == "Deposit"*/ && (User.IsInRole("Administrator") || User.IsInRole("Staff")))
+                            if ((item.InvoicedDeposit + item.InvoicedRemaining )> (item.CreditDepositAmount - item.DebitDepositAmount + item.CreditRemainingAmount - item.DebitRemainingAmount) /*&& item.PaymentType == "Deposit" */&& (User.IsInRole("Administrator") || User.IsInRole("Staff")))
+                            //if (item.InvoicedDeposit > 0 && item.InvoicedRemaining > 0 && item.PaymentType == "Deposit" && (User.IsInRole("Administrator") || User.IsInRole("Staff")))
+                            {   <br />
+                        @Html.ActionLink("Manual Input", "AddPaymentHistory", "BookingViewModels", new { id = item.InvoiceId }, new { @class = "btn btn-primary" })
+                                @*<div id="add-pay-history-" style="display:none;"></div>
+    @Ajax.ActionLink("Manual Input", "AddPaymentHistory", new { id = item.InvoiceId}, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "add-pay-history-" , InsertionMode = InsertionMode.Replace, OnSuccess = "openPopup" }, new { @class = "btn btn-default" })*@
+
+                                @*<div id="modalWrapper"></div>
+                                    <a href=""id="@item.InvoiceId" onclick="AddPaymentHistory(id)" class="btn btn-primary">Manual Input</a>*@
+                                    
+
+                                                        @*<div id="add-pay-history-@item.InvoiceId">
+            @Ajax.ActionLink("Manual input", "AddPaymentHistory", "BookingViewModels", new { id = item.InvoiceId },
+              new AjaxOptions
+              {
+                  InsertionMode = InsertionMode.Replace,
+                  UpdateTargetId = "add-pay-history-" + @item.InvoiceId,
+                  OnSuccess = "openPopup"
+              }, new { @class = "btn btn-default" })
+
+        </div>*@
+
+                            }
+                        }
+                    </td>
+                    <td data-th="PaymentId"><h4>@Html.DisplayFor(modelItem => item.PaymentId)</h4></td>
+                    @{if (User.IsInRole("Administrator") || User.IsInRole("Staff"))
+                        {
+                            <td style="width:10%">@Html.DisplayFor(model => item.Companyname)</td>
+                        } }
+                    @*<td data-th="Payment Date time"><h4>@Html.DisplayFor(modelItem => item.PaymentDateTime)</h4></td>*@
+                    <td data-th="Credit/Debit Amount"><h4>@Html.DisplayFor(modelItem => item.PaidAmount)</h4></td>
+                    <td data-th="Payment Type"><h4>@Html.DisplayFor(modelItem => item.PaymentType)</h4></td>
+                    <td data-th="Booking Description"><h4>@Html.DisplayFor(modelItem => item.ItemDescription)</h4></td>
+                    <td data-th="Invoice issue Date"><h4>@Html.DisplayFor(modelItem => item.InvoiceIssueDate)</h4></td>
+                    <td data-th="Invoiced Deposit"><h4>@Html.DisplayFor(modelItem => item.InvoicedDeposit)</h4></td>
+                    <td data-th="Invoiced Remaining"><h4>@Html.DisplayFor(modelItem => item.InvoicedRemaining)</h4></td>
+                </tr>
+
+                        }
+        </tbody>
+    </table>
+
+</div>
+
+@section scripts{
+    <script src="//cdn.datatables.net/plug-ins/1.10.15/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/colreorder/1.3.3/js/dataTables.colReorder.min.js"></script>
+    <script src="//cdn.datatables.net/tabletools/2.2.4/js/dataTables.tableTools.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+    @Scripts.Render("~/bundles/ajax")
+    @*<script src="@Url.Content("~/Scripts/DataTables/jquery.dataTables.min.js")"></script>
+        <script src="@Url.Content("~/Scripts/DataTables/dataTables.colReorder.min.js")"></script>
+        <script src="@Url.Content("~/Scripts/DataTables/tableTools.min.js")"></script>*@
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('.table').dataTable({
+                "dom": 'Rlfrtip'
+            })
+            var tt = new $.fn.dataTable.TableTools(table);
+            $(tt.fnContainer()).insertBefore('div.dataTables_wrapper');
+        });
+    </script>
+
+<script>
+  $( function() {
+      $("#startDate").datepicker({ dateFormat: 'dd/mm/yy' });
+  } );
+</script>
+<script>
+  $( function() {
+      $("#endDate").datepicker({ dateFormat: 'dd/mm/yy' });
+
+  } );
+</script>
+    @*<script type="text/javascript">
+        $(document).ready(function () {
+            $("add-pay-history-" ).dialog({
+                autoOpen: false,
+                title: 'Title',
+                width: 500,
+                height: 500,
+                modal: true
+            });
+        });
+        function openPopup() {
+            $("add-pay-history-" ).dialog("open");
+        }
+    </script>*@
+
+    @*<script>
+        $(document).ready(function () {
+ 
+            $.ajaxSetup({ cache: false });
+            $(".editDialog").live("click", function (e) {
+                var url = $(this).attr('href');
+                $("#dialog-edit").dialog({
+                    title: 'AddPaymentHistory',
+                    autoOpen: false,
+                    resizable: false,
+                    height: 355,
+                    width: 400,
+                    show: { effect: 'drop', direction: "up" },
+                    modal: true,
+                    draggable: true,
+                    open: function (event, ui) {
+                        $(this).load(url);
+
+                    },
+                    close: function (event, ui) {
+                        $(this).dialog('close');
+                    }
+                });
+
+                $("#dialog-edit").dialog('open');
+                return false;
+            });
+        })
+   </script>*@
+    @*<script>
+        $(function () {
+            $('.editModal').modal();
+        });
+        function AddPaymentHistory(id) {
+            $.ajax({
+                url: 'BookingViewModels/AddPaymentHisotry/' + id,//mehtod name and parameter
+                url: '@Url.Action("AddPaymentHistory","BookingViewModels",new { id = InvoiceId })',
+                success: function (data) {
+                    $('#modalWrapper').html(data); //empty div with id of modalWrapper get injected
+                }
+            });
+        }
+    </script>*@
+    @*<script>
+            $("#OpenPopup").click(function () {
+                $("#dialog-modal").dialog("open");
+            })
+        </script>*@
+
+    @*<script>
+            $("#result").dialog({
+                autoOpen: false,
+                title: 'Title',
+                width: 500,
+                height: 'auto',
+                modal: true,
+                closeOnEscape: false, draggable: false, resizable: fals
+            });
+
+            $("#OpenPopup").click(function () {
+                $("#result").dialog("open");
+                // This is a neat wrapper that does a get request to the url specified and loads the html into the target div
+                // Controller/Action/ any id you need to pass
+                $("#result").load("/AddPaymentHistory/id");
+            });
+        </script>*@
+}

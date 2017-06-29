@@ -10,6 +10,7 @@ using AlfaAccounting.Models;
 
 namespace AlfaAccounting.Controllers
 {
+
     [Authorize]
     public class ManageController : Controller
     {

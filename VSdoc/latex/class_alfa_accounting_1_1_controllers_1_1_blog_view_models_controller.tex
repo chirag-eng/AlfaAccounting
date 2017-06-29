@@ -1,0 +1,80 @@
+\hypertarget{class_alfa_accounting_1_1_controllers_1_1_blog_view_models_controller}{}\section{Alfa\+Accounting.\+Controllers.\+Blog\+View\+Models\+Controller Class Reference}
+\label{class_alfa_accounting_1_1_controllers_1_1_blog_view_models_controller}\index{Alfa\+Accounting.\+Controllers.\+Blog\+View\+Models\+Controller@{Alfa\+Accounting.\+Controllers.\+Blog\+View\+Models\+Controller}}
+
+
+Inherits Controller.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_blog_view_models_controller_a1da9f6c006defe4ca559fd05e7f8accd}{Blog\+View\+Model\+Index} (int blogid, string return\+Url)
+\begin{DoxyCompactList}\small\item\em returns a Blog\+View\+Model\+Index view with a selected blog and list of the blog comments. \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_blog_view_models_controller_a147f8c8c66c4416e2bfca81afc48430c}{Add\+Comment\+Create} ()
+\begin{DoxyCompactList}\small\item\em Returns a blank Blog\+View\+Models/\+Add\+Comment view and pass input cmt to next view Add\+Comment \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_blog_view_models_controller_a9a48c7e353962802d1d3b1b8c8a0d315}{Add\+Comment\+Create} (\mbox{[}Bind(Include=\char`\"{}Comment\+Id, Commented\+Date, Comment\+Title, Comment\+Body, Blog\+Id, Id\char`\"{})\mbox{]} Comment comment)
+\begin{DoxyCompactList}\small\item\em Returns to Blog\+Veiw\+Model\+Index view after saving the passed input data on to database \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_blog_view_models_controller_a0010220ca96c4ec2fdba3524e00bab8e}\label{class_alfa_accounting_1_1_controllers_1_1_blog_view_models_controller_a0010220ca96c4ec2fdba3524e00bab8e}} 
+Application\+Db\+Context {\bfseries db} = new Application\+Db\+Context()
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_blog_view_models_controller_a147f8c8c66c4416e2bfca81afc48430c}\label{class_alfa_accounting_1_1_controllers_1_1_blog_view_models_controller_a147f8c8c66c4416e2bfca81afc48430c}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Blog\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Blog\+View\+Models\+Controller}!Add\+Comment\+Create@{Add\+Comment\+Create}}
+\index{Add\+Comment\+Create@{Add\+Comment\+Create}!Alfa\+Accounting\+::\+Controllers\+::\+Blog\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Blog\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Add\+Comment\+Create()}{AddCommentCreate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Blog\+View\+Models\+Controller.\+Add\+Comment\+Create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns a blank Blog\+View\+Models/\+Add\+Comment view and pass input cmt to next view Add\+Comment 
+
+\begin{DoxyReturn}{Returns}
+cmt
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_blog_view_models_controller_a9a48c7e353962802d1d3b1b8c8a0d315}\label{class_alfa_accounting_1_1_controllers_1_1_blog_view_models_controller_a9a48c7e353962802d1d3b1b8c8a0d315}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Blog\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Blog\+View\+Models\+Controller}!Add\+Comment\+Create@{Add\+Comment\+Create}}
+\index{Add\+Comment\+Create@{Add\+Comment\+Create}!Alfa\+Accounting\+::\+Controllers\+::\+Blog\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Blog\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Add\+Comment\+Create()}{AddCommentCreate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Blog\+View\+Models\+Controller.\+Add\+Comment\+Create (\begin{DoxyParamCaption}\item[{\mbox{[}\+Bind(\+Include = \char`\"{}\+Comment\+Id, Commented\+Date, Comment\+Title, Comment\+Body, Blog\+Id, Id\char`\"{})\mbox{]} Comment}]{comment }\end{DoxyParamCaption})}
+
+
+
+Returns to Blog\+Veiw\+Model\+Index view after saving the passed input data on to database 
+
+
+\begin{DoxyParams}{Parameters}
+{\em comment} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_blog_view_models_controller_a1da9f6c006defe4ca559fd05e7f8accd}\label{class_alfa_accounting_1_1_controllers_1_1_blog_view_models_controller_a1da9f6c006defe4ca559fd05e7f8accd}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Blog\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Blog\+View\+Models\+Controller}!Blog\+View\+Model\+Index@{Blog\+View\+Model\+Index}}
+\index{Blog\+View\+Model\+Index@{Blog\+View\+Model\+Index}!Alfa\+Accounting\+::\+Controllers\+::\+Blog\+View\+Models\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Blog\+View\+Models\+Controller}}
+\subsubsection{\texorpdfstring{Blog\+View\+Model\+Index()}{BlogViewModelIndex()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Blog\+View\+Models\+Controller.\+Blog\+View\+Model\+Index (\begin{DoxyParamCaption}\item[{int}]{blogid,  }\item[{string}]{return\+Url }\end{DoxyParamCaption})}
+
+
+
+returns a Blog\+View\+Model\+Index view with a selected blog and list of the blog comments. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em blogid} & \\
+\hline
+{\em return\+Url} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Me/\+Documents/\+Visual Studio 2015/\+Projects/\+Alfa\+Accounting/\+Alfa\+Accounting/\+Controllers/Blog\+View\+Models\+Controller.\+cs\end{DoxyCompactItemize}

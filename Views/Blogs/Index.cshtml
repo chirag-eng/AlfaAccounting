@@ -1,6 +1,8 @@
 ﻿
 @model PagedList.IPagedList<AlfaAccounting.Models.Blog>
 @using PagedList.Mvc;
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
     @{
@@ -10,7 +12,7 @@
     <h4>
         @if (User.IsInRole("Administrator") || User.IsInRole("Staff"))
         {
-            @Html.ActionLink("Post a Blog", "Create", "Blogs")
+            @Html.ActionLink("Post a Blog", "Create", "Blogs",null,new { @class="btn btn-primary"})
         }
     </h4>
 
@@ -25,8 +27,61 @@
             <input type="submit" value="Filter" />
         </p>
     }
+<div class="top-nav">
+    <div class="container">
+        <div class="row">
+            @if (User.IsInRole("Administrator") || User.IsInRole("Staff"))
+            {
+                <div class="col-md-4 col-sm-4">Sort by Forename: @Html.ActionLink("ForeName", "Index", new { sortOrder = ViewBag.NameSortParm }, new { @class = "btn btn-primary" })</div>
+            }
+            else
+            {
+                <div class="col-md-4 col-sm-4"></div>
+            }
+                <div class="col-md-4 col-sm-4">Sort by Date @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm }, new { @class = "btn btn-primary" })</div>
+                <div class="col-md-4 col-sm-4"></div>
+            
+        </div>
+    </div>
+</div>
+<div class="container" style="background-color:#f1f1f1; font-family: 'Nunito Sans', sans-serif; width: 100%;height: 100%; font-size: 16px;  letter-spacing: .5px;">
+    @foreach (var item in Model)
+    {
+        <div class="page" style="background-color:#fff;padding:20px 15px;margin-bottom:20px">
+            <h3 style="font-size:22px;margin-bottom:12px;">@Html.DisplayFor(modelItem => item.BlogTitle)</h3>
+            <div class="content">
+                <p style="font-size:17px;font-weight:500;">
+                    @Html.DisplayFor(modelItem => item.BlogContent).ToString().Substring(0, 300)......
+                </p>
+            </div>
+            <h4 style="font-size:13px;font-weight:600;"><a href="read-more">@Html.ActionLink("Read more", "BlogViewModelIndex", "BlogViewModels", new { blogid = item.BlogId }, new { @class = "btn btn-primary" })</a></h4>
+            <div class="details">
+                <ul style="list-style: none; padding-left: 0px; margin-bottom:18px;">
+                    @if (User.IsInRole("Administrator") || item.ApplicationUser.UserName.ToLower() == this.User.Identity.Name.ToLower())
+                    {
+                        <li style="float:left;padding-right:15px;font-size: 13px;font-weight: 600;">@Html.ActionLink("Edit", "Edit", new { id = item.BlogId }, new { @class = "btn btn-primary" })</li>
+                        <li style="float:left;padding-right:15px;font-size: 13px;font-weight: 600;">@Html.ActionLink("Delete", "Delete", new { id = item.BlogId }, new { onclick = "return confirm('Are you sure you wish to delete this blog?", @class = "btn btn-primary" })</li>
+                    }
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li style="float:left;padding-right:15px;font-size: 13px;font-weight: 600;">@Html.DisplayFor(modelItem => item.ApplicationUser.Forename)</li>
+                        <li style="float:left;padding-right:15px;font-size: 13px;font-weight: 600;">@Html.Label("Approved")@Html.DisplayFor(modelItem => item.BlogApproved)</li>
+                    }
+                    <li style="float:left;padding-right:15px;font-size: 13px;font-weight: 600;">@Html.DisplayFor(modelItem => item.BlogDate)</li>
+                    <li style="float:left;padding-right:15px;font-size: 13px;font-weight: 600;float: inherit;">Category: @Html.DisplayFor(modelItem => item.Category.CategoryName)</li>
 
-    <table class="table">
+                </ul>
+            </div>
+        </div>
+    }
+</div>
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    @*//table view version
+        <table class="table">
         <tr>
             @if (User.IsInRole("Administrator") || User.IsInRole("Staff"))
             {
@@ -84,25 +139,20 @@
                     }
                 </th>
                 <td>
-                    @Html.ActionLink("Detail", "BlogViewModelIndex", "BlogViewModels", new { blogid = item.BlogId }, null)
+                    @Html.ActionLink("Detail", "BlogViewModelIndex", "BlogViewModels", new { blogid = item.BlogId }, new { @class="btn btn-primary"})
                     @if (User.IsInRole("Administrator") || item.ApplicationUser.UserName.ToLower() == this.User.Identity.Name.ToLower())
                     {
 
                         @Html.ActionLink("Delete", "Delete", new { id = item.BlogId },
-              new { onclick = "return confirm('Are you sure you wish to delete this blog?');" })
+              new { onclick = "return confirm('Are you sure you wish to delete this blog?" ,@class="btn btn-primary"})
                     }
                     @if (User.IsInRole("Administrator") || item.ApplicationUser.UserName.ToLower() == this.User.Identity.Name.ToLower())
                 {
-                        @Html.ActionLink("Edit", "Edit", new { id = item.BlogId })
+                        @Html.ActionLink("Edit", "Edit", new { id = item.BlogId }, new { @class="btn btn-primary"})
                     }
 
                 </td>
             </tr>
         }
 
-    </table>
-
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-@Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </table>*@

@@ -1,0 +1,138 @@
+\hypertarget{class_alfa_accounting_1_1_controllers_1_1_backend_controller}{}\section{Alfa\+Accounting.\+Controllers.\+Backend\+Controller Class Reference}
+\label{class_alfa_accounting_1_1_controllers_1_1_backend_controller}\index{Alfa\+Accounting.\+Controllers.\+Backend\+Controller@{Alfa\+Accounting.\+Controllers.\+Backend\+Controller}}
+
+
+Mie Tanaka 22/5/2017 Version 1 Load Existing Booking to Book\+Dates Calendar View Creates New Booking, alows Edit of booking date by resizing and moving selectiong box on the calender, of only the current session booking,  
+
+
+
+
+Inherits Controller.
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_alfa_accounting_1_1_controllers_1_1_backend_controller_1_1_json_event}{Json\+Event}
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_alfa_accounting_1_1_controllers_1_1_backend_controller_1_1_json_event}{Json\+Event} Class olny used to store and manipulate selected data passed from the Book\+Dates View. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_backend_controller_a29bbe3f91ac31b8d2d639fdf6fb3de04}{Events} (Date\+Time? start, Date\+Time? end)
+\begin{DoxyCompactList}\small\item\em Returns Data from database and parse it into \hyperlink{class_alfa_accounting_1_1_controllers_1_1_backend_controller_1_1_json_event}{Json\+Event} class data to display in javascript on Book\+Dates View \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_backend_controller_a49fa4ed8afd915ec1fc3fdb15648df79}{Create} (string start, string end, string name)
+\begin{DoxyCompactList}\small\item\em Save Bookings if input is valid \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_backend_controller_ac3545457982cef819857e69e7dcc95e0}{Move} (int id, string new\+Start, string new\+End)
+\begin{DoxyCompactList}\small\item\em Saves the changes of new and end date if not overlapping with existing booking. \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_backend_controller_a0f789965f089440810d26b4c1d5f301b}{Resize} (int id, string new\+Start, string new\+End)
+\begin{DoxyCompactList}\small\item\em Saves the changes of new and end date if not overlapping with existing booking. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_backend_controller_aaf9281580fab05b2fa5ef047efa5a32a}\label{class_alfa_accounting_1_1_controllers_1_1_backend_controller_aaf9281580fab05b2fa5ef047efa5a32a}} 
+void {\bfseries Add\+To\+Cart} (int id)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_backend_controller_a3cb23939097b665268f8aca8a960edc9}\label{class_alfa_accounting_1_1_controllers_1_1_backend_controller_a3cb23939097b665268f8aca8a960edc9}} 
+Application\+Db\+Context {\bfseries db} = new Application\+Db\+Context()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Mie Tanaka 22/5/2017 Version 1 Load Existing Booking to Book\+Dates Calendar View Creates New Booking, alows Edit of booking date by resizing and moving selectiong box on the calender, of only the current session booking, 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_backend_controller_a49fa4ed8afd915ec1fc3fdb15648df79}\label{class_alfa_accounting_1_1_controllers_1_1_backend_controller_a49fa4ed8afd915ec1fc3fdb15648df79}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Backend\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Backend\+Controller}!Create@{Create}}
+\index{Create@{Create}!Alfa\+Accounting\+::\+Controllers\+::\+Backend\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Backend\+Controller}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Backend\+Controller.\+Create (\begin{DoxyParamCaption}\item[{string}]{start,  }\item[{string}]{end,  }\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Save Bookings if input is valid 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & \\
+\hline
+{\em end} & \\
+\hline
+{\em name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+data to the Book\+Dates view calender
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_backend_controller_a29bbe3f91ac31b8d2d639fdf6fb3de04}\label{class_alfa_accounting_1_1_controllers_1_1_backend_controller_a29bbe3f91ac31b8d2d639fdf6fb3de04}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Backend\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Backend\+Controller}!Events@{Events}}
+\index{Events@{Events}!Alfa\+Accounting\+::\+Controllers\+::\+Backend\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Backend\+Controller}}
+\subsubsection{\texorpdfstring{Events()}{Events()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Backend\+Controller.\+Events (\begin{DoxyParamCaption}\item[{Date\+Time?}]{start,  }\item[{Date\+Time?}]{end }\end{DoxyParamCaption})}
+
+
+
+Returns Data from database and parse it into \hyperlink{class_alfa_accounting_1_1_controllers_1_1_backend_controller_1_1_json_event}{Json\+Event} class data to display in javascript on Book\+Dates View 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & \\
+\hline
+{\em end} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Json result data to Bok\+Dates View
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_backend_controller_ac3545457982cef819857e69e7dcc95e0}\label{class_alfa_accounting_1_1_controllers_1_1_backend_controller_ac3545457982cef819857e69e7dcc95e0}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Backend\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Backend\+Controller}!Move@{Move}}
+\index{Move@{Move}!Alfa\+Accounting\+::\+Controllers\+::\+Backend\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Backend\+Controller}}
+\subsubsection{\texorpdfstring{Move()}{Move()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Backend\+Controller.\+Move (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{string}]{new\+Start,  }\item[{string}]{new\+End }\end{DoxyParamCaption})}
+
+
+
+Saves the changes of new and end date if not overlapping with existing booking. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+{\em new\+Start} & \\
+\hline
+{\em new\+End} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+updated data to the Book\+Dates view calender
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_backend_controller_a0f789965f089440810d26b4c1d5f301b}\label{class_alfa_accounting_1_1_controllers_1_1_backend_controller_a0f789965f089440810d26b4c1d5f301b}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+Backend\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Backend\+Controller}!Resize@{Resize}}
+\index{Resize@{Resize}!Alfa\+Accounting\+::\+Controllers\+::\+Backend\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+Backend\+Controller}}
+\subsubsection{\texorpdfstring{Resize()}{Resize()}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+Backend\+Controller.\+Resize (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{string}]{new\+Start,  }\item[{string}]{new\+End }\end{DoxyParamCaption})}
+
+
+
+Saves the changes of new and end date if not overlapping with existing booking. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+{\em new\+Start} & \\
+\hline
+{\em new\+End} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+updated data to the Book\+Dates view calender
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Me/\+Documents/\+Visual Studio 2015/\+Projects/\+Alfa\+Accounting/\+Alfa\+Accounting/\+Controllers/Backend\+Controller.\+cs\end{DoxyCompactItemize}

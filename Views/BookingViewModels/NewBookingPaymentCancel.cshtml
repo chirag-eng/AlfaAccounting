@@ -1,0 +1,36 @@
+﻿@{ Layout = "~/Views/Shared/_LayoutCheckout.cshtml"; }
+<div class="wrapper">
+    <div class="checkout container">
+        <header>
+            <h1><br></h1>
+            <p>
+                Make a payment with Braintree using PayPal or a card
+            </p>
+        </header>
+        <form id="payment-form" method="post" action="@Url.Action("Refund","BookingViewModels")">
+            <section>
+                <div class="bt-drop-in-wrapper">
+                    <div id="bt-dropin"></div>
+                </div>
+                <label for="amount">
+                    <span class="input-label">Amount</span>
+                    <div class="input-label amount-wrapper">
+                        <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="@ViewBag.amountValue" readonly>
+                    </div>
+                </label>
+            </section>
+            <button class="button" type="submit"><span>Get refund</span></button>
+        </form>
+    </div>
+</div>
+<script src="https://js.braintreegateway.com/js/braintree-2.27.0.min.js"></script>
+<script>
+    var checkout = new Demo({
+        formID: "payment-form"
+    });
+  var client_token = "@ViewBag.ClientToken";
+  braintree.setup(client_token, "dropin", {
+    container: "bt-dropin"
+  });
+</script>
+

@@ -1,0 +1,205 @@
+﻿@{ if (Request.IsAuthenticated) {
+        {
+            ViewBag.Title = "Index";
+            Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+        }
+    }else
+    {
+        {
+            ViewBag.Title = "Index";
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+    }
+}
+@model AlfaAccounting.Models.ShoppingCartViewModel
+@{
+    ViewBag.Title = "Shopping Cart";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="~/Content/ShoppingCart.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(function () {
+        // Document.ready -> link up remove event handler
+        $(".RemoveLink").click(function () {
+            // Get the id from the link
+            var recordToDelete = $(this).attr("data-id");
+
+            if (recordToDelete != '') {
+
+                // Perform the ajax post
+                $.post("@Url.Action("RemoveFromCart","ShoppingCart")", { "id": recordToDelete },
+                    function (data) {
+                        // Successful requests get here
+                        // Update the page elements
+                        if (data.ItemCount == 0) {
+                            $('#row-' + data.DeleteId).fadeOut('slow');
+                        } else {
+                            $('#item-count-' + data.DeleteId).text(data.ItemCount);
+                        }
+
+                        $('#cart-total').text(data.CartTotal);
+                        $('#update-message').text(data.Message);
+                        $('#cart-status').text('Cart (' + data.CartCount + ')');
+                    });
+            }
+        });
+
+    });
+
+
+    function handleUpdate() {
+        // Load and deserialize the returned JSON data
+        var json = context.get_data();
+        var data = Sys.Serialization.JavaScriptSerializer.deserialize(json);
+
+        // Update the page elements
+        if (data.ItemCount == 0) {
+            $('#row-' + data.DeleteId).fadeOut('slow');
+        } else {
+            $('#item-count-' + data.DeleteId).text(data.ItemCount);
+        }
+
+        $('#cart-total').text(data.CartTotal);
+        $('#update-message').text(data.Message);
+        $('#cart-status').text('Cart (' + data.CartCount + ')');
+    }
+</script>
+<br/>
+<div class="container" style="width:100%">
+    <div class="page-header">
+        <h2>Shoppingcart <small></small></h2>
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Booking Dates", "BookDatesAfterLoggedIn", "BookingViewModels")</li>
+            <li class="active">Shoppingcart</li>
+        </ol>
+    </div>
+    <h3>
+        <em>Review</em> your cart:
+    </h3>
+    @*<p class="button">
+            @Html.ActionLink("Checkout >>", "ConfirmBooking", "BookingViewModels")
+        </p>*@
+    <div id="update-message">
+        <h4>
+            please be aware that once you have completed deposit payment, <br />
+            if you cancel booking within 48 hrs of your booking time,<br />
+            you must pay £25 of administrative charge to cancel the appointment
+        </h4>
+    </div>
+    @*<table>
+            <tr>
+                <th>
+                    Booking Item Description
+                </th>
+                <th>
+                    Price (each)
+                </th>
+                <th>
+                    Duration
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model.CartItems)
+            {
+                <tr id="row-@item.CartRecordId">
+                    <td>
+                        @Html.ActionLink(item.Booking.ItemDescription, "Details", "Store", new { id = item.BookingId }, null)
+                        @Html.ActionLink(item.Booking.ItemDescription, "BookDates","BookingViewModels", new { id=item.BookingId},null)
+                    </td>
+                    <td>
+                        @item.Booking.Subtotal
+                    </td>
+                    <td id="item-count-@item.CartRecordId">
+                        @item.CartCount
+                    </td>
+                    <td>
+                        <a href="#" class="RemoveLink" data-id="@item.CartRecordId">Remove from cart</a>
+                    </td>
+                </tr>
+            }
+
+            <tr>
+                <td>
+                    Total
+                </td>
+                <td></td>
+                <td></td>
+                <td id="cart-total">
+                    @Model.CartTotal
+                </td>
+            </tr>
+            <tr>
+            <td>Deposit</td>
+                <td></td>
+                <td></td>
+                <td id="cart-deposit">
+                    @Model.DepositTotal
+                </td>
+            </tr>
+        </table>
+        <p> please be aware that once you have completed deposit payment, <br />
+            you have the right to cancel without any further charge if up to 48 hrs prior to the booking time. <br />
+            if you want to cancel booking within 48 hrs of the booking time,<br />
+            you must pay £25 of administrative charge on top of deposit to cancel the appointment</p>*@
+
+    @*<div class="container">*@
+        <table id="cart" class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th style="width:50%">Booking Item Descritpion</th>
+                    <th style="width:10%">Unit Price</th>
+                    <th style="width:8%">Duration</th>
+                    <th style="width:22%" class="text-center">Subtotal</th>
+                    <th style="width:10%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.CartItems)
+                {
+                    <tr id="row-@item.CartRecordId">
+                        <td data-th="Booking Item Descritpion">
+                            <div class="row">
+                                @*<div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive" /></div>*@
+                                <div class="col-sm-10">
+                                    <h4 class="nomargin">@Html.ActionLink(item.Booking.ItemDescription, "BookingDates", "BookingViewodels", new { id = item.BookingId }, null)</h4>
+                                    @*<p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p>*@
+                                </div>
+                            </div>
+                        </td>
+                        <td data-th="Unit Price"><h4>@item.Booking.UnitPrice.UnitPriceValue</h4></td>
+                        <td data-th="Duration" id="item-count-@item.CartRecordId">
+                            <h4>@((item.Booking.BookingEndDateTime - item.Booking.BookingStartDateTime).Hours)Hours
+                                @((item.Booking.BookingEndDateTime - item.Booking.BookingStartDateTime).Minutes)Minutes</h4>
+                            @*<input type="number" class="form-control text-center" value="1" readonly>*@
+                        </td>
+                        <td data-th="Subtotal" class="text-center"><h4>@item.Booking.Subtotal</h4></td>
+                        <td class="actions" data-th="">
+                            <a href="#" class="RemoveLink" data-id="@item.CartRecordId">Remove from cart</a>
+                            @*<button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                                <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>*@
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+            <tfoot>
+                <tr class="visible-xs">
+                    <td class="text-center" id="cart-total"><h4><strong>Total @Model.CartTotal</strong></h4></td>
+                </tr>
+                <tr class="visible-xs">
+                    <td class="text-center" id="cart-deposit"><h4><strong>Deposit @Model.DepositTotal</strong></h4></td>
+                </tr>
+                <tr>
+                    <td><a href="@Url.Action("BookDates", "BookingViewModels")" class="btn btn-warning"><i class="fa fa-angle-left"></i> << Continue Booking </a></td>
+                    <td colspan="2" class="hidden-xs"></td>
+                    <td class="hidden-xs text-center"><strong>Total @Model.CartTotal</strong></td>
+                    <td class="hidden-xs text-center"><strong>Deposit @Model.DepositTotal</strong></td>
+                    <td><a href="@Url.Action("ConfirmBooking", "BookingViewModels")" class="btn btn-success btn-block"> Checkout >> <i class="fa fa-angle-right"></i></a></td>
+                </tr>
+                <tr></tr>
+            </tfoot>
+        </table>
+    </div>
+

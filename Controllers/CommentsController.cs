@@ -10,39 +10,47 @@ using AlfaAccounting.Models;
 using Microsoft.AspNet.Identity;
 /// <summary>
 /// Name:Mie Tanaka
-/// Name:02/03/2017
+/// Name:26/05/2017
 /// Description: allows users to edit and delete their own comments
 
 
 namespace AlfaAccounting.Controllers
 {
+
     public class CommentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Comments
-        public ActionResult Index()
-        {
-            var comments = db.Comments.Include(c => c.ApplicationUser).Include(c => c.Blog);
-            return View(comments.ToList());
-        }
+        //public ActionResult Index()
+        //{
+        //    var comments = db.Comments.Include(c => c.ApplicationUser).Include(c => c.Blog);
+        //    return View(comments.ToList());
+        //}
 
-        // GET: Comments/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Comment comment = db.Comments.Find(id);
-            if (comment == null)
-            {
-                return HttpNotFound();
-            }
-            return View(comment);
-        }
+        //// GET: Comments/Details/5
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Comment comment = db.Comments.Find(id);
+        //    if (comment == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(comment);
+        //}
 
-        // GET: Comments/Create
+
+        /// <summary>
+        /// gets tempdata tempBlog from BlogViewModelIndex
+        /// creates new comment with passed blog id and user id from the model
+        /// Returns the blank comment form
+        /// </summary>
+        /// <returns>Returns the blank comment form</returns>
+        /// <includesource>yes</includesource>
         public ActionResult Create()
         {
             //Recieve blog TempData from previous view
@@ -58,13 +66,21 @@ namespace AlfaAccounting.Controllers
             return View(cmt);
         }
 
-        // POST: Comments/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// gets tempdata tempBlog from BlogViewModelIndex
+        /// and gets the posted comment data
+        /// comment's bologid and Userid is null at this point
+        /// it get filled with the passed temp data
+        /// saves the comment to database
+        /// </summary>
+        /// <param name="comment"></param>
+        /// <returns>Returns BlogViewModelIndex view</returns>
+        /// <includesource>yes</includesource>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CommentId,CommentedDate,CommentTitle,CommentBody,BlogId,Id")] Comment comment)
-        {   //Recieve blog TempData from previous view
+        {
+            //Recieve blog TempData from previous view
             Blog passedblog = TempData["tempBlog"] as Blog;
             comment.CommentedDate = DateTime.Today;
             comment.BlogId = passedblog.BlogId;
@@ -76,8 +92,6 @@ namespace AlfaAccounting.Controllers
                 return RedirectToAction("BlogViewModelIndex", "BlogViewModels", new { blogid = comment.BlogId });
             }
 
-            //            ViewBag.Id = new SelectList(db.Users, "Id", "Forename", comment.Id);
-            //            ViewBag.BlogId = new SelectList(db.Blogs, "BlogId", "BlogTitle", comment.BlogId);
             ///pass blog tempData to next View
             TempData["tempBlog"] = passedblog;
             return View(comment);
@@ -89,10 +103,11 @@ namespace AlfaAccounting.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns>comment</returns>
+        /// <includesource>yes</includesource>
         public ActionResult Edit(int? id)
         {
             //Recieve blog TempData from previous view
-       //     Blog passedblog = TempData["tempBlog"] as Blog;
+                 Blog passedblog = TempData["tempBlog"] as Blog;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -109,15 +124,14 @@ namespace AlfaAccounting.Controllers
             return View(comment);
         }
 
-        // POST: Comments/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         /// <summary>
         /// Returns BlogViewModel/BlogViewModelIndex view
         /// after successfully saving the valid edited data onto database
         /// </summary>
         /// <param name="comment"></param>
         /// <returns>BlogViewmodels/BlogViewModelIndex view</returns>
+        /// <includesource>yes</includesource>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CommentId,CommentedDate,CommentTitle,CommentBody,BlogId,Id")] Comment comment)
@@ -141,37 +155,18 @@ namespace AlfaAccounting.Controllers
             return View(comment);
         }
 
-        // GET: Comments/Delete/5
-        /// <summary>
-        /// returns selected comment detail view with delete confirmation submit button
-        /// then the comment get passed to the next Comments/delete view
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Comment comment = db.Comments.Find(id);
-            if (comment == null)
-            {
-                return HttpNotFound();
-            }
-            return View(comment);
-        }
 
         // POST: Comments/Delete/5
         /// <summary>
         /// Returns BlogViewModelIndex 
-        /// after successfully deletein the comment from the database
+        /// after successfully deleteing the comment from the database
         /// </summary>
         /// <param name="id"></param>
         /// <returns> BlogViewModelIndex </returns>
-        [HttpPost, ActionName("Delete")]
+        /// <includesource>yes</includesource>
+        //[HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
             Comment comment = db.Comments.Find(id);
             db.Comments.Remove(comment);

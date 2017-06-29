@@ -1,0 +1,94 @@
+﻿@model AlfaAccounting.Models.PaymentHistory
+
+@{
+    ViewBag.Title = "EditPaymentHistory";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+<h2>EditPaymentHistory</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container" style="width:100%">
+        @*<h4>Payment History</h4>
+            <hr />*@
+
+        <table id="Add_PayHistory" class="table table-hover table-striped">
+            <thead>
+
+                <tr>
+                    @{if (Model.TransactionId == null)
+                    {
+                        <th style="width:10%">@Html.DisplayNameFor(model => model.Id)</th>
+                    }
+                }
+                <th style="width:10%">@Html.DisplayNameFor(model => model.PaymentHistoryId)</th>
+                <th style="width:20%">@Html.DisplayNameFor(model => model.PaymentDateTime)</th>
+                <th style="width:20%">@Html.DisplayNameFor(model => model.PaymentType)</th>
+                <th style="width:10%">@Html.DisplayNameFor(model => model.CreditAmount)</th>
+                <th style="width:10%">@Html.DisplayNameFor(model => model.DebitAmount)</th>
+                @{if (Model.TransactionId == null)
+                    {
+                        <th style="width:10%">@Html.DisplayNameFor(model => model.InvoiceId)</th>
+                    }
+                }
+                <th style="width:10%"></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @{if (Model.TransactionId == null)
+                    {
+                        <td>
+                            @Html.DropDownList("Id", null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PaymentDateTime, "", new { @class = "text-danger" })
+                        </td>
+                    }
+                }
+                <td>
+                    @Html.DisplayFor(model => model.PaymentHistoryId, new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.ValidationMessageFor(model => model.PaymentDateTime, "", new { @class = "text-danger" })*@
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.PaymentDateTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PaymentDateTime, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.EnumDropDownListFor(model => model.PaymentType, "", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PaymentType, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.CreditAmount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CreditAmount, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.DebitAmount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DebitAmount, "", new { @class = "text-danger" })
+                </td>
+                @{if (Model.TransactionId == null)
+                    {
+                        <td>
+                            @Html.DropDownList("InvoiceId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.InvoiceId, "", new { @class = "text-danger" })
+                        </td>
+                    }
+                }
+                @*<td>
+                        @Html.DropDownList("Id", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                    </td>*@
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="EditPaymentHistory" class="btn btn-default" />
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+                    }

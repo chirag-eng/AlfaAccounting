@@ -1,0 +1,118 @@
+﻿@model IEnumerable<AlfaAccounting.Models.InvoiceIndexViewModel>
+@{
+    ViewBag.Title = "InvoiceIndex";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+
+
+@*@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()*@
+<div class="container" style="width:100%">
+    <div class="page-header">
+        <h2>Invoices <small></small></h2>
+        @*<ol class="breadcrumb">
+                <li>@Html.ActionLink("Home","Index","Home")</li>
+                <li>@Html.ActionLink("Manage Booking", "Dashboard", "BookingViewModels")</li>
+                <li class="active">Invoices</li>
+            </ol>*@
+    </div>
+    @using (Html.BeginForm("InvoiceIndex", "BookingViewModels", FormMethod.Post))
+    {
+        <p>
+            Start Date: @Html.TextBox("startDate", null, ("dd/MM/yyyy"), new { id = "startDate" })
+            &nbsp; and &nbsp; End Date: @Html.TextBox("endDate", null, ("dd/MM/yyyy"), new { id = "endDate" })
+            @*//<input type="text" id="startDate" name="startDate:"> &nbsp; and &nbsp; End Date: <input type="text" id="endDate" name="endDate:">*@
+            @*Start Date:@Html.TextBox("startDate")&nbsp;and &nbsp; End Date:@Html.TextBox("endDate")*@
+
+
+            <input type="submit" value="Filter" />
+        </p>
+    }
+    <table id="InvoiceIndex" class="table table-hover table-striped">
+        <thead>
+
+            <tr>
+                <th style="width:5%">@Html.DisplayNameFor(model => model.InvoiceId)</th>
+                @{if (User.IsInRole("Administrator") || User.IsInRole("Staff"))
+                    {
+                        <th style="width:10%">@Html.DisplayNameFor(model => model.Companyname)</th>
+                    } }
+                <th style="width:10%">@Html.DisplayNameFor(model => model.ItemDescription)</th>
+                <th style="width:10%">@Html.DisplayNameFor(model => model.BookingStatus)</th>
+                <th style="width:10%">@Html.DisplayNameFor(model => model.Subtotal)</th>
+                <th style="width:10%">@Html.DisplayNameFor(model => model.InvoiceIssueDate)</th>
+                <th style="width:10%">@Html.DisplayNameFor(model => model.InvoicedDeposit)</th>
+                <th style="width:10%">@Html.DisplayNameFor(model => model.InvoicedRemaining)</th>
+                <th style="width:10%"></th>
+
+            </tr>
+
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td data-th="InvId">@Html.DisplayFor(model => item.InvoiceId)</td>
+                    @{if (User.IsInRole("Administrator") || User.IsInRole("Staff"))
+                        {
+                            <td style="width:10%">@Html.DisplayFor(model => item.Companyname)</td>
+                        } }
+                    <td data-th="Booking Detail"><h4>@Html.DisplayFor(modelitem => item.ItemDescription)</h4></td>
+                    <td data-th="Booking Status"><h4>@Html.DisplayFor(modelitem => item.BookingStatus) </h4></td>
+                    <td data-th="Booking Subtotal"><h4>@Html.DisplayFor(modelitem => item.Subtotal) </h4></td>
+                    <td data-th="Invoiced Date"><h4>@Html.DisplayFor(modelitem => item.InvoiceIssueDate)</h4></td>
+                    <td data-th="Invoiced Deposit"><h4>@Html.DisplayFor(modelitem => item.InvoicedDeposit)</h4></td>
+                    <td data-th="Invoiced Remaining"><h4>@Html.DisplayFor(modelItem => item.InvoicedRemaining)</h4></td>
+                    <td>
+                        @if (item.Statuscheck == true && item.BookingStatus != "Booked")
+                        {
+                            @Html.ActionLink("View Invoice", "InvoiceDetail", new { id = item.InvoiceId }, new { @class = "btn btn-primary" })<br />
+                        }
+                        @if ((item.BookingStartDateTime - DateTime.Now).TotalHours <= 0 && item.BookingStatus.ToString() == "Booked" && User.IsInRole("Administrator"))
+                        {
+                            @Html.ActionLink("Confirm Visit", "ConfirmVisit", "BookingViewModels", new { id = item.BookingId }, new { @class = "btn btn-primary" })
+                        }
+
+                    </td>
+                </tr>
+                        }
+        </tbody>
+    </table>
+</div>
+@*}*@
+
+@section scripts{
+    <script src="//cdn.datatables.net/plug-ins/1.10.15/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/colreorder/1.3.3/js/dataTables.colReorder.min.js"></script>
+    <script src="//cdn.datatables.net/tabletools/2.2.4/js/dataTables.tableTools.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //$('.table').dataTable({
+            //    "dom": 'Rlfrtip'});
+            //"dom": 'C<"clear">lfrtip'});
+            var table = $('.table').dataTable({
+                "dom": 'Rlfrtip'
+            })
+            var tt = new $.fn.dataTable.TableTools(table);
+            $(tt.fnContainer()).insertBefore('div.dataTables_wrapper');
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $("#startDate").datepicker({ dateFormat: 'dd/mm/yy' });
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#endDate").datepicker({ dateFormat: 'dd/mm/yy' });
+
+        });
+    </script>
+}
+

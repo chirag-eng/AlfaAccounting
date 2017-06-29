@@ -1,0 +1,60 @@
+﻿@model AlfaAccounting.Models.DepositRate
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+
+}
+
+<h2>Deposit Rate</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+@using (@Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(model => model.DepositRateValue, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(modelItem => Model.DepositRateValue, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DepositRateValue, "", new { @class = "text-danger" })              
+            </div>
+            <div class="col-md-2">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+
+
+    </div>
+}
+@*<table class="table">
+        <tr>
+            <th >
+                @Html.DisplayNameFor(model => model.DepositRateValue)
+            </th>
+            <th></th>
+        </tr>
+
+    foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.EditorFor(modelItem => Model.DepositRateValue)
+            </td>
+            <td>
+                @*<div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">*
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    @*</div>
+                </div>*
+                @Html.ActionLink("Edit", "Edit", new { id=Model.DepositRateId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=Model.DepositRateId })
+            </td>
+        </tr>
+    }
+
+    </table>
+
+
+    }*@

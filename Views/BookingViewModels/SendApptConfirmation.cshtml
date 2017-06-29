@@ -1,0 +1,110 @@
+﻿@model IEnumerable<AlfaAccounting.Models.Booking>
+@{
+    ViewBag.Title = "SendAppConfirmationText";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+<h2>SendAppConfirmationText</h2>
+
+@*@using (Html.BeginForm()) { 
+    @Html.AntiForgeryToken()*@
+    @*<div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="send" class="btn btn-default" />
+        </div>
+    </div>*@
+<div class="form-group">
+        <div class="col-md-offset-2 col-md-1">
+           @Html.ActionLink("Send Visit Confirmation Text","SendApptConfirmationText","BookingViewModels", null, new { @class="btn btn-primary"})
+        </div>
+    </div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Companyname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Invoice.InvoiceId)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.UnitPrice.UnitPriceDescription)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.BookedDate)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.BookingStartDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingEndDateTime)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.BookingStatus)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.BookingAdjustmentHrs)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.ItemDescription)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Subtotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingDeposit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingCancellationFee)
+        </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.Companyname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Invoice.InvoiceId)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.UnitPrice.UnitPriceDescription)
+            </td>*@
+            @*<td>
+                @Html.DisplayFor(modelItem => item.BookedDate)
+            </td>*@
+            @*<td>
+                @Html.DisplayFor(modelItem => item.BookingStartDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingEndDateTime)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingStatus)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.BookingAdjustmentHrs)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemDescription)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Subtotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingDeposit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingCancellationFee)
+            </td>*@
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.BookingId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.BookingId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.BookingId })*@
+            </td>
+        </tr>
+    }
+
+</table>
+@*}*@

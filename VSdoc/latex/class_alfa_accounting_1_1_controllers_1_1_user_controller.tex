@@ -1,0 +1,176 @@
+\hypertarget{class_alfa_accounting_1_1_controllers_1_1_user_controller}{}\section{Alfa\+Accounting.\+Controllers.\+User\+Controller Class Reference}
+\label{class_alfa_accounting_1_1_controllers_1_1_user_controller}\index{Alfa\+Accounting.\+Controllers.\+User\+Controller@{Alfa\+Accounting.\+Controllers.\+User\+Controller}}
+
+
+Name\+:Mie Tanaka Name\+:26/05/2017 Description\+: allows user edit their own detail  
+
+
+
+
+Inherits Controller.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_user_controller_a31fc4c591dbaf5dc9202d42601c59233}{Edit\+User} (string User\+Name)
+\begin{DoxyCompactList}\small\item\em returns a ediable Edit\+User View filled with logged in user detail \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_user_controller_aba377f7d0cebab4e38359d6082fe3845}{Edit\+User} (Expanded\+User\+D\+TO param\+Expanded\+User\+D\+TO)
+\begin{DoxyCompactList}\small\item\em returns Home/\+Index after updateing database with Expanded\+User\+D\+TO data if error keep returning Edit\+User View \end{DoxyCompactList}\item 
+Action\+Result \hyperlink{class_alfa_accounting_1_1_controllers_1_1_user_controller_ae790d18ac9ac914e2e6cde9174b0f03b}{Delete\+User} (string User\+Name)
+\begin{DoxyCompactList}\small\item\em Gets selected user data and display pop up view with confirm delete, if confirm yes, delete the user record from database and returns Admin/\+Index view \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Application\+User\+Manager \hyperlink{class_alfa_accounting_1_1_controllers_1_1_user_controller_a88b94fb079c158860b583be20660201f}{User\+Manager}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em getter and setter of user\+Manager \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Expanded\+User\+D\+TO \hyperlink{class_alfa_accounting_1_1_controllers_1_1_user_controller_a3e89b06788cf166c1955b02f5f3673c3}{Get\+User} (string param\+User\+Name)
+\begin{DoxyCompactList}\small\item\em gets the logged in user\textquotesingle{}s detail from database and returns Expanded\+User\+D\+TO obj\+Expanded\+User\+D\+TO from database. \end{DoxyCompactList}\item 
+Expanded\+User\+D\+TO \hyperlink{class_alfa_accounting_1_1_controllers_1_1_user_controller_a6d78b5992e6e0fc55c95b8a0e3abb312}{Update\+D\+T\+O\+User} (Expanded\+User\+D\+TO param\+Expanded\+User\+D\+TO)
+\begin{DoxyCompactList}\small\item\em returns the updated Expanded\+User\+D\+TO class object param\+Expanded\+User\+D\+TO after updating database user detail with input data \end{DoxyCompactList}\item 
+void \hyperlink{class_alfa_accounting_1_1_controllers_1_1_user_controller_a5beae5b7c0ee86dd2833f3fcaabd8455}{Delete\+User} (Expanded\+User\+D\+TO param\+Expanded\+User\+D\+TO)
+\begin{DoxyCompactList}\small\item\em delete user from database \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_user_controller_a3d027fc8d76aa1a298f6b1a615a06e05}\label{class_alfa_accounting_1_1_controllers_1_1_user_controller_a3d027fc8d76aa1a298f6b1a615a06e05}} 
+Application\+User\+Manager {\bfseries \+\_\+user\+Manager}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Name\+:Mie Tanaka Name\+:26/05/2017 Description\+: allows user edit their own detail 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_user_controller_ae790d18ac9ac914e2e6cde9174b0f03b}\label{class_alfa_accounting_1_1_controllers_1_1_user_controller_ae790d18ac9ac914e2e6cde9174b0f03b}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller}!Delete\+User@{Delete\+User}}
+\index{Delete\+User@{Delete\+User}!Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller}}
+\subsubsection{\texorpdfstring{Delete\+User()}{DeleteUser()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+User\+Controller.\+Delete\+User (\begin{DoxyParamCaption}\item[{string}]{User\+Name }\end{DoxyParamCaption})}
+
+
+
+Gets selected user data and display pop up view with confirm delete, if confirm yes, delete the user record from database and returns Admin/\+Index view 
+
+
+\begin{DoxyParams}{Parameters}
+{\em string User\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns Admin/\+Index view if successful , if error returns current Edit\+User view with error message. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_user_controller_a5beae5b7c0ee86dd2833f3fcaabd8455}\label{class_alfa_accounting_1_1_controllers_1_1_user_controller_a5beae5b7c0ee86dd2833f3fcaabd8455}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller}!Delete\+User@{Delete\+User}}
+\index{Delete\+User@{Delete\+User}!Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller}}
+\subsubsection{\texorpdfstring{Delete\+User()}{DeleteUser()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Alfa\+Accounting.\+Controllers.\+User\+Controller.\+Delete\+User (\begin{DoxyParamCaption}\item[{Expanded\+User\+D\+TO}]{param\+Expanded\+User\+D\+TO }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+delete user from database 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param\+Expanded\+User\+D\+TT} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_user_controller_a31fc4c591dbaf5dc9202d42601c59233}\label{class_alfa_accounting_1_1_controllers_1_1_user_controller_a31fc4c591dbaf5dc9202d42601c59233}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller}!Edit\+User@{Edit\+User}}
+\index{Edit\+User@{Edit\+User}!Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller}}
+\subsubsection{\texorpdfstring{Edit\+User()}{EditUser()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+User\+Controller.\+Edit\+User (\begin{DoxyParamCaption}\item[{string}]{User\+Name }\end{DoxyParamCaption})}
+
+
+
+returns a ediable Edit\+User View filled with logged in user detail 
+
+
+\begin{DoxyParams}{Parameters}
+{\em User\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$<$obj\+Expanded\+User\+D\+TO 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_user_controller_aba377f7d0cebab4e38359d6082fe3845}\label{class_alfa_accounting_1_1_controllers_1_1_user_controller_aba377f7d0cebab4e38359d6082fe3845}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller}!Edit\+User@{Edit\+User}}
+\index{Edit\+User@{Edit\+User}!Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller}}
+\subsubsection{\texorpdfstring{Edit\+User()}{EditUser()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Action\+Result Alfa\+Accounting.\+Controllers.\+User\+Controller.\+Edit\+User (\begin{DoxyParamCaption}\item[{Expanded\+User\+D\+TO}]{param\+Expanded\+User\+D\+TO }\end{DoxyParamCaption})}
+
+
+
+returns Home/\+Index after updateing database with Expanded\+User\+D\+TO data if error keep returning Edit\+User View 
+
+P\+UT\+: /\+User/\+Edit\+User
+
+
+\begin{DoxyParams}{Parameters}
+{\em param\+Expanded\+User\+D\+TO} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_user_controller_a3e89b06788cf166c1955b02f5f3673c3}\label{class_alfa_accounting_1_1_controllers_1_1_user_controller_a3e89b06788cf166c1955b02f5f3673c3}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller}!Get\+User@{Get\+User}}
+\index{Get\+User@{Get\+User}!Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller}}
+\subsubsection{\texorpdfstring{Get\+User()}{GetUser()}}
+{\footnotesize\ttfamily Expanded\+User\+D\+TO Alfa\+Accounting.\+Controllers.\+User\+Controller.\+Get\+User (\begin{DoxyParamCaption}\item[{string}]{param\+User\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+gets the logged in user\textquotesingle{}s detail from database and returns Expanded\+User\+D\+TO obj\+Expanded\+User\+D\+TO from database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param\+User\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Expanded\+User\+D\+TO obj\+Expanded\+User\+D\+TO
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_user_controller_a6d78b5992e6e0fc55c95b8a0e3abb312}\label{class_alfa_accounting_1_1_controllers_1_1_user_controller_a6d78b5992e6e0fc55c95b8a0e3abb312}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller}!Update\+D\+T\+O\+User@{Update\+D\+T\+O\+User}}
+\index{Update\+D\+T\+O\+User@{Update\+D\+T\+O\+User}!Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller}}
+\subsubsection{\texorpdfstring{Update\+D\+T\+O\+User()}{UpdateDTOUser()}}
+{\footnotesize\ttfamily Expanded\+User\+D\+TO Alfa\+Accounting.\+Controllers.\+User\+Controller.\+Update\+D\+T\+O\+User (\begin{DoxyParamCaption}\item[{Expanded\+User\+D\+TO}]{param\+Expanded\+User\+D\+TO }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+returns the updated Expanded\+User\+D\+TO class object param\+Expanded\+User\+D\+TO after updating database user detail with input data 
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj\+Expanded\+User\+D\+TO} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Expanded\+User\+D\+TO param\+Expanded\+User\+D\+TO
+\end{DoxyReturn}
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{class_alfa_accounting_1_1_controllers_1_1_user_controller_a88b94fb079c158860b583be20660201f}\label{class_alfa_accounting_1_1_controllers_1_1_user_controller_a88b94fb079c158860b583be20660201f}} 
+\index{Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller}!User\+Manager@{User\+Manager}}
+\index{User\+Manager@{User\+Manager}!Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller@{Alfa\+Accounting\+::\+Controllers\+::\+User\+Controller}}
+\subsubsection{\texorpdfstring{User\+Manager}{UserManager}}
+{\footnotesize\ttfamily Application\+User\+Manager Alfa\+Accounting.\+Controllers.\+User\+Controller.\+User\+Manager\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [private set]}}
+
+
+
+getter and setter of user\+Manager 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Me/\+Documents/\+Visual Studio 2015/\+Projects/\+Alfa\+Accounting/\+Alfa\+Accounting/\+Controllers/User\+Controller.\+cs\end{DoxyCompactItemize}

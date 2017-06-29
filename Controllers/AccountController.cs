@@ -11,58 +11,59 @@ using Microsoft.Owin.Security;
 using AlfaAccounting.Models;
 using System.Configuration;
 using Microsoft.AspNet.Identity.EntityFramework;
-/// <summary>
-/// Name:Mie Tanaka
-/// Name:02/03/2017
-/// Description: allows users log in and register their account
-/// 
-/// public ActionResult Login
-/// Returns empty editable Account/Login view
-/// 
-/// public ActionReslut Login
-/// Returns back to Home/Index if login succesful
-/// If error, keep returning Login view with current input detail
-///
-/// private void CreateAdminIfNeeded
-/// cretate AddminAccount specifed in web config if required.
-/// 
-/// public ActionReslut Register()
-/// Returns blank Account/Register view
-/// 
-/// public AtionResult Register(RegisterViewModel model)
-/// Returns Home Index view after successfully save input user data,
-/// If error, returns Register view with current input with error message
+
 
 namespace AlfaAccounting.Controllers
 {
+    /// <summary>
+    /// Name:Mie Tanaka
+    /// Name:26/05/2017
+    /// Description: allows users log in and register their account
+    /// </summary>
+    
     [Authorize]
     public class AccountController : Controller
     {
+        ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        
 
+        /// <summary>
+        /// default constructor of account controller
+        /// </summary>
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        /// <summary>
+        /// Get user manager and signin mananger as parameter and 
+        /// set it to the UsrManager and SignInManager property
+        /// </summary>
+        /// <param name="userManager"></param>
+        /// <param name="signInManager"></param>
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
-
+        /// <summary>
+        /// allow access to owing context throug signin manager
+        /// </summary>
         public ApplicationSignInManager SignInManager
         {
             get
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
-
+        /// <summary>
+        /// allows access to the ownin context through usermanager
+        /// </summary>
         public ApplicationUserManager UserManager
         {
             get
@@ -75,7 +76,12 @@ namespace AlfaAccounting.Controllers
             }
         }
 
-        //
+       
+        /// <summary>
+        /// returns empty log in view
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns>returns empty log in view</returns>
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -83,26 +89,48 @@ namespace AlfaAccounting.Controllers
             //Create the Admin account using setting in Web.config(if needed)
             CreateAdminIfNeeded();
             ViewBag.ReturnUrl = returnUrl;
-                     return View();
- //           return Redirect(ControllerContext.HttpContext.Request.UrlReferrer.ToString());
+            return View();
+            //           return Redirect(ControllerContext.HttpContext.Request.UrlReferrer.ToString());
         }
 
-        //
+        /// <summary>
+        /// Checks input detail if passed model state is detail is valid,
+        /// removes booking which does not have InvoiceId and its user id is same as logged in user.
+        /// redirect user to privious url
+        /// if does not have previous url returns Home/Index
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns>if model state is not valid returs current view else redirect user to privious url 
+        /// if not revious url returns Home/Index</returns>
         // POST: /Account/Login
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
             //Require the user to have a confirmed email before they can login
             var user = await UserManager.FindByNameAsync(model.Email);
-            if(user != null)
+            if (user != null)
             {
-                if(!await UserManager.IsEmailConfirmedAsync(user.Id))
+                var loggedinuserid = user.Id;
+                if (loggedinuserid != null)
+                {
+                    var tempbooking = db.Bookings.Where(b => b.InvoiceId == null && b.Id == loggedinuserid).ToList();
+                    foreach (Booking item in tempbooking)
+                    {
+                        db.Bookings.Remove(item);
+                        db.SaveChanges();
+                    }
+                }
+                MigrateShoppingCart(user.Id);
+
+                if (!await UserManager.IsEmailConfirmedAsync(user.Id))
                 {
                     string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account-Resend");
 
@@ -110,7 +138,7 @@ namespace AlfaAccounting.Controllers
                     return View("Error");
                 }
             }
-            
+
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
@@ -129,6 +157,20 @@ namespace AlfaAccounting.Controllers
                     return View(model);
             }
         }
+        /// <summary>
+        /// when user logged in shopping cart temp user id is given passed in user id
+        /// </summary>
+        /// <param name="Userid"></param>
+        private void MigrateShoppingCart(string Userid)
+        {
+            // Associate shopping cart items with logged-in user
+            var cart = ShoppingCart.GetCart(this.HttpContext);
+
+            cart.MigrateCart(Userid);
+            Session[ShoppingCart.CartSessionKey] = Userid;
+        }
+
+
 
         //
         // GET: /Account/VerifyCode
@@ -159,7 +201,7 @@ namespace AlfaAccounting.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -173,7 +215,10 @@ namespace AlfaAccounting.Controllers
             }
         }
 
-        //
+        /// <summary>
+        /// returns blank register view
+        /// </summary>
+        /// <returns>Register view</returns>
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
@@ -181,7 +226,12 @@ namespace AlfaAccounting.Controllers
             return View();
         }
 
-        //
+        /// <summary>
+        /// allow user to register their detail
+        /// send user email to verify their email address
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>Info view</returns>
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -190,8 +240,9 @@ namespace AlfaAccounting.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser {
-                    Companyname=model.Companyname,
+                var user = new ApplicationUser
+                {
+                    Companyname = model.Companyname,
                     Forename = model.Forename,
                     Surname = model.Surname,
                     Street = model.Street,
@@ -199,10 +250,8 @@ namespace AlfaAccounting.Controllers
                     Postcode = model.Postcode,
                     PhoneNumber = model.PhoneNumber,
                     UserName = model.Email,
-                    Email = model.Email ,
+                    Email = model.Email,
                 };
-
-
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -229,7 +278,12 @@ namespace AlfaAccounting.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
+        /// <summary>
+        /// send email confirmation using passed userID and subject data
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="subject"></param>
+        /// <returns></returns>
         private async Task<string> SendEmailConfirmationTokenAsync(string userID, string subject)
         {
             string code = await UserManager.GenerateEmailConfirmationTokenAsync(userID);
@@ -241,7 +295,7 @@ namespace AlfaAccounting.Controllers
             return callbackUrl;
         }
 
-        //
+
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
@@ -254,7 +308,10 @@ namespace AlfaAccounting.Controllers
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
-        //
+        /// <summary>
+        /// returns blank forgotpassword view 
+        /// </summary>
+        /// <returns>returns blank forgotpassword view</returns>
         // GET: /Account/ForgotPassword
         [AllowAnonymous]
         public ActionResult ForgotPassword()
@@ -262,7 +319,11 @@ namespace AlfaAccounting.Controllers
             return View();
         }
 
-        //
+        /// <summary>
+        /// Gets posted model data, generate varification code and send it viea email
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>Forgotpassowrd confirmation view</returns>
         // POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
@@ -279,17 +340,20 @@ namespace AlfaAccounting.Controllers
                 }
 
                 // passward reset link get emailed 
-                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                 await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
         }
 
-        //
+        /// <summary>
+        /// Returns GorgotPasswordConfirmation View
+        /// </summary>
+        /// <returns>Returns GorgotPasswordConfirmation View</returns>
         // GET: /Account/ForgotPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
@@ -297,7 +361,11 @@ namespace AlfaAccounting.Controllers
             return View();
         }
 
-        //
+        /// <summary>
+        /// returns blank resest password view
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns>returns blank resest password view</returns>
         // GET: /Account/ResetPassword
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
@@ -305,8 +373,13 @@ namespace AlfaAccounting.Controllers
             return code == null ? View("Error") : View();
         }
 
-        //
+
         // POST: /Account/ResetPassword
+        /// <summary>
+        /// Get post reset password data
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>returns reset password view</returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -331,7 +404,7 @@ namespace AlfaAccounting.Controllers
             return View();
         }
 
-        //
+
         // GET: /Account/ResetPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
@@ -339,7 +412,7 @@ namespace AlfaAccounting.Controllers
             return View();
         }
 
-        //
+
         // POST: /Account/ExternalLogin
         [HttpPost]
         [AllowAnonymous]
@@ -365,7 +438,6 @@ namespace AlfaAccounting.Controllers
             return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
 
-        //
         // POST: /Account/SendCode
         [HttpPost]
         [AllowAnonymous]
@@ -455,11 +527,23 @@ namespace AlfaAccounting.Controllers
 
         //
         // POST: /Account/LogOff
+        /// <summary>
+        /// deletes the bookings which does not have Invoice Id
+        /// then logg off users
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            var loggedinuserid = User.Identity.GetUserId();
+            var tempbooking = db.Bookings.Where(b => b.InvoiceId == null && b.Id == loggedinuserid).ToList();
+            foreach (Booking item in tempbooking)
+            {
+                db.Bookings.Remove(item);
+                db.SaveChanges();
+            }
             return RedirectToAction("Index", "Home");
         }
 
@@ -471,7 +555,7 @@ namespace AlfaAccounting.Controllers
             return View();
         }
 
-        
+
 
 
         protected override void Dispose(bool disposing)
@@ -556,6 +640,9 @@ namespace AlfaAccounting.Controllers
         // Utility
 
         // Add RoleManager
+        /// <summary>
+        /// Utitily method to allow access to RoleManager
+        /// </summary>
         #region public ApplicationRoleManager RoleManager
         private ApplicationSignInManager.ApplicationRoleManager _roleManager;
         public ApplicationSignInManager.ApplicationRoleManager RoleManager
@@ -572,6 +659,9 @@ namespace AlfaAccounting.Controllers
         #endregion
 
         // Add CreateAdminIfNeeded
+        /// <summary>
+        /// cretate AddminAccount specifed in web config if required.
+        /// </summary>
         #region private void CreateAdminIfNeeded()
         private void CreateAdminIfNeeded()
         {
@@ -585,7 +675,7 @@ namespace AlfaAccounting.Controllers
             string AdminPostcode = ConfigurationManager.AppSettings["AdminPostcode"];
             string AdminTown = ConfigurationManager.AppSettings["AdminTown"];
             string AdminPhoneNumber = ConfigurationManager.AppSettings["AdminPhoneNumber"];
-        
+
 
             // See if Admin exists
             var objAdminUser = UserManager.FindByEmail(AdminUserName);
@@ -601,7 +691,8 @@ namespace AlfaAccounting.Controllers
                 }
 
                 // Create Admin user
-                var objNewAdminUser = new ApplicationUser {
+                var objNewAdminUser = new ApplicationUser
+                {
                     Companyname = AdminCompanyname,
                     Forename = AdminForename,
                     Surname = AdminSurname,

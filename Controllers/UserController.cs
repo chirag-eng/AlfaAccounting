@@ -9,14 +9,13 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-/// <summary>
-/// Name:Mie Tanaka
-/// Name:02/03/2017
-/// Description: allows user edit their own detail
-
-
 namespace AlfaAccounting.Controllers
 {
+    /// <summary>
+    /// Name:Mie Tanaka
+    /// Name:26/05/2017
+    /// Description: allows user edit their own detail
+    /// </summary>
 
     public class UserController : Controller
     {
@@ -28,6 +27,7 @@ namespace AlfaAccounting.Controllers
         /// </summary>
         /// <param name="UserName"></param>
         /// <returns> <objExpandedUserDTO </returns>
+        /// <includesource>yes</includesource>
         #region public ActionResult EditUser(string UserName)
         public ActionResult EditUser(string UserName)
              {
@@ -51,6 +51,7 @@ namespace AlfaAccounting.Controllers
         /// </summary>
         /// <param name="paramExpandedUserDTO"></param>
         /// <returns></returns>
+        /// <includesource>yes</includesource>
         [HttpPost]
              [ValidateAntiForgeryToken]
              #region public ActionResult EditUser(ExpandedUserDTO paramExpandedUserDTO)
@@ -70,7 +71,18 @@ namespace AlfaAccounting.Controllers
                          return HttpNotFound();
                      }
 
-                     return Redirect("~/Home/Index");
+                if (Request.IsAuthenticated && User.IsInRole("User"))
+                {
+                    return Redirect("~/BookingViewModels/DashboardUser");
+                }
+                else if (Request.IsAuthenticated && !User.IsInRole("User"))
+                {
+                    return Redirect("~/BookingViewModels/Dashboard");
+                }
+                else
+                {
+                    return Redirect("~/Home/Index");
+                }
                  }
                  catch (Exception ex) //if there is an error, return back to EditUser with original input value
                  {
@@ -109,6 +121,7 @@ namespace AlfaAccounting.Controllers
         /// <param name="string UserName"></param>
         /// <returns>returns Admin/Index view if successful , 
         ///         if error returns current EditUser view with error message. </returns>
+        ///         <includesource>yes</includesource>
         #region public ActionResult DeleteUser(string UserName)
         public ActionResult DeleteUser(string UserName)
              {
@@ -151,8 +164,10 @@ namespace AlfaAccounting.Controllers
         /// <summary>
         /// gets the logged in user's detail from database and 
         /// returns ExpandedUserDTO objExpandedUserDTO from database.
+        /// </summary>
         /// <param name="paramUserName"></param>
-        /// <returns>ExpandedUserDTO objExpandedUserDTO</returns>     
+        /// <returns>ExpandedUserDTO objExpandedUserDTO</returns>    
+        /// <includesource>yes</includesource>
         #region private ExpandedUserDTO GetUser(string paramUserName)
         private ExpandedUserDTO GetUser(string paramUserName)
              {
@@ -181,8 +196,10 @@ namespace AlfaAccounting.Controllers
         /// <summary>
         /// returns the updated ExpandedUserDTO class object paramExpandedUserDTO 
         /// after updating database user detail with input data
+        /// </summary>
         /// <param name="objExpandedUserDTO"></param>
         /// <returns>ExpandedUserDTO paramExpandedUserDTO</returns>
+        /// <includesource>yes</includesource>
         #region private ExpandedUserDTO UpdateDTOUser(ExpandedUserDTO objExpandedUserDTO)
         private ExpandedUserDTO UpdateDTOUser(ExpandedUserDTO paramExpandedUserDTO)
              {
@@ -245,8 +262,10 @@ namespace AlfaAccounting.Controllers
 
         /// <summary>
         /// delete user from database
+        /// </summary>
         /// <param name="paramExpandedUserDTT"></param>
         /// <returns>void</returns>
+        /// <includesource>yes</includesource>
         #region private void DeleteUser(ExpandedUserDTO paramExpandedUserDTO)
         private void DeleteUser(ExpandedUserDTO paramExpandedUserDTO)
              {

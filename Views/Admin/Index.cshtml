@@ -3,13 +3,13 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
 }
 <br />
 <p>
     @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default" })
     @Html.ActionLink("Edit Roles", "ViewAllRoles", null, new { @class = "btn btn-default" })
-    @Html.ActionLink("Back to Home", "../", "Home", null, new { @class = "btn btn-default" })
+    @*@Html.ActionLink("Back to Home", "../", "Home", null, new { @class = "btn btn-default" })*@
 </p>
 <br />
 @using (Html.BeginForm("Index", "Admin", FormMethod.Get))

@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <!--for blue bootstrap theme-->
+    <link href="@Url.Content("https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css")" rel="stylesheet" />
+    <!--for icon-->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>     
+    <!--for time picker-->
+    @*<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.css" rel="stylesheet" />*@<link href="~/Content/timepicker-addon.css" rel="stylesheet" media="all" type="text/css" />
+    <link href="~/Content/jquery-ui-timepicker-addon.min.css" media="all" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <!--for daypilot theme-->
+    <meta name="viewport" content="width=device-width" />
+    <link type="text/css" rel="stylesheet" href="media/layout.css" />
+    <link href="~/Themes/calendar_g.css" rel="stylesheet" />
+    <link href="~/Themes/calendar_green.css" rel="stylesheet" />
+    <link href="~/Themes/calendar_traditional.css" rel="stylesheet" />
+    <link href="~/Themes/calendar_transparent.css" rel="stylesheet" />
+    <link href="~/Themes/calendar_white.css" rel="stylesheet" />
+
+    <!-- helper libraries -->
+    <script src="~/Scripts/jquery-1.10.2.js" type="text/javascript"></script>
+    <!-- daypilot libraries -->
+    <script src="~/Scripts/daypilot-all.min.js" type="text/javascript"></script>
+    
+      <script type='text/javascript'>
+        var appInsights=window.appInsights||function(config)
+        {
+            function r(config){ t[config] = function(){ var i = arguments; t.queue.push(function(){ t[config].apply(t, i)})} }
+            var t = { config:config},u=document,e=window,o='script',s=u.createElement(o),i,f;for(s.src=config.url||'//az416426.vo.msecnd.net/scripts/a/ai.0.js',u.getElementsByTagName(o)[0].parentNode.appendChild(s),t.cookie=u.cookie,t.queue=[],i=['Event','Exception','Metric','PageView','Trace','Ajax'];i.length;)r('track'+i.pop());return r('setAuthenticatedUserContext'),r('clearAuthenticatedUserContext'),config.disableExceptionTracking||(i='onerror',r('_'+i),f=e[i],e[i]=function(config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== !0 && t['_' + i](config, r, u, e, o),s}),t
+        }({
+            instrumentationKey:'dcef660e-2bb5-4839-a7d6-0a54a98df507'
+        });
+
+        window.appInsights=appInsights;
+        appInsights.trackPageView();
+    </script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" >@*navbar-static-top*@
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+               @Html.ActionLink("Alfa Accounting", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Info", "Index", "Blogs")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li><a href="https://www.waveapps.com/">App</a></li>
+                    @if (!Request.IsAuthenticated)
+                    {
+                    <li>@Html.ActionLink("Booking", "BookDates", "BookingViewModels") </li>                 
+                    <li>@{Html.RenderAction("CartSummary", "ShoppingCart");}</li>
+                    }
+                    @*<li>@Html.ActionLink("Blog", "Index", "Blogs")</li>*@
+
+                    @*@if (User.IsInRole("Administrator"))
+                    {
+                        <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                        <li>@Html.ActionLink("Category", "Index", "Categories")</li>
+                    }*@
+                 
+                    @if (Request.IsAuthenticated && User.IsInRole("User"))
+                    {
+                      /*Html.ActionLink("User", "EditUser", "User",new { UserName = this.User.Identity.Name },null)*/
+                        <li>@Html.ActionLink("Manage Booking", "DashboardUser", "BookingViewModels") </li>
+                    }
+                    @if(User.IsInRole("Administrator")||User.IsInRole("Staff"))
+                    {
+                        <li>@Html.ActionLink("Manage Booking", "Dashboard", "BookingViewModels") </li>
+                    }
+                    
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Mie Tanaka ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

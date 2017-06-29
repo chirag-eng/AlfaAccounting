@@ -1,0 +1,168 @@
+﻿@model AlfaAccounting.Models.PaymentHistory
+
+@{
+    ViewBag.Title = "EditPaymentHistory";
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+<h2>EditPaymentHistory</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <h3 class="text-danger">@ViewBag.Error</h3>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentHistoryId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.PaymentHistoryId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PaymentHistoryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.PaymentDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PaymentDateTime, new { htmlAttributes = new { @class = "form-control" , @id = "PaymentDateTime" } })
+            @Html.ValidationMessageFor(model => model.PaymentDateTime, "", new { @class = "text-danger" })
+        </div>
+    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.PaymentType, "", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PaymentType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreditAmount, htmlAttributes: new { @class = "control-label col-md-2", @id = "CreditAmount" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CreditAmount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CreditAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DebitAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DebitAmount, new { htmlAttributes = new { @class = "form-control" , @id = "DebitAmount" } })
+                @Html.ValidationMessageFor(model => model.DebitAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="EditPaymentHistory" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+
+    @Html.ActionLink("Back to Payment History List", "IndexPaymentHistory", "BookingViewModels")
+
+</div>
+@section scripts{
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    @*<script src="~/Scripts/jquery-ui-timepicker-addon.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/i18n/jquery-ui-timepicker-pt-BR.js"></script>*@
+
+  <script>
+      $(function () {
+          $("#PaymentDateTime").datepicker({ dateFormat: 'dd/mm/yy' });
+      });
+</script>
+  
+    @*<script>
+        $(document).ready(function () {
+            $("#CreditAmount").change(function () {
+                $("#DebitAmount").val(0);
+            });
+        });
+    </script>*@
+
+}
+    @*<div class="container" style="width:100%">
+            <hr />
+
+        <table id="Add_PayHistory" class="table table-hover table-striped">
+            <thead>
+
+                <tr>
+                    @{if (Model.TransactionId == null)
+                    {
+                        <th style="width:10%">@Html.DisplayNameFor(model => model.Id)</th>
+                    }
+                }
+                <th style="width:10%">@Html.DisplayNameFor(model => model.PaymentHistoryId)</th>
+                <th style="width:20%">@Html.DisplayNameFor(model => model.PaymentDateTime)</th>
+                <th style="width:20%">@Html.DisplayNameFor(model => model.PaymentType)</th>
+                <th style="width:10%">@Html.DisplayNameFor(model => model.CreditAmount)</th>
+                <th style="width:10%">@Html.DisplayNameFor(model => model.DebitAmount)</th>
+                @{if (Model.TransactionId == null)
+                    {
+                        <th style="width:10%">@Html.DisplayNameFor(model => model.InvoiceId)</th>
+                    }
+                }
+                <th style="width:10%"></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @{if (Model.TransactionId == null)
+                    {
+                        <td>
+                            @Html.DropDownList("Id", null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PaymentDateTime, "", new { @class = "text-danger" })
+                        </td>
+                    }
+                }
+                <td>
+                    @Html.DisplayFor(model => model.PaymentHistoryId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PaymentHistoryId, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.PaymentDateTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PaymentDateTime, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.EnumDropDownListFor(model => model.PaymentType, "", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PaymentType, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.CreditAmount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CreditAmount, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.DebitAmount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DebitAmount, "", new { @class = "text-danger" })
+                </td>
+                @{if (Model.TransactionId == null)
+                    {
+                        <td>
+                            @Html.DropDownList("InvoiceId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.InvoiceId, "", new { @class = "text-danger" })
+                        </td>
+                    }
+                }
+ 
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="EditPaymentHistory" class="btn btn-default" />
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>*@
+                    

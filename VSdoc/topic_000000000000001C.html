@@ -1,0 +1,667 @@
+<?xml version="1.0" encoding="utf-8"?><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
+    <title>BookingViewModelsController.New Method</title>
+    <meta name="Microsoft.Help.TopicVersion" content="10" />
+    <meta name="Microsoft.Help.Id" content="M:AlfaAccounting.Controllers.BookingViewModelsController.New" />
+    <meta name="SelfBranded" content="false" />
+    <meta name="Title" content="BookingViewModelsController.New Method" />
+
+		<meta name="Microsoft.Help.TocParent" content="Methods.T:AlfaAccounting.Controllers.BookingViewModelsController" />    
+		<meta name="Microsoft.Help.F1" content="AlfaAccounting.Controllers.BookingViewModelsController.New" />
+    <meta name="Microsoft.Help.Keywords" content="New Method" />
+    <meta name="Microsoft.Help.Keywords" content="AlfaAccounting.Controllers.BookingViewModelsController.New Method" />
+    
+    <meta name="Microsoft.Help.ContentType" content="Reference" />
+    <meta name="Microsoft.Help.Category" content="TargetOS:Windows" />
+    <meta name="Microsoft.Help.Category" content="DevLang:VB" />
+    <meta name="Microsoft.Help.Category" content="DevLang:CSharp" />
+    <meta name="Microsoft.Help.Category" content="DevLang:FSharp" />
+    <meta name="Description" content="AlfaAccounting.Controllers.BookingViewModelsController.New Method" />
+    <meta name="Microsoft.Help.TOCParentTopicVersion" content="10" />
+    <meta name="Microsoft.Help.TocOrder" content="0" />
+    <meta name="Microsoft.Help.Product" content="AlfaAccounting Reference" />
+    <style type="text/css">.class-diagram img {border: none;}</style>
+    <script src="mshv2.js"></script>
+  </head>
+    <body class="primary-mtps-offline-document" 
+	onload="try{onLoad(); var nod=document.getElementById('vsdocman_init_script');var newNod=document.createElement('script');newNod.type= 'text/javascript';nod.parentNode.replaceChild(newNod,nod);newNod.text=nod.innerHTML;vsdocman_topic_init();}catch(ex){}">
+  
+<div id="vsdocman_init_script" style="display:none;">
+// <!-- the script cannot contain the following text (without dots): -.-.> or -.-
+function vsdocman_topic_init() {
+	try {
+		extractCode();
+	} catch (ex) {
+	}
+	
+	try {
+		var divs = document.documentElement.getElementsByTagName("div");
+		var i;
+		var footerRemoved = false;
+		for (i=divs.length-1; i>=0; i=i-1) {
+			var div = divs[i];
+	
+			// remove VS branding footer
+			if (!footerRemoved) {
+				if (div.className == "OH_footer") {
+					div.style.display = "none";
+					footerRemoved = true;
+				}
+			}
+			
+			// remove VS branding feedback link
+			if (div.className == "OH_feedbacklink") {
+				div.style.display = "none";
+			}
+		}
+
+		var tds = document.documentElement.getElementsByTagName("td");
+		for (i=0; i<tds.length; i++) {
+			var td = tds[i];
+	
+			// remove VS branding logo
+			if (td.className == "OH_tdLogoColumn") {
+				td.style.display = "none";
+			}
+		}
+	} catch (ex) {
+	}
+	
+	hideImageMapAreaLinks();
+	fixLinks();
+	fixNewlinesInSyntax();
+}
+
+
+/**
+ * Fixes <br />\n sequences in syntax declarations. Only <br/> 
+ * is needed.
+ */  
+function fixNewlinesInSyntax() {
+	try {
+		var i;
+		var snippets = document.documentElement.getElementsByTagName("CodeSnippet");
+		for (i=0; i<snippets.length; i++) {
+			var containsMarkup = snippets[i].getAttribute("ContainsMarkup");
+			if (containsMarkup == "true") {
+				// it is syntax section
+				// surround fixed text with <pre> tag, otherwise IE normalizes all whitespaces during setting innerHTML
+				snippets[i].parentNode.innerHTML = "<pre>" + snippets[i].parentNode.innerHTML.replace(/<br>\r?\n/gi, "<br>") + "</pre>";
+			}
+		}
+	} catch (ex) {
+	}
+}
+
+
+/**
+ * MS Help Viewer (at least version 1) removes style="display:none;". 
+ * Set it back.
+ */  
+function hideImageMapAreaLinks() {
+	try {
+		var i;
+		var maps = document.documentElement.getElementsByTagName("map");
+		for (i=0; i<maps.length; i++) {
+			var mapId = maps[i].getAttribute("name");
+			var invisibleLinks = document.getElementById("invisible_imagemap_links_" + mapId);
+			invisibleLinks.style.display="none";
+		}
+	} catch (ex) {
+	}
+}
+
+
+// Escapes id query variables in internal links and corrects external links. 
+function fixLinks() {
+	try {
+		var i;
+		var links = document.documentElement.getElementsByTagName("a");
+		var urlParameters = getUrlParameters();
+		for (i=0; i<links.length; i++) {
+			var hrf = links[i].getAttribute("hr" + "ef");
+			var escaped = escapeIdQueryVariable(hrf);
+			
+			var idValue = escaped[1];
+			if (idValue != "") {
+				var isExternal = (idValue.toLowerCase().indexOf("http://", 0) >= 0);
+				isExternal = isExternal || (idValue.toLowerCase().indexOf("https://", 0) >= 0);
+				var isHttp = isExternal;
+				isExternal = isExternal || (idValue.toLowerCase().indexOf("mailto:", 0) >= 0);
+				if (isExternal) {
+					// external link
+					//  Help3 system converts each Id to uppercase, so convert it to lowercase.
+					//  It's bigger chance the URL will be correct.
+					hrf = idValue.toLowerCase();
+					if (isHttp) {
+						links[i].className = "mtps-external-link";
+					}
+				} else {
+					// help3 link
+					hrf = escaped[0];
+					// some links (e.g. in syntax section) don't have complete parameters generated by Help3 system
+					if (hrf.indexOf("method=page", 0) < 0) {
+						hrf = hrf + "&" + urlParameters;
+					}
+				}
+	
+				links[i].setAttribute("hr" + "ef", hrf);
+			}
+		}
+	} catch (ex) {
+	}
+}
+
+
+var idQueryVariablePattern = /(\&|\?|^)(id\=)(.*?)(\&|$)/i;
+
+// Returns array with 2 items. The first one is resulting complete queryString with
+// escaped id variable. The second one is original value of id variable. 
+function escapeIdQueryVariable(input) {
+	var match = input.match(idQueryVariablePattern);
+	var idValue = "";
+	if (match) {
+		idValue = input.match(idQueryVariablePattern)[3];
+		input = input.replace(idQueryVariablePattern, "$1$2" + escape(idValue) + "$4");
+	}
+	var res = new Array();
+	res[0] = input;
+	res[1] = idValue;
+	return res;
+} 
+
+
+function getUrlParameters() {
+	var res;
+	res = "product=" + getQueryVariable("product") + "&";
+	res = res + "productversion=" + getQueryVariable("productversion") + "&";
+	res = res + "method=page&";
+	return res;
+}
+
+
+function getQueryVariable(variable) {
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  for (var i=0; i<vars.length; i++) {
+    var pair = vars[i].split("=");
+    if (pair[0].toLowerCase() == variable.toLowerCase()) {
+      return pair[1];
+    }
+  }
+  return "";
+} 
+
+
+function extractCode(parentNode) {
+	var comments = getAllComments(parentNode);
+
+	var comment;
+  for(var i=0; i<comments.length; i++){
+    comment = comments[i];
+  	var matches = comment.nodeValue.match(/(?:^\s*VSDOCMAN SCRIPT)((.|\r\n)*)$/);
+		// Match returns array. Index 0 is complete match. Index 1 is the first captured group.
+		// The group is defined by (). The ?: means that the group is not captured. 
+  	if (matches != null) {
+	    //res.push(matches[1]);
+	    createElement("div", matches[1], comment);
+    }
+  }
+}
+
+
+function getAllComments(parentNode) {
+	if (parentNode == null) {
+		parentNode = document.documentElement;
+	}
+	var children = parentNode.childNodes;
+	var res = new Array();
+  if(parentNode.nodeType == 8){
+  	// 8 = comment
+    res.push(parentNode);
+  }
+	    
+  for(var i=0; i<children.length; i++){
+      res = res.concat(getAllComments(children[i]));
+  }
+  return (res);
+}
+
+
+// Create new element and replace existing one with it
+function createElement(name, innerHtml, oldElm) {
+	// setting innerHTML containing script tags doesn't work in IE
+	var scriptBodies = new Array();
+	var scriptMatch;
+	var i = 0;
+	var scriptPattern = /(<script.*?>)((.|\r\n)*?)(<\/script>)/i;
+	do {
+		scriptMatch = innerHtml.match(scriptPattern);
+		if (scriptMatch != null) {
+			// found the script tag
+			//  get its innerHtml
+			scriptBodies[i] = scriptMatch[2];
+			// replace this script tag with span tag
+			innerHtml = innerHtml.replace(scriptPattern, "<span script_index=\"" + i + "\"></span>");
+		}
+		i++;
+	} while(scriptMatch != null && i < 100);
+	
+	var elm = document.createElement(name);
+	elm.innerHTML = innerHtml;
+	oldElm.parentNode.replaceChild(elm,oldElm);
+	
+	// now create script tags and replace corresponding span tags
+	var allSpans = elm.getElementsByTagName('span');
+	var scriptSpans = new Array();
+	for (i=0; i<allSpans.length; i++) {
+		if (allSpans[i].getAttribute("script_index")) {
+			var index = allSpans[i].getAttribute("script_index");
+			scriptSpans[index] = allSpans[i];
+		}
+	}
+	for (i=0; i<scriptBodies.length; i++) {
+		insertScriptElement(scriptBodies[i], scriptSpans[i], getUniqueIndex());
+	}
+}
+
+var uniqueIndex = 0;
+function getUniqueIndex() {
+	return uniqueIndex++;
+}
+
+function insertScriptElement(innerHtml, oldNode, scriptIndex) {
+	var newNod=document.createElement('script');
+	newNod.type = 'text/javascript';
+	newNod.setAttribute("defer", "defer");
+	oldNode.parentNode.replaceChild(newNod, oldNode);
+	// add a test whether the script was evaluated
+	var newInnerHtml = "\nvar vsdocmanScript" + scriptIndex + "executed = true;\n" + innerHtml;
+	newNod.text=newInnerHtml;
+	//run the script if necessary
+	try {
+		eval("vsdocmanScript" + scriptIndex + "executed");
+	} catch (ex) {
+		// not evaluated yet
+		eval(innerHtml);
+	}
+}
+
+// *** CLASS DIAGRAM CLICKING ***
+// To navigate any kind of link, we need to call click() method on the element.
+// It's because of <MSHelp:link links in Help2 format (only used in IE). 
+// Default click event in FF doesn't trigger the link (in IE it does).
+// Fix it. 
+function performClick(element) {
+	if (document.createEventObject){
+		// IE
+		return element.click();
+	}
+	else{
+		// dispatch for firefox + others
+		var evt = element.ownerDocument.createEvent('MouseEvents');
+		evt.initMouseEvent('click', true, true, element.ownerDocument.defaultView, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
+		element.dispatchEvent(evt);
+	}
+	
+	while (element) {
+		if (element.tagName == "A" && element.href != "") {
+			if (element.target != "") {
+				window.open(element.href, element.target);
+			} else {
+				document.location = element.href;
+			}
+			element = null;
+		}	else {
+			element = element.parentElement;
+		}
+	}
+}
+
+function clickElement(callerElement) {
+	try {
+		var elementHTML;
+		var tagName;
+		var innerCode;
+		var attributes;
+		var clickActionGuid;
+		
+		// get HTML source code of element to be clicked 
+		clickActionGuid = callerElement.getAttribute("click-cref-guid");
+		elementHTML = document.getElementById(clickActionGuid).innerHTML;
+		
+		// parse HTML element code
+		var elementPattern = /<(.+?)\s+(.*)>(.*)<.+?>/igm;
+		elementPattern.lastIndex = 0;
+		var match = elementPattern.exec(elementHTML);
+		tagName = match[1];
+		attributes = match[2];
+		innerCode = match[3];
+		
+		//get array of "attr=value" strings 	
+		attributes = unescapeHTML(attributes);
+		attributes = attributes.match(/\s*(.*?)\s*=\s*(["'])(.*?)\2/igm);
+		
+		// create element with attributes
+		var el = document.createElement(tagName);
+		//el.innerHTML = innerCode;
+		var i;
+		var attrPattern = /\s*(.*?)\s*=\s*(["'])(.*?)\2/igm;
+		for (i=0; i<attributes.length; i++) {
+			attrPattern.lastIndex = 0;
+			match = attrPattern.exec(attributes[i]);
+			el.setAttribute(match[1], match[3]);
+		}
+
+		document.body.appendChild(el);
+		performClick(el);
+	} catch (ex) {
+	}
+	return false;
+}
+
+function unescapeHTML (str) {
+	return str.replace(/&amp;/g,"&").
+		replace(/>/g,"&gt;").
+		replace(/</g,"&lt;");//. 
+		//the following doesn't work for some reason: replace(/"/g,"&quot;");                                         
+}
+
+// -->		
+</div>
+    <div class="topic">
+      <div class="majorTitle">AlfaAccounting Reference
+      </div>
+      <div class="title">BookingViewModelsController.New Method
+      </div>
+      <div id="mainSection">
+        <div id="mainBody">
+          <div>
+            <div class="summary">
+       
+			        Get client token to access braintree gateway,
+if newInvoice session data is not null, pass pay newInvoiceSeccion&#39;s recievable deposit amount as pay amount to pay newly booked deposit
+if MyBookingCancellationRequest session data is not null,
+     if cancellation fee is more than 0 and paymentType is Deposit or DepositCancelled, pay amount is booking cancellation fee to pay cancelation fee.
+     if booking cancellation fee is more than 0, cancellation fee is more than Booking deposit, deposit becomes pay amount to pay cancelation fee.
+     if booking status is cancelled but booking deposit is more than 0, refund amount is original cancelled deposit amount to refund deposit.
+     ** only in this case return New view with Get Refund Post form.
+if tempInvoiceDetail is not null pay amount becomes tempInvoiceDetail.receibableRemainingAmount - tempInvoiceDetail.PayableAmount to pay remaining booking fee
+     and saves tempInvoiceDatail as TempData
+if invoiceUpdated or bookingUpdated is not null, amount becomes posted amount from the AmendBookingConfirmation for user to pay extra hrs deposit charge
+
+
+            </div>
+          </div>
+          <p>
+          </p>
+
+          <strong>Namespace:</strong> 
+<a href="ms-xhelp:///?Id=N:AlfaAccounting.Controllers">AlfaAccounting.Controllers</a>
+
+
+
+<br />
+
+    
+          <strong>Assembly:</strong>
+          <span>AlfaAccounting (in AlfaAccounting.dll)</span>
+
+
+
+
+
+
+
+
+<CollapsibleArea runat="server" Expanded="1" Title="Syntax" xmlns="http://msdn2.microsoft.com/mtps">
+  <a id="syntaxToggle" xmlns="http://www.w3.org/1999/xhtml">
+  </a>
+
+            
+            
+						
+	<CodeSnippet xml:space="preserve" runat="server" Language="CSharp" DisplayLanguage="C#" ContainsMarkup="true" EnableCopyCode="false">public ActionResult New()</CodeSnippet>
+            
+						
+            
+						
+
+
+
+
+
+
+<div id="returns" xmlns="http://www.w3.org/1999/xhtml">
+  <h4 class="subHeading">Return Value</h4>
+  <span>
+	Type: <a href="ms-xhelp:///?Id=T:System.Web.Mvc.ActionResult">ActionResult</a><br />
+	    <span>Returns New View with Pay or New view with refund amount, only when cancellation refund data passsed</span>
+    <br />
+	
+  </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+</CollapsibleArea>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<CollapsibleArea runat="server" Expanded="1" Title="Source code" xmlns="http://msdn2.microsoft.com/mtps">
+  <a id="sourceCodeToggle" xmlns="http://www.w3.org/1999/xhtml">
+  </a>
+  <div id="snippetGroup" xmlns="http://www.w3.org/1999/xhtml">
+
+<CodeSnippet EnableCopyCode="true" runat="server" Language="CSharp" ContainsMarkup="false" DisplayLanguage="C#" xmlns="http://msdn2.microsoft.com/mtps">
+public ActionResult New(/*int? id*/)
+ {
+     var gateway = config.GetGateway();
+     var clientToken = gateway.ClientToken.generate();
+     ViewBag.ClientToken = clientToken;
+ 
+     var newInvoice = Session[&#34;NewInvoice&#34;] as Invoice;
+     //var SelectedPaymentIndexViewModel = Session[&#34;SelectedPaymentIndexViewModel&#34;] as PaymentIndexViewModel;
+     var cancelledbkg = Session[&#34;MyBookingCancellationRequest&#34;] as MyBookingCancellation;
+ 
+     var tempInvoiceDetail = TempData[&#34;tempInvoiceDetailViewModel&#34;] as InvoiceDetailViewModel;
+     var bookingUpdated = TempData[&#34;BookingUpdated&#34;] as Booking;
+     var invoiceUpdated = TempData[&#34;InvoiceUpdated&#34;] as Invoice;
+     var amendBookingmodel = TempData[&#34;AmendBookingModel&#34;] as VisitRefundViewModel;
+     //new booking deposit payment from ConfirmBooking
+     if (newInvoice != null &#38;&#38; cancelledbkg == null &#38;&#38; tempInvoiceDetail == null)
+     {
+         ViewBag.amountValue = newInvoice.ReceivableDepositAmount;
+     }
+     //canceled amount payment or refund from Cancel Booking
+     if (newInvoice == null &#38;&#38; cancelledbkg != null &#38;&#38; tempInvoiceDetail == null)
+     {
+         if ((cancelledbkg.BookingCancellationFee &#62; 0 &#38;&#38; cancelledbkg.BookingDeposit &#60; cancelledbkg.BookingCancellationFee) /*|| (Model.BookingDeposit &#62; 0 &#38;&#38; Model.BookingStatus == &#34;Cancelled&#34;)*/)
+         {
+             ViewBag.amountValue = cancelledbkg.BookingCancellationFee;
+         }
+         if (cancelledbkg.BookingDeposit &#62; 0 &#38;&#38; cancelledbkg.BookingStatus == &#34;Cancelled&#34;)
+         {
+             //extract booking deposit amount
+             var bookingDeposit = cancelledbkg.BookingDeposit;
+             //extract payment type 
+             var paymentType = &#34;&#34;;
+             foreach (var item in cancelledbkg.Payments) { paymentType = item.PaymentType; }
+             if (cancelledbkg.BookingCancellationFee == 0 &#38;&#38; (paymentType == &#34;Deposit&#34; || paymentType == &#34;DepositCancelled&#34;))
+             {
+                 var amountValue = bookingDeposit;
+                 //check if refund value is valid amount, if yes pass the amount to the current view if not navigate user back to MyBooking
+                 if (amountValue &#62; 0)
+                 {
+                     ViewBag.refundamountValue = amountValue;
+                     //return View(&#34;NewBookingPaymentCancel&#34;);
+                 }
+                 else return View(&#34;MyBooking&#34;);
+             }
+             if (cancelledbkg.BookingCancellationFee &#62; 0 &#38;&#38; (paymentType == &#34;Deposit&#34; || paymentType == &#34;DepositCancelled&#34;))
+             {
+                 var amountValue = 0f;
+                 if (cancelledbkg.BookingCancellationFee &#62; 0 &#38;&#38; bookingDeposit &#62; 0)
+                 {
+                     amountValue = cancelledbkg.BookingCancellationFee;
+                     ViewBag.amountValue = amountValue;
+                     //return View(&#34;New&#34;);
+                 }
+                 else if (cancelledbkg.BookingCancellationFee == 0 &#38;&#38; bookingDeposit &#62; 0)
+                 {
+                     amountValue = bookingDeposit;
+                     ViewBag.refundamountValue = amountValue;
+                     //return View(&#34;NewBookingPaymentCancel&#34;);
+                 }
+                 //check if refund value is valid amount, if yes pass the amount to the current view if not navigate user back to MyBooking
+                 if (amountValue &#62; 0) { ViewBag.amountValue = amountValue; }
+                 else return View(&#34;MyBooking&#34;);
+             }
+         }
+     }
+     //remaining amount payment from paymentIndex
+     //var listPaymentIndexViewModels = Session[&#34;ListPaymentIndexViewModel&#34;] as List&#60;PaymentIndexViewModel&#62;;
+     //var listMyBookingsViewModelBase = Session[&#34;ListMyBookingsViewModelBase&#34;] as List&#60;MyBookingsViewModelBase&#62;;
+     //if (listPaymentIndexViewModels != null &#38;&#38; listMyBookingsViewModelBase != null &#38;&#38; id != null)
+     //{
+     //    if (listPaymentIndexViewModels != null &#38;&#38; id != 0)
+     //    {
+     //        var result = listPaymentIndexViewModels.Where(l =&#62; l.InvoiceId == id).FirstOrDefault();
+     //        if (result.ReceivableRemainingAmount == 0 &#38;&#38; result.ReceivableDepositAmount != 0 &#38;&#38; result.PayableDepositAmount == 0 &#38;&#38; result.PayableAmount == 0)
+     //        {ViewBag.amountValue = (result.Subtotal - result.BookingDeposit);}
+     //        Session[&#34;ListPaymentIndexViewModels&#34;] = null;
+     //        Session[&#34;SelectedPaymentIndexViewModels&#34;] = result;
+     //    }
+     //    if (listMyBookingsViewModelBase != null &#38;&#38; id != 0)
+     //    {
+     //        var result = listMyBookingsViewModelBase.Where(l =&#62; l.InvoiceId == id).FirstOrDefault();
+     //        if (result.ReceivableRemainingAmount == 0 &#38;&#38; result.ReceivableDepositAmount != 0 &#38;&#38; result.PayableDepositAmount == 0 &#38;&#38; result.PayableAmount == 0)
+     //        {ViewBag.amountValue = (result.Subtotal - result.BookingDeposit);}
+     //        Session[&#34;ListMyBookingsViewModelBase&#34;] = null;
+     //        Session[&#34;SelectedPaymentIndexViewModels&#34;] = result;
+     //    }
+     //}
+     //remaining amount payment from IndexDetail
+     if (newInvoice == null &#38;&#38; cancelledbkg == null &#38;&#38; tempInvoiceDetail != null)
+     {
+         ViewBag.amountValue = tempInvoiceDetail.ReceivableRemainingAmount - tempInvoiceDetail.PayableAmount;
+         TempData[&#34;tempInvoiceDetailViewModel&#34;] = tempInvoiceDetail;
+     }
+     //amended amount payment from AmendBookingConfirmation
+     if (invoiceUpdated != null &#38;&#38; bookingUpdated != null)
+     {   //amount posted from AmendBookingConfirmation when amended hrs is more than original and user asked to pay the extra deposit.
+         var amount = Convert.ToDecimal(Request[&#34;amount&#34;]);
+         ViewBag.amountValue = amount;
+         TempData[&#34;BookingUpdated&#34;] = bookingUpdated;
+         TempData[&#34;InvoiceUpdated&#34;] = invoiceUpdated;
+     }
+ 
+     return View();
+ }
+</CodeSnippet>
+
+  </div>
+</CollapsibleArea>
+
+
+
+<CollapsibleArea runat="server" Expanded="1" Title="Platforms" xmlns="http://msdn2.microsoft.com/mtps">
+  <a id="platformsTitleToggle" xmlns="http://www.w3.org/1999/xhtml">
+  </a>
+  
+  <p> Windows 7 and above</p>
+  <p>
+  </p>
+
+  <span xmlns="http://www.w3.org/1999/xhtml">
+		The .NET Framework does not support all versions of every platform. For a list of the supported versions, see 
+		<a href="ms-xhelp:///?Id=298275e2-da1d-4618-9f74-6a3567832350">System Requirements</a>.
+  </span>
+</CollapsibleArea>
+
+
+
+  
+
+
+
+	
+	
+	
+	
+
+
+<CollapsibleArea runat="server" Expanded="1" Title="Version Information" xmlns="http://msdn2.microsoft.com/mtps">
+  <a id="versionsTitleToggle" xmlns="http://www.w3.org/1999/xhtml">
+  </a>
+  <h4 class="subHeading">.NET Framework</h4>Supported in: 4.6, 4.5, 4, 3.5, 3.0, 2.0, 1.1, 1.0<br />
+
+  <h4 class="subHeading">.NET Framework Client Profile</h4>Supported in: 4, 3.5 SP1<br />
+
+
+
+
+
+
+</CollapsibleArea>
+
+<CollapsibleArea runat="server" Expanded="1" Title="See Also" xmlns="http://msdn2.microsoft.com/mtps">
+  <a id="seeAlsoToggle" xmlns="http://www.w3.org/1999/xhtml"><!---->
+  </a>
+  <h4 class="subHeading" xmlns="http://www.w3.org/1999/xhtml">Reference</h4>
+		  <div class="seeAlsoStyle" xmlns="http://www.w3.org/1999/xhtml">
+    <a class="mtps-internal-link" href="ms-xhelp:///?id=T:AlfaAccounting.Controllers.BookingViewModelsController">BookingViewModelsController Class</a>
+  </div>
+  <div class="seeAlsoStyle" xmlns="http://www.w3.org/1999/xhtml">
+    <a class="mtps-internal-link" href="ms-xhelp:///?id=AllMembers.T:AlfaAccounting.Controllers.BookingViewModelsController">BookingViewModelsController Members</a>
+  </div>
+
+
+
+	  <div class="seeAlsoStyle" xmlns="http://www.w3.org/1999/xhtml">
+	    <a class="mtps-internal-link" href="ms-xhelp:///?Id=N:AlfaAccounting.Controllers">AlfaAccounting.Controllers Namespace</a>
+	  </div>
+
+
+		
+
+</CollapsibleArea>
+        </div>
+      </div>
+      
+			<div class="OH_footer">
+				<p><span style="color:#FF0000;">Generated with unregistered version of <a href="ms-xhelp:///?Id=http://www.helixoft.com/vsdocman/overview.html">VSdocman</a></span>&#32;<br />
+Your own footer text will only be shown in registered version.
+				</p>
+			</div>
+      
+    </div>
+  </body>
+</html>
+

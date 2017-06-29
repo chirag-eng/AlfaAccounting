@@ -33,13 +33,8 @@ namespace AlfaAccounting.Models
         [ForeignKey("ApplicationUser")]
         public string Id { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
-
-
-
         public IEnumerable<Comment> Comments { get; set; }
         public IEnumerable<Blog> Blogs { get; set; }
-
-
     }
     
 }
